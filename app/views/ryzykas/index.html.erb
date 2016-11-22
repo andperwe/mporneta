@@ -1,0 +1,69 @@
+<fieldset style="width: 90%;margin-left:5%;">
+<%= javascript_tag do %>
+  $.ajax({url: 'ryzyka/tu_ryzyka/',
+     success: function(data){
+     $('#tu_select').html(data);
+     $('#dodaj_tu').tooltip();
+  }
+});
+<% end %>
+
+ <%= form_tag('/posts') do %>
+
+<div style="margin-top:80px;"></div>
+<div class="panel panel-default devise-bs" style="margin-left:8%;margin-right:8%;">
+  <div class="panel-heading">
+    <h4>Ryzyka</h4>
+  </div>
+  <div class="panel-body">
+
+    <div class="col-md-10">
+
+      <label for="tu_ryzyk">Towarzystwo</label>
+      <!--select class="form-control" id="tu_ryzyk"></select-->
+      <div id="tu_select" class="form-inline">
+      </div>
+      <label for="grupa_ryzyk">Grupa</label>
+    <div class="form-inline">
+      <select class="form-control" id="grupa_ryzyk" style ="min-width: 95%;">
+           <option value="">wybierz</option>
+      </select>
+      <button type="button" id="dodaj_grupe" class="btn btn-primary btn-xs" data-placement="right" data-toggle="tooltip" class="tooltip" data-original-title="Dodaj grupę"><span class="glyphicon glyphicon-plus"></span></button>
+      <%= link_to '', new_rodz_pol_path, :remote => true, :id => "dodaj_g_link" %>
+    </div>
+      <div class="top-buffer col-md-7", style="padding-left:0px;">
+      <div style="display: inline-block; margin-top:10px;">
+     <table id="RyzykaT" cellspacing="0">
+       <thead>
+         <tr>
+           <!--th style="width: 31px; display:none;">id</th-->
+           <th style="display:none;">id_ryz</th>
+           <th style="width:460px;">Nazwy ryzyk</th>
+        </tr>
+       </thead>
+       <tbody class="tbody_RyzykaT">
+       </tbody>
+       </table>
+    </div>
+      </div>
+      <div class="col-md-1" style="margin-top:14px;">
+        <button type="button" id="dodaj_ryzyko" class="btn btn-primary btn-xs" data-placement="right" data-toggle="tooltip" class="tooltip" data-original-title="Dodaj ryzyko"><span class="glyphicon glyphicon-plus"></span></button>
+        <%= link_to '', new_nazwy_pol_path, :remote => true, :id => "dodaj_np_link" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div id="add_towarzystwo" title="Towarzystwo" style="background-color:white;">
+ <div class='towarzystwo_dane'></div>
+</div>
+
+<div id="add_grupa" title="Grupa" style="background-color:white;">
+ <div class='grupa_dane'></div>
+</div>
+
+<div id="add_np" title="Nazwa polisy" style="background-color:white;">
+ <div class='np_dane'></div>
+</div>
+</fieldset>

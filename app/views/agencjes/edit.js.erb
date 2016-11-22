@@ -1,0 +1,74 @@
+$( "#add_agencja" ).dialog({
+              autoOpen: false,
+              maxWidth:520,
+              maxHeight: 550,
+              width: 520,
+              height: 550,
+              modal: true,
+              buttons:[
+                      {
+                        id:"dodaj_agencja",
+                        text: "Zapisz",
+                        click: function() {
+                          if (!puste_pola_agencje())
+                            $('#form_r_agencje').submit();
+                          }
+                        }
+                    ]
+});
+
+$('.agencja_dane').html("<%= escape_javascript (render partial: 'form') %>");
+$('#t_oddzial').freezeTable({
+   'autoHeight': false,
+   'height': 58
+});
+
+$( "#dodaj_oddzial" ).button().on( "click", function(e) {
+   e.preventDefault();
+
+    $("#dodaj_oddz_link").click();
+});
+
+$(".dodaj_b").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$(".dodaj_b").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('.dodaj_b').removeClass();
+//DLA KAZDEGO DODAĆ
+$('#dodaj_oddzial').addClass('btn btn-primary btn-xs');
+$('#dodaj_oddzial').tooltip();
+$('#dodaj_oddz_link').hide();
+
+$("#dodaj_agencja").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#dodaj_agencja").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#dodaj_agencja').removeClass();
+$('#dodaj_agencja').addClass('btn btn-success btn-sm');
+ $("#agencje_kod").mask("99-999");
+
+ $("#agencje_nazwa").change(function(){
+ $("#agencje_nazwa").val(pierwsza_d($("#agencje_nazwa").val()));
+ });
+
+ $("#agencje_wlasciciel").change(function(){
+ $("#agencje_wlasciciel").val(pierwsza_d($("#agencje_wlasciciel").val()));
+ });
+
+ $("#agencje_miasto").change(function(){
+ $("#agencje_miasto").val(pierwsza_d($("#agencje_miasto").val()));
+ });
+
+ $("#agencje_adres").change(function(){
+ $("#agencje_adres").val(pierwsza_d($("#agencje_adres").val()));
+ });
+
+ $("#agencje_nazwa_s").change(function(){
+ $("#agencje_nazwa_s").val(pierwsza_d($("#agencje_nazwa_s").val()));
+ });
+
+$('#add_agencja').dialog( "open" );

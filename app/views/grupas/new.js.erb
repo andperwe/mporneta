@@ -1,0 +1,32 @@
+$( "#add_grupa" ).dialog({
+              autoOpen: false,
+              maxWidth:1000,
+              maxHeight: 460,
+              width: 1000,
+              height: 460,
+              modal: true,
+              buttons:[
+                      {
+                        id:"dodaj_g",
+                        text: "Dodaj",
+                        click: function() {
+                          /*if (!puste_pola_t())
+                            $('#form_r_towarzystwo').submit();*/
+                          }
+                        }
+                    ]
+});
+
+$('.grupa_dane').html("<%= escape_javascript (render partial: 'form') %>");
+
+$("#dodaj_g").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#dodaj_g").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#dodaj_g').removeClass();
+$('#dodaj_g').addClass('btn btn-success btn-sm');
+
+
+$('#add_grupa').dialog( "open" );

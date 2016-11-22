@@ -1,0 +1,41 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<div style="text-align:center;background:#C6D9F1;">
+		<h1>Przypomnienia na dzień: <%= Date.today %></h1>
+</div>
+<table style="font-size: 8pt;font-family:dejavusans;height: 25px;border: solid 1px #FFFFFF; border-collapse: collapse">
+	<thead>
+	<tr style="font-weight: bold;">
+	  <th style="width:5%">Dni</th>
+	  <th style="width:15%">Numer</th>
+		<th style="width:20%">Ubezpieczony</th>
+		<th style="width:20%">Polisa</th>
+		<th style="width:10%">Data wzn.</th>
+		<th style="width:15%">Telefon</th>
+	</tr>
+	</thead>
+	<tbody>
+		<% $i=0 %>
+		<% @polisas.each do |polisa| %>
+		 <% if $i % 2 == 0 %>
+       <tr style="height: 25px;">
+         <td style="font-weight: bold;text-align:center;"><%= polisa.ilosc_dni %></td>
+         <td style="height: 25px;"><%= polisa.numer %></td>
+				 <td style="height: 25px;"><%= polisa.ubezpieczony %></td>
+				 <td style="height: 25px;"><%= polisa.polisa_n_r %></td>
+				 <td style="height: 25px;"><%= polisa.data_wznowienia %></td>
+				 <td style="height: 25px;"><%= polisa.tel %></td>
+			 </tr>
+			<% else %>
+			<tr style="background: #F2F2F2;height: 25px;">
+				<td style="text-align:center;height: 25px;border: solid 1px #F2F2F2;font-weight: bold;"><%= polisa.ilosc_dni %></td>
+				<td style="border: solid 1px #F2F2F2;height: 25px;"><%= polisa.numer %></td>
+				<td style="border: solid 1px #F2F2F2;height: 25px;"><%= polisa.ubezpieczony %></td>
+				<td style="border: solid 1px #F2F2F2;height: 25px;"><%= polisa.polisa_n_r %></td>
+				<td style="border: solid 1px #F2F2F2;height: 25px;"><%= polisa.data_wznowienia %></td>
+				<td style="border: solid 1px #F2F2F2;height: 25px;"><%= polisa.tel %></td>
+			</tr>
+			<% end %>
+			<% $i=$i+1%>
+		<% end %>
+	</tbody>
+	</table>

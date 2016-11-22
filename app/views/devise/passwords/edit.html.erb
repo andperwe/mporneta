@@ -1,0 +1,29 @@
+<div style="margin-top:50px;"></div>
+
+<div class="panel panel-default devise-bs" style="margin-left:20%;margin-right:20%;padding:3px;">
+  <div class="panel-heading">
+    <h4 class="dialog-jq"><%= t('.change_your_password', :default => 'Change your password') %></h4>
+  </div>
+  <div class="panel-body">
+
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, role: "form" }) do |f| %>
+     <%= devise_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="form-group">
+        <%= f.label :password, t('.new_password', :default => 'New password') %>
+        <%= f.password_field :password, autofocus: true, class: "form-control"  %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, t('.confirm_new_password', :default => 'Confirm new password') %>
+        <%= f.password_field :password_confirmation, class: "form-control"  %>
+      </div>
+
+      <%= f.submit t('.change_my_password', :default => 'Change my password'), class: "btn btn-primary btn-sm pull-right" %>
+    <% end %>
+  </div>
+</div>
+<div style="margin-left:20%;">
+<%= render "devise/shared/links" %>
+</div>

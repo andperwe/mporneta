@@ -1,0 +1,27 @@
+<%= form_for @user, :remote => true, :html => { :id => 'form_r_user' } do |f| %>
+<div class="form-group" style="margin-bottom:7px;">
+  <%= f.label :agencje_id, "Nazwa agencji", :class => "margines" %>
+  <%= collection_select(:user, :agencje_id, Agencje.all, :id, :nazwa_s,{include_blank: 'wybierz'},{:class=>"form-control izolty", :id=>"agencje_id"}) %>
+</div>
+<div class="form-group" style="margin-bottom:7px;">
+  <%= f.label :funkcje_id, "Funkcja użytkownika", :class => "margines" %>
+  <%= collection_select(:user, :funkcje_id, Funkcje.all, :id, :nazwa_funkcji,{include_blank: 'wybierz'},{:class=>"form-control izolty", :id=>"funkcje_id"}) %>
+</div>
+<div class="form-group" style="margin-bottom:7px;">
+  <%= f.label :nazwa, "Nazwa użytkownika", :class => "margines" %>
+  <%= f.text_field :nazwa, class: "form-control input-sm izolty" %>
+</div>
+<div class="form-group" style="margin-bottom:7px;">
+  <%= f.label :loginn, "Login", :class => "margines" %>
+  <%= f.text_field :loginn, class: "form-control input-sm izolty" %>
+</div>
+  <div class="form-group" style="margin-bottom:7px;">
+    <%= f.label :email, :class => "margines" %>
+    <%= f.email_field :email, class: "form-control input-sm izolty" %>
+  </div>
+  <div class="form-group" style="margin-bottom:7px;">
+    <%= f.label :password, :class => "margines" %>
+    <%= f.password_field :password, class: "form-control input-sm izolty" %>
+  </div>
+
+<% end %>

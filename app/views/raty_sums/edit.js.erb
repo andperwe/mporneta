@@ -1,0 +1,20 @@
+$('.wplata_dane').html("<%= escape_javascript (render partial: 'form') %>");
+$.ajax({
+   url: "raty_sum/ilosc_rata",
+   type: 'POST',
+   data:{nazwy_pol_id:$('#raty_sum_nazwy_pol_id').val()},
+   success: function(date)
+   {
+    if (date == 1)   $('#kwota_r').attr('disabled', true);
+   }
+});
+$(".data").mask("9999-99-99");
+if ($('#data_wpl').val() == ''){
+  $('#data_wpl').val('0000-00-00');
+}
+if ($('#data_roz').val() == ''){
+  $('#data_roz').val('0000-00-00');
+}
+
+
+$('#platnosc').dialog( "open" );

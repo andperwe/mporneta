@@ -1,0 +1,94 @@
+wb = xlsx_package.workbook
+
+margins = {:left => 0, :right => 0, :top => 0, :bottom => 0, :header => 0, :footer => 0}
+
+
+
+wb.add_worksheet(name: "Excel", :page_setup => {:orientation => :landscape, :paper_size => 9, :scale => 90}, :page_margins => margins ) do |sheet|
+
+sheet.add_row
+currency = wb.styles.add_style(:format_code=>"#,##0.00 [$zł];[RED]-#,##0.00 [$zł]",
+                              :border=>Axlsx::STYLE_THIN_BORDER,
+                              alignment: { horizontal: :center })
+
+
+
+sheet.add_row ['POŚREDNIK:',nil,@posrednik,nil,'WYKAZ NR:',@nr_wyk,nil,"ZO OKRES: #{@data_wyk}"]
+
+
+sheet.add_row ["Oddział : #{@oddz}",nil,nil,nil,'Razem',"=SUM(F6:F#{@excels.length + 5})","=SUM(G6:G#{@excels.length + 5})","=SUM(H6:H#{@excels.length + 5})","=SUM(I6:I#{@excels.length + 5})"], :style=>[nil, nil, nil, nil, nil, currency, currency, currency, currency]
+sheet.add_style 'A2:H2', b: true, sz: 16
+sheet.add_style 'A3', b: true, sz: 10
+sheet.add_style 'F3:I3', b: true, sz: 10
+sheet.add_style 'E3', i: true, b: true, sz: 10
+
+sheet.add_row [nil,nil,nil,nil,'Razem z przelewem', "=SUM(G3:I3"], :style=>[nil, nil, nil, nil, nil, currency]
+sheet.add_style 'E4', i: true, b: true, sz: 10
+sheet.add_style 'F4', b: true, sz: 10
+
+srodek = wb.styles.add_style(:border=>Axlsx::STYLE_THIN_BORDER, alignment: { :horizontal => :center,
+                                                             :vertical => :center ,
+                                                             :wrap_text => true })
+sheet.add_row ['LP', 'TOWARZYSTWO UBEZPIECZEŃ', 'TYP UBEZPIECZENIA', 'NR POLISY', 'KLIENT', 'PRZYPIS', 'SKŁADKA  (klient opłaca przelewem)', 'SKŁADKA  (klient opłaca gotówką, pośrednik wpłaca bezpośrednio na konto TU)', 'SKŁADKA  (klient opłaca gotówką, pośrednik wpłaca zbiorczo na konto ULTRA)','UWAGI (CERTYFIKAT OC, ZK ITP.)'], :style=>[srodek, srodek, srodek, srodek, srodek, srodek, srodek, srodek, srodek, srodek], :height => 92
+sheet.add_style 'A5:J5', b: true, sz: 8
+@wiersz = 6
+@i = 1
+if @excels.empty?
+    sheet.add_row ['BRAK DANYCH!!!']
+    sheet.add_style 'A2:E2', b: true, sz: 16
+    sheet.add_style "A#{@wiersz}", b: true, sz:16, :fg_color => "FF0000"
+    @wiersz += 1
+else
+
+    @excels.each do |excel|
+        @dodatki = excel.zk.to_s+' '+excel.certyfikat.to_s+' '+excel.pl.to_s+' '+excel.nr_dw.to_s
+
+        if excel.typ_platnosci_id == 1
+            sheet.add_row [@i,excel.nazwa, excel.np, excel.numer, excel.ubezpieczony, excel.k, nil, excel.kwota, nil, @dodatki], :style=>[srodek, srodek, srodek, srodek, srodek, currency, currency, currency, currency, srodek], :types => [nil, nil, nil, :string]
+        elsif excel.typ_platnosci_id == 2
+            sheet.add_row [@i,excel.nazwa, excel.np, excel.numer, excel.ubezpieczony, excel.k, excel.kwota, nil, nil, @dodatki], :style=>[srodek, srodek, srodek, srodek, srodek, currency, currency, currency, currency, srodek], :types => [nil, nil, nil, :string]
+        elsif excel.typ_platnosci_id == 3
+            sheet.add_row [@i,excel.nazwa, excel.np, excel.numer, excel.ubezpieczony, excel.k, nil, nil, excel.kwota, @dodatki], :style=>[srodek, srodek, srodek, srodek, srodek, currency, currency, currency, currency, srodek], :types => [nil, nil, nil, :string]
+        else
+            sheet.add_row [@i,excel.nazwa, excel.np, excel.numer, excel.ubezpieczony, excel.k,nil,nil,nil, @dodatki], :style=>[srodek, srodek, srodek, srodek, srodek, currency, currency, currency, currency, srodek], :types => [nil, nil, nil, :string]
+        end
+
+        @i += 1
+    end
+    sheet.add_style "A6:J#{@excels.length + 5}", sz: 8
+  end
+
+  @wiersz = @wiersz + @i
+  sheet.add_row
+  @wiersz += 1
+  sheet.add_row ['WPŁATY RAT :']
+
+  @wiersz_start = @wiersz
+
+  if @rats.empty?
+     sheet.add_row ['BRAK DANYCH!!!']
+     sheet.add_style "A#{@wiersz}", b: true, sz:16, :fg_color => "FF0000"
+  else
+  @rats.each do |rat|
+     if rat.typ_platnosci_id == 1
+       sheet.add_row [@i,rat.nazwa, 'Rata '+rat.nr_raty.to_s, rat.numer, rat.ubezpieczony, nil, nil, rat.kwota, nil, rat.nr_dw], :style=>[srodek, srodek, srodek, srodek, srodek, currency, currency, currency, currency, srodek], :types => [nil, nil, nil, :string]
+     elsif rat.typ_platnosci_id == 2
+       sheet.add_row [@i,rat.nazwa, 'Rata '+rat.nr_raty.to_s, rat.numer, rat.ubezpieczony, nil, rat.kwota, nil, nil, rat.nr_dw], :style=>[srodek, srodek, srodek, srodek, srodek, currency, currency, currency, currency, srodek], :types => [nil, nil, nil, :string]
+     elsif rat.typ_platnosci_id == 3
+       sheet.add_row [@i,rat.nazwa, 'Rata '+rat.nr_raty.to_s, rat.numer, rat.ubezpieczony, nil, nil, nil, rat.kwota, rat.nr_dw], :style=>[srodek, srodek, srodek, srodek, srodek, currency, currency, currency, currency, srodek], :types => [nil, nil, nil, :string]
+     else
+       sheet.add_row [@i,rat.nazwa, 'Rata '+rat.nr_raty.to_s, rat.numer, rat.ubezpieczony, nil,nil,nil,nil, rat.nr_dw], :style=>[srodek, srodek, srodek, srodek, srodek, currency, currency, currency, currency, srodek], :types => [nil, nil, nil, :string]
+     end
+     @i += 1
+     @wiersz += 1
+  end
+
+  if @rats.length > 1
+        sheet.add_style "A#{@wiersz_start}:J#{@wiersz - 1}", sz: 8
+  else
+        sheet.add_style "A#{@wiersz_start}:J#{@wiersz_start}", sz: 8
+  end
+
+ end
+  sheet.column_widths 3.83, 12.4, 20, 16.6, 17.9, 13.3, 12, 12, 16.4, 18.2
+end

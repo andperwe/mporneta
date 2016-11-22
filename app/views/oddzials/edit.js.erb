@@ -1,0 +1,87 @@
+$( "#add_oddzial" ).dialog({
+              autoOpen: false,
+              maxWidth:300,
+              maxHeight: 250,
+              width: 300,
+              height: 250,
+              modal: true,
+              buttons:[
+                {
+                  id:"u_oddzial_ok",
+                  text: "Usuń",
+                  click: function() {
+                    $( ".komunikat_odz_u" ).dialog({
+                                  autoOpen: false,
+                                  maxWidth:420,
+                                  maxHeight: 200,
+                                  width: 420,
+                                  height: 200,
+                                  modal: true,
+                                  buttons:[
+                                          {
+                                            id:"tak_kom_odz",
+                                            text: "Tak",
+                                            click: function() {
+                                              $('.komunikat_odz_u').dialog("close");
+                                              $('#usun_odz_link').click();
+                                            }
+                                          },
+                                          {
+                                            id:"nie_kom_odz",
+                                            text: "Nie",
+                                            click: function() {
+                                              $('.komunikat_odz_u').dialog("close");
+                                            }
+                                          }
+                                        ]
+                    });
+                     $('div.komunikat_odz_u').html(
+                       "<div class='alert alert-warning' role='alert'>"+
+                        "<p class='text-center'><span class='glyphicon glyphicon-bell' aria-hidden='true'></span>"+
+                        "<strong>&nbsp Czy na pewno chcesz usunąć oddział !!!</strong></p>"+
+                      "</div>"
+                     );
+
+                      $("#tak_kom_odz, #nie_kom_odz").mouseover(function() {
+                            $('button').removeClass("ui-state-hover");
+                      });
+                      $("#tak_kom_odz, #nie_kom_odz").focus(function () {
+                            $(this).removeClass("ui-state-focus");
+                      });
+                      $('#tak_kom_odz').removeClass();
+                      $('#tak_kom_odz').addClass('btn btn-danger btn-sm');
+                      $('#nie_kom_odz').removeClass();
+                      $('#nie_kom_odz').addClass('btn btn-success btn-sm');
+                      $('.komunikat_odz_u').dialog( "open" );
+                      $("#nie_kom_odz").focus();
+                  }
+                },
+                      {
+                        id:"d_oddzial_ok",
+                        text: "Zapisz",
+                        click: function() {
+                          $('#form_oddz').submit();
+                          //$('#add_oddzial').dialog("close");
+                        }
+                      }
+                    ]
+});
+
+$('.oddzial_dane').html("<%= escape_javascript (render partial: 'form') %>");
+
+
+$("#d_oddzial_ok, #u_oddzial_ok").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#d_oddzial_ok, #u_oddzial_ok").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+
+$('#oddzial_miasto').change(function(){
+  $('#oddzial_miasto').val(pierwsza_d($('#oddzial_miasto').val()));
+});
+
+$('#d_oddzial_ok, #u_oddzial_ok').removeClass();
+$('#d_oddzial_ok').addClass('btn btn-success btn-sm');
+$('#u_oddzial_ok').addClass('btn btn-danger btn-sm');
+$('#add_oddzial').dialog( "open" );

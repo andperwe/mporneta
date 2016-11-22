@@ -1,0 +1,43 @@
+$('#model').val($('#model_poj_model').val().toUpperCase());
+$.ajax({
+   url:'model_poj/szukaj_model/',
+   type:'POST',
+   dataType : 'json',
+   data:{model:$('#model_poj_model').val()},
+   success: function(data) {
+       $('#model_f').val(data.id);
+  }
+});
+
+$(".modelf").dialog("close");
+
+$( ".komunikat_poj" ).dialog({
+              autoOpen: false,
+              maxWidth:450,
+              maxHeight: 220,
+              width: 450,
+              height: 220,
+              modal: true,
+              buttons:[
+                      {
+                        id:"ok_kom_model",
+                        text: "Ok",
+                        click: function() {
+                          $('.komunikat_poj').dialog("close");
+                          $('.komunikat_poj').empty();
+                        }
+                      }
+                    ]
+});
+
+$("#ok_kom_model").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#ok_kom_model").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#ok_kom_model').removeClass();
+$('#ok_kom_model').addClass('btn btn-primary btn-sm');
+
+$('.komunikat_poj').html("<%= escape_javascript (render partial: 'ok') %>");
+$('.komunikat_poj').dialog( "open" );

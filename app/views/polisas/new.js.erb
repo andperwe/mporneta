@@ -1,0 +1,19 @@
+
+$('#menu_b').removeClass('glyphicon-remove');
+$('#menu_b').addClass('glyphicon-align-justify');
+$('#menu').hide();
+if (osoba_id == 0)alert_t('Wybierz osobę !');
+else {
+  $('.polisa_dane').html("<%= escape_javascript (render partial: 'form') %>");
+  $('#usun_pol_link').hide();
+  $('#osobaid').val(osoba_id);
+  $('#Ubezpieczony').val(osoba);
+  $('#data_wniosku').val($('#polisa_dzis').val());
+  $("#pocz_okr_ubez").val($('#polisa_dzis').val());
+  $("#d_wplaty").val($('#polisa_dzis').val());
+  $("#d_wpl").val($('#polisa_dzis').val());
+  $("#data_wystawienia").val($('#polisa_dzis').val());
+  $("#data_wprowadzenia").val($('#polisa_dzis').val());
+  nowa_polisa=1;
+  $('#polisafd').dialog( "open" );
+}

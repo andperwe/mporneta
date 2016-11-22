@@ -1,0 +1,22 @@
+<div style="margin-top:50px;"></div>
+
+<div class="panel panel-default devise-bs" style="margin-left:20%;margin-right:20%;padding:3px;">
+  <div class="panel-heading">
+    <h4 class="dialog-jq"><%= t('.forgot_your_password', :default => 'Forgot your password?') %></h4>
+  </div>
+  <div class="panel-body">
+
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, role: "form" }) do |f| %>
+    <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+
+      <%= f.submit t('.send_me_reset_password_instructions', :default => "Send me reset password instructions"), class: "btn btn-primary btn-sm pull-right" %>
+    <% end %>
+  </div>
+</div>
+<div style="margin-left:20%;">
+<%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,124 @@
+<%= form_for @pojazd, :remote => true, :html => { :id => 'form_r_pojazd' } do |fp| %>
+<fieldset style="height: 400px; margin-top:15px">
+   <div>
+    <table>
+     <tr class="tr_margin">
+       <td class="prawy"><label for="nr_rej" class = "control-label">Nr. rejestracji :</label></td>
+       <td><%= fp.text_field :nr_rej, :class => "form-control input-sm izolty", :id => "nr_rej",:style => "width:215px;" %></td>
+       <td></td>
+       <td class="prawy" style="padding-left: 100px;">
+            <label for="moc" class ="control-label">Moc :</label></td>
+           <td>
+              <div class="form-inline">
+             <%= fp.text_field :moc, :class => "form-control input-sm", :id => "moc",:style => "width:178px;" %>
+             <%= fp.label :km,"KM :", :class => "control-label" %>
+             <%= fp.check_box :km, :class => "form-control input-sm", :id => "km", :style => "margin-top: 0px;" %>
+               <%= fp.label :kw,"KW :", :class => "control-label" %>
+               <%= fp.check_box :kw, :class => "form-control input-sm", :id => "kw", :style => "margin-top: 0px;" %>
+             </div>
+           </td>
+        </tr>
+        <tr class="tr_margin">
+
+            <td><label for="marka">Marka :</label></td>
+            <td><div class="form-group form-inline" style="margin-bottom: 0px;">
+
+                 <%= fields_for @pojazd.marki_poj do |marki_poj_form| %>
+                   <%= marki_poj_form.text_field :marka, :class => "form-control input-sm izolty", :id => "marka",:style => "width:215px;" %>
+                 <% end %>
+                 <%= link_to "<button class='dodaj_b' id='dodaj_marke_b' data-placement='right' data-toggle='tooltip' class='tooltip' data-original-title='Dodaj markę'><span class='glyphicon glyphicon-plus'></span></button>".html_safe, new_marki_poj_path(),:id => "dodaj_marke", remote: true %>
+               </div>
+                 <%= fp.hidden_field :marki_poj_id, :id => "marka_f" %>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="tr_margin">
+          <td class="prawy"><label for="model">Model :</label></td>
+          <td><div class="form-group form-inline" style="margin-bottom: 0px;">
+                  <%= fields_for @pojazd.model_poj do |model_poj_form| %>
+                   <%= model_poj_form.text_field :model, :class => "form-control input-sm izolty", :id => "model",:style => "width:215px;" %>
+                  <% end %>
+                  <%= link_to "<button class='dodaj_b' id='dodaj_model_b' data-placement='right' data-toggle='tooltip' class='tooltip' data-original-title='Dodaj model'><span class='glyphicon glyphicon-plus'></span></button>".html_safe, new_model_poj_path(),:id => "dodaj_model", remote: true %>
+                </div>
+              <%= fp.hidden_field :model_poj_id, :id => "model_f" %>
+          </td>
+          <td></td>
+          <td class="prawy" style="padding-left: 100px;"><label for="data_badan_techn" class ="control-label">Data badań techn. :</label></td>
+          <td> <div class="form-group form-inline" style="margin-bottom: 0px;"><%= fp.text_field :data_badan_techn, :class => "form-control input-sm data", :id => "data_badan_techn",:style => "width:96px;" %></div></td>
+        </tr>
+        <tr class="tr_margin">
+            <td class="prawy"><label for="rodzaj">Rodzaj :</label></td>
+            <td><div class="form-group form-inline" style="margin-bottom: 0px;">
+                 <%= fields_for @pojazd.rodzaj_poj do |rodzaj_poj_form| %>
+                    <%= rodzaj_poj_form.text_field :rodzaj, :class => "form-control input-sm izolty", :id => "rodzaj", :style => "width:215px;" %>
+                 <% end %>
+                 <%= link_to "<button class='dodaj_b' id='dodaj_rodzaj_b' data-placement='right' data-toggle='tooltip' class='tooltip' data-original-title='Dodaj rodzaj'><span class='glyphicon glyphicon-plus'></span></button>".html_safe, new_rodzaj_poj_path(),:id => "dodaj_rodzaj", remote: true %>
+               </div>
+                 <%= fp.hidden_field :rodzaj_poj_id, :id => "rodzaj_f" %>
+            </td>
+            <td></td>
+            <td class="prawy" style="padding-left: 100px;"><label for="data_pierwszej_rej" class = "control-label">Data pierwszej rej. :</label></td>
+            <td> <div class="form-group form-inline" style="margin-bottom: 0px;">
+                     <%= fp.text_field :data_pierwszej_rej, :class => "form-control input-sm data", :id => "data_pierwszej_rej",:style => "width:96px;" %>
+                </div>
+            </td>
+        </tr>
+        <tr class="tr_margin">
+            <td class="prawy"><label for="pojemn" class ="control-label">Pojemność :</label></td>
+            <td><%= fp.text_field :pojemn, :class => "form-control input-sm izolty", :id => "pojemn",:style => "width:215px;" %></td>
+            <td></td>
+            <td class="prawy" style="padding-left: 100px;"><label for="przebieg" class = "control-label">Przebieg :</label></td>
+            <td><%= fp.text_field :przebieg, :class => "form-control input-sm", :id => "przebieg",:style => "width:178px;" %></td>
+        </tr>
+        <tr class="tr_margin">
+            <td class="prawy"><label for="rok_prod" class ="control-label">Rok prod. :</label></td>
+            <td><%= fp.text_field :rok_prod, :class => "form-control input-sm izolty", :id => "rok_prod",:style => "width:215px;" %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="tr_margin">
+            <td class="prawy"><label for="nr_nadw" class = "control-label">Nr nadw. :</label></td>
+            <td><%= fp.text_field :nr_nadw, :class => "form-control input-sm izolty", :id => "nr_nadw",:style => "width:215px;" %></td>
+            <td></td>
+            <td class="prawy"  style="padding-left: 100px;"><label for="paliwo_id" class = "control-label">Rodz. paliwa :</label></td>
+            <td>
+              <%= collection_select(:pojazd, :paliwo_id, @paliwo, :id, :rodzaj_paliwa, {:prompt => "Wybierz"}, {:class=>"form-control input-sm", :id=>"paliwo", :style => "width: 178px;"}) %>
+            </td>
+
+        </tr>
+        <tr class="tr_margin">
+            <td class="prawy"><label for="ilosc_miejsc" class = "control-label">Ilość miejsc :</label></td>
+            <td><%= fp.text_field :ilosc_miejsc, :class => "form-control input-sm", :id => "ilosc_miejsc",:style => "width:215px;" %></td>
+            <td></td>
+            <td class="prawy"  style="padding-left: 100px;"><label for="nadwozie_id" class = "control-label">Rodz. nadwozia :</label></td>
+            <td><%= collection_select(:pojazd, :nadwozie_id, @nadwozie, :id, :typ_nadw ,{ :prompt => "Wybierz"},{:class=>"form-control input-sm", :id=>"nadwozie", :style => "width: 178px;"}) %>
+
+            </td>
+        </tr>
+      </table>
+     </div>
+     <fieldset class="nopadding">
+        <legend class="nomargin"><h6>Uwagi</h6></legend>
+        <div class="text-center">
+          <div class="form-group top-buffer" >
+             <%= fp.text_area :notatka,:class => "form-control", :id => "notatka" %>
+          </div>
+        </div>
+     </fieldset>
+    </fieldset>
+ <% end %>
+
+ <div class="markaf" title="Dodaj markę">
+ </div>
+
+ <div class="modelf" title="Dodaj model">
+ </div>
+
+ <div class="rodzajf" title="Dodaj rodzaj">
+ </div>
+
+ <div class="komunikat_poj" title="Uwaga">
+ </div>

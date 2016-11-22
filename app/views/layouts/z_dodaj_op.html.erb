@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= "Agent #{current_user.nazwa}" %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript">
+      $(window).load(function() {
+	  $(".loader").fadeOut("slow");
+    })
+</script>
+</head>
+<body>
+
+<div class="loader"></div>
+
+<!--a href="#0" class="cd-logo"><img src="img/cd-logo.svg" alt="Logo"></a-->
+<nav class="navbar navbar-inverse" id="menu">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li <% if [params[:controller], params[:action]] == ["osobas","index"] %>class="active"<% end %>><%= link_to image_tag("home.png",size: "32x32"), osobas_path, :class => "menu_icon", :id => "m1"  %></li>
+      <li><%= link_to image_tag("service1.gif",size: "32x32") +"Nowy klient", new_osoba_path(), :class => "menu_icon", :id => "m2", remote: true %><!--a id="m2" class="menu_icon" href="#"><%= image_tag("service1.gif",size: "32x32") %> Nowy klient</a--></li>
+      <li><%= link_to image_tag("paste_256.gif",size: "32x32") +"Nowa polisa" , new_polisa_path(), :class => "menu_icon", :id => "m3", remote: true %><!--a id="m3" class="menu_icon" href="#"><%= image_tag("paste_256.gif",size: "32x32") %> Nowa polisa</a--></li>
+      <li <% if [params[:controller], params[:action]] == ["pojazds","index"] %>class="active"<% end %>><%= link_to image_tag("car.gif",size: "32x32") + "Pojazdy", pojazds_path, :class => "menu_icon", :id => "m4" %></li>
+      <li><%= link_to image_tag("find.png",size: "32x32") + "Szukaj polis", osoba_szukaj_form_path, :class => "menu_icon", :id => "m5", remote: true %></li>
+      <li <% if [params[:controller], params[:action]] == ["przypomnienias","index"] %>class="active"<% end %>><%= link_to image_tag("kalendarz.gif",size: "32x32") + "Przypomnienia", przypomnienias_path, :class => "menu_icon", :id =>"m6" %></li>
+      <li <% if [params[:controller], params[:action]] == ["excels","index"] %>class="active"<% end %>><%= link_to image_tag("icon.png",size: "32x32") + "Wykaz", excels_path, :class => "menu_icon", :id => "m7" %></li>
+      <li><a id="m8" class="menu_icon" href="#"><%= image_tag("mag.gif",size: "32x32") %> Magazyn</a></li>
+      <li><%= link_to image_tag("lock_256.gif",size: "32x32")+"Wyloguj", destroy_user_session_path, method: :delete, :class => "menu_icon", :id => "m9" %></li>
+      <% if current_user.funkcje_id == 1 %>
+          <li <% if [params[:controller], params[:action]] == ["administracjas","index"] %>class="active"<% end %>><%= link_to image_tag("user.gif",size: "32x32") + "Administracja", administracjas_path, :class => "menu_icon", :id =>"m10" %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<div style="margin-top:5px;">
+</div>
+
+<div class='zmiana' style="float:right; margin-right:15px;margin-top:5px;">
+      <p><span id='menu_b' class="glyphicon glyphicon-align-justify" style="color:white;font-size: 30px;"></span></p>
+</div>
+<div class='nonav'>
+<%= yield %>
+</div>
+<div id="alert_t" title="Uwaga" style="background-color:white;">
+</div>
+
+<div id="komunikat_os" title="Uwaga" style="background-color:white;">
+</div>
+
+<div id="komunikat_p" title="Uwaga">
+</div>
+
+<div id="szukaj_pol" title="Szukaj polis">
+</div>
+
+</body>
+</html>

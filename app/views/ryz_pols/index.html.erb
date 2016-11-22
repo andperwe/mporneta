@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ryz Pols</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Idryz</th>
+      <th>Idpol</th>
+      <th>Suma ubezp</th>
+      <th>Stawka</th>
+      <th>Uwagi</th>
+      <th>Waluta</th>
+      <th>Kod taryfy</th>
+      <th>Przypis</th>
+      <th>Ilosc</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ryz_pols.each do |ryz_pol| %>
+      <tr>
+        <td><%= ryz_pol.idryz %></td>
+        <td><%= ryz_pol.idpol %></td>
+        <td><%= ryz_pol.suma_ubezp %></td>
+        <td><%= ryz_pol.stawka %></td>
+        <td><%= ryz_pol.uwagi %></td>
+        <td><%= ryz_pol.waluta %></td>
+        <td><%= ryz_pol.kod_taryfy %></td>
+        <td><%= ryz_pol.przypis %></td>
+        <td><%= ryz_pol.ilosc %></td>
+        <td><%= link_to 'Show', ryz_pol %></td>
+        <td><%= link_to 'Edit', edit_ryz_pol_path(ryz_pol) %></td>
+        <td><%= link_to 'Destroy', ryz_pol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ryz pol', new_ryz_pol_path %>

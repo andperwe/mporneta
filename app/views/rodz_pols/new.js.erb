@@ -1,0 +1,34 @@
+$( "#add_grupa" ).dialog({
+              autoOpen: false,
+              maxWidth:600,
+              maxHeight: 230,
+              width: 600,
+              height: 230,
+              modal: true,
+              buttons:[
+                      {
+                        id:"dodaj_g",
+                        text: "Dodaj",
+                        click: function() {
+                          if (!puste_pola_rodz())
+                             {
+                              powtorki($('#rodz_pol_towarzystwo_id').val());
+                            }
+                          }
+                        }
+                    ]
+});
+
+$('.grupa_dane').html("<%= escape_javascript (render partial: 'form') %>");
+  $('#rodz_pol_towarzystwo_id').val($('#tu_ryzyk').val());
+$("#dodaj_g").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#dodaj_g").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#dodaj_g').removeClass();
+$('#dodaj_g').addClass('btn btn-success btn-sm');
+
+
+$('#add_grupa').dialog( "open" );

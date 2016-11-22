@@ -1,0 +1,9 @@
+<%= form_for @nazwy_pol, :remote => true, :html => { :id => 'form_np_grupa' } do |f| %>
+
+<%= f.hidden_field :rodz_pol_id %>
+
+<div class="form-group" style="margin-bottom:7px;">
+  <%= f.label :nazwa_polisy,"Nazwa polisy", :class => "margines" %>
+  <%= f.text_field :nazwa_polisy, class: "form-control input-sm izolty" %>
+</div>
+<% end %>

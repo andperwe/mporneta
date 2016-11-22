@@ -1,0 +1,47 @@
+<div>
+<div class="col-md-7">
+<fieldset class="nopadding">
+<fieldset>
+  <legend class="nomargin"><h6>Polisa</h6></legend>
+   <label class="radio" style="margin-left:60px;margin-top:15px;">
+     <input type="radio" name="polisas" value="1">Nr. polisy
+   </label>
+  <label class="radio" style="margin-left:60px;margin-top:15px;">
+     <input type="radio" name="polisas" value="2">Dowód wpłaty
+  </label>
+  <label class="radio" style="margin-left:60px;margin-top:15px;">
+    <input type="radio" name="polisas" value="3">Certyfikat
+  </label>
+  <label class="radio" style="margin-left:60px;margin-top:15px;">
+    <input type="radio" name="polisas" value="4">PL/
+  </label>
+  <label class="radio" style="margin-left:60px;margin-top:15px;">
+    <input type="radio" name="polisas" value="5">Nr. członkowski
+  </label>
+</fieldset>
+</div>
+
+<div class="col-md-5">
+<fieldset class="nopadding">
+<legend class="nomargin"><h6>Pojazd</h6></legend>
+ <label class="radio" style="margin-left:60px;margin-top:15px;">
+    <input type="radio" name="polisas" value="6">Nr. rejestracji
+  </label>
+  <label class="radio" style="margin-left:60px;margin-top:15px;">
+    <input type="radio" name="polisas" value="7">Nr. nadwozia
+  </label>
+</fieldset>
+</div>
+</div>
+
+<div class="col-md-12" style="margin-top:20px;">
+    <div class="form-inline text-center">
+ <div class="control-group">
+ <label style="font-weight: bold;" for="szukanapol">Podaj dane do wyszukania :</label>
+ <input type="text" id="szukanapol" name="szukanapol" class="form-control input-sm" style="width:180px;font-weight: bold; background:yellow;">
+ </div>
+ </div>
+</div>
+</fieldset>
+
+<%= button_to("", edit_polisa_path(0),:method => :get, :class => "o_szuk_pol", :remote => "true" ) %>

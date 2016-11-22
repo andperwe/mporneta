@@ -1,0 +1,70 @@
+<%= javascript_tag do %>
+
+$('#rok').val('2016');
+
+<% end %>
+
+<fieldset style="width: 90%;margin-left:5%;">
+<div style="margin-top:70px;"></div>
+<div class="panel panel-default devise-bs" style="margin-left:30%;margin-right:30%;padding:3px;">
+  <div class="panel-heading">
+    <h4 class="dialog-jq">Wykaz</h4>
+  </div>
+  <div class="panel-body">
+         <div class="form-group text-center">
+           <label for="nr_wyk">Numer wykazu</label>
+          <div class="form-inline">
+           <input id='nr_wyk' class= "form-control input-sm" style="font-weight: bold;">
+         </div>
+        </div>
+
+        <div class="form-group text-center">
+          <label for="data_wyk">Data wykazu</label>
+         <div class="form-inline">
+          <input id='data_wyk' class= "form-control input-sm data" style="font-weight: bold;">
+        </div>
+       </div>
+
+         <div class="form-group text-center">
+          <label for="rok">Wybierz rok</label>
+           <div class="form-inline">
+          <%= select_year(Date.today,{:start_year => 2000, :end_year => 2025}, {:class => "form-control input-sm izolty", :id => "rok", :style=>"width:188px; font-weight: bold;"}) %>
+        </div>
+        </div>
+
+      <div class="form-group text-center">
+          <label for="od">Wybierz date początkową</label>
+         <div class="form-inline">
+          <input id='od' class= "form-control input-sm izolty data" style="font-weight: bold;">
+        </div>
+      </div>
+      <div class="form-group text-center">
+         <label for="do">Wybierz datę końcową</label>
+         <div class="form-inline">
+          <input id='do' class= "form-control input-sm izolty data" style="font-weight: bold;">
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <label for="oddzial_id">Oddział</label>
+        <div class="form-inline">
+          <%= select_tag "oddzial_id", options_from_collection_for_select(@oddzials, "id", "miasto"), {:prompt => "wybierz", :class => "form-control input-sm izolty", :id => "oddzial_id", :style=>"width:188px; font-weight: bold;"} %>
+        </div>
+      </div>
+      <div class="form-group text-center" style="color:white; margin-top:30px;">
+        <%= link_to "<button class='btn btn-success' ><span class='glyphicon glyphicon-list-alt'></span>&nbsp&nbspGeneruj wykaz</button>".html_safe, excels_path(format: :xlsx), :id => 'generate_link' %>
+        <!--button class="btn btn-success" id="generuj" type="button"><span class="glyphicon glyphicon-list-alt"></span> Generuj wykaz</button-->
+      </div>
+  </div>
+</div>
+</fieldset>
+
+
+
+
+
+<%= javascript_tag do %>
+
+$('#rok').val('2016');
+$('#od').val('');
+$('#do').val('');
+<% end %>

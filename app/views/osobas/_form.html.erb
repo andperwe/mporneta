@@ -1,0 +1,197 @@
+  <%= form_for @osoba, :remote => true, :html => { :id => 'form_r_osoba' }  do |f| %>
+    <%= f.hidden_field :typ_prawny %>
+    <fieldset class="nopadding">
+      <legend class="nomargin"><h6>Rodzaj klienta</h6></legend>
+       <div class="text-center">
+       <div class="btn-group btn-group-justified" data-toggle="buttons" id="typ_prawny">
+         <label class="btn btn-primary" id="l1">
+           <%= f.radio_button :typ_prawny, 1 %>Klient indywidualny
+           <!--input type="radio" name="typ_prawny" value="1" id="tp1" autocomplete="off" checked> Klient indywidualny-->
+         </label>
+         <label class="btn btn-primary" id="l2">
+           <!--input type="radio" name="typ_prawny" value="2" id="tp2" autocomplete="off"-->
+           <%= f.radio_button :typ_prawny, 2 %>Firma
+         </label>
+         <label class="btn btn-primary" id="l3">
+           <!--input type="radio" name="typ_prawny" value="3" id="tp3" autocomplete="off"-->
+           <%= f.radio_button :typ_prawny, 3 %>Klient indyw. prow. dział. gosp.
+         </label>
+       </div>
+     </div>
+  </fieldset>
+
+  <fieldset class="nopadding">
+       <legend class="nomargin"><h6>Firma</h6></legend>
+        <div class="text-center top-buffer">
+         <div class="row" id="firma">
+          <div class="col-md-2 text-right">
+             <label for="n_firmy" class ="control-label">Firma : </label>
+          </div>
+          <div class="col-md-9 text-right">
+             <%= f.text_field :n_firmy, :class => "form-control input-sm izolty", :id => "n_firmy" %>
+          </div>
+        </div>
+           <div class="row" id="pesel_osoba">
+            <div class="form-inline top-buffer">
+             <div class="col-xs-3">
+                 <div class="form-group" >
+                    <label for="pesel" class ="control-label">PESEL : </label>
+                    <%= f.text_field :pesel, :class => "form-control input-sm izolty", :id => "pesel", :style => "width:110px;" %>
+                 </div>
+              </div>
+              <div class="col-xs-6 col-sm-5">
+                 <div class="form-group">
+                   <label for="nazwisko" class ="control-label">Nazwisko : </label>
+                   <%= f.text_field :nazwisko, :class => "form-control input-sm izolty", :id => "nazwisko",:style => "width:240px;" %>
+                 </div>
+             </div>
+             <div class="col-xs-6 col-sm-4">
+                  <div class="form-group">
+                    <label for="imie" class ="control-label">Imie : </label>
+                    <%= f.text_field :imie, :class => "form-control input-sm izolty", :id => "imie" %>
+                 </div>
+             </div>
+          </div>
+        </div>
+        </div>
+     </fieldset>
+
+
+     <fieldset class="nopadding">
+        <legend class="nomargin"><h6>Adres</h6></legend>
+        <div class="text-center">
+          <div class="form-inline top-buffer">
+         <div class="col-xs-6 col-sm-2">
+          <div class="form-group" >
+          <label for="kod" class ="control-label">Kod :</label>
+          <%= f.text_field :kod, :class => "form-control input-sm izolty", :id => "kod", :style => "width:70px;" %>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-5">
+          <div class="form-group" >
+          <label for="miejscowosc" class ="control-label">Miejscowość :</label>
+          <%= f.text_field :miejscowosc, :class => "form-control input-sm izolty", :id => "miejscowosc" %>
+        </div>
+        </div>
+        <div class="col-xs-6 col-sm-5">
+          <div class="form-group" >
+          <label for="ulica" class ="control-label">Ulica (Nr) :</label>
+          <%= f.text_field :ulica, :class => "form-control input-sm izolty", :id => "ulica",:style => "width:240px;" %>
+        </div>
+        </div>
+      </div>
+        </div>
+    </fieldset>
+    <fieldset class="nopadding">
+       <legend class="nomargin"><h6>Adres do korespondencji</h6></legend>
+       <div class="text-center">
+         <div class="form-inline top-buffer">
+           <div class="col-xs-6 col-sm-2">
+         <div class="form-group" >
+         <label for="kod_k" class ="control-label">Kod :</label>
+         <%= f.text_field :kod_k, :class => "form-control input-sm", :id => "kod_k",:style => "width:70px;" %>
+       </div>
+       </div>
+       <div class="col-xs-6 col-sm-5">
+         <div class="form-group" >
+         <label for="miejscowosc_k" class ="control-label">Miejscowość :</label>
+         <%= f.text_field :miejscowosc_k, :class => "form-control input-sm", :id => "miejscowosc_k" %>
+       </div>
+       </div>
+       <div class="col-xs-6 col-sm-5">
+         <div class="form-group" >
+         <label for="ulica_k" class ="control-label">Ulica (Nr) :</label>
+         <%= f.text_field :ulica_k, :class => "form-control input-sm", :id => "ulica_k",:style => "width:240px;" %>
+       </div>
+       </div>
+     </div>
+       </div>
+   </fieldset>
+   <fieldset class="nopadding">
+       <legend class="nomargin"><h6>Kontakt</h6></legend>
+       <div class="text-center">
+         <div class="form-inline top-buffer">
+       <div class="col-xs-6 col-sm-3">
+       <div class="form-group" >
+         <label for="tel" class = "control-label">Tel :</label>
+         <%= f.text_field :tel, :class => "form-control input-sm", :style => "width:140px;", :id=>"tel" %>
+       </div>
+     </div>
+       <div class="col-xs-6 col-sm-3">
+       <div class="form-group" >
+         <label for="tel_kom" class ="control-label">Kom. :</label>
+         <%= f.text_field :tel_kom, :class => "form-control input-sm", :style => "width:140px;", :id => "tel_kom" %>
+       </div>
+       </div>
+       <div class="col-xs-6 col-sm-4">
+       <div class="form-group" >
+         <label for="email" class ="control-label">email :</label>
+         <%= f.text_field :email, :class => "form-control input-sm",:style => "width:220px;", :id => "email" %>
+       </div>
+       </div>
+       <div class="col-xs-6 col-sm-2">
+       <div class="form-group" >
+         <button type="button" id="wyslij_email" class="btn btn-info btn-sm">
+             <span class="glyphicon glyphicon-envelope"></span> Wyślij
+         </button>
+       </div>
+     </div>
+
+       <!--button id="wyslij_email" style="margin-left:25px;height:25px; width:25px">Wyślij email</button-->
+       </div>
+     </div>
+   </fieldset>
+   <fieldset class="nopadding">
+       <legend class="nomargin"><h6>Prawo jazdy</h6></legend>
+       <div class="text-center">
+         <div class="form-inline top-buffer">
+           <div class="col-xs-6 col-sm-6">
+       <div class="form-group" >
+         <label for="data_wyd" class ="control-label">Data wyd. :</label>
+         <%= f.text_field :data_wyd, :class => "form-control input-sm data", :id => "data_wyd", :style => "width:110px;" %>
+       </div>
+     </div>
+     <div class="col-xs-6 col-sm-6">
+         <div class="form-group" >
+         <label for="typ_praw_id" class ="control-label">Kategoria :</label>
+         <%= collection_select(:osoba, :typ_praw_id, TypPraw.all, :id, :rodzaj,{},{:class=>"form-control", :id=>"typ_praw_id"}) %>
+       </div>
+     </div>
+            </div>
+       </div>
+   </fieldset>
+   <fieldset class="nopadding">
+       <legend class="nomargin"><h6>Dane</h6></legend>
+       <div class="text-center">
+         <div class="form-inline top-buffer">
+           <div class="col-xs-6 col-sm-6">
+       <div class="form-group" >
+         <label for="nip" class = "control-label">NIP :</label>
+         <%= f.text_field :nip, :class => "form-control input-sm", :id => "nip" %>
+       </div>
+     </div>
+     <div class="col-xs-6 col-sm-6">
+       <div class="form-group" >
+         <label for="regon" class ="control-label">REGON :</label>
+         <%= f.text_field :regon, :class => "form-control input-sm", :id => "regon" %>
+       </div>
+     </div>
+     </div>
+       </div>
+   </fieldset>
+   <fieldset class="nopadding">
+       <legend class="nomargin"><h6>Uwagi</h6></legend>
+       <div class="text-center">
+         <div class="form-group" >
+         <%= f.text_area :uwagi,:class => "form-control" %>
+
+     </div>
+       </div>
+   </fieldset>
+
+    <!--div class="actions">
+   <%= f.submit @osoba.new_record? ? "Dodaj" : "Zapisz", :class => "btn btn-primary" %>
+ </div-->
+ <%= link_to "delete", @osoba, method: :delete, :id => "usun_o_link", remote: true %>
+
+<% end %>

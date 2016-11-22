@@ -1,0 +1,34 @@
+$( "#add_np" ).dialog({
+              autoOpen: false,
+              maxWidth:600,
+              maxHeight: 190,
+              width: 600,
+              height: 190,
+              modal: true,
+              buttons:[
+                      {
+                        id:"dodaj_np",
+                        text: "Dodaj",
+                        click: function() {
+                        if (!puste_pola_np())
+                             {
+                              powtorkinp($('#nazwy_pol_rodz_pol_id').val());
+                            }
+                          }
+                        }
+                    ]
+});
+
+$('.np_dane').html("<%= escape_javascript (render partial: 'form') %>");
+$('#nazwy_pol_rodz_pol_id').val($('#grupa_ryzyk').val());
+$("#dodaj_np").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#dodaj_np").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#dodaj_np').removeClass();
+$('#dodaj_np').addClass('btn btn-success btn-sm');
+
+
+$('#add_np').dialog( "open" );

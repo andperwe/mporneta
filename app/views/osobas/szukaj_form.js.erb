@@ -1,0 +1,5 @@
+$('#menu_b').removeClass('glyphicon-remove');
+$('#menu_b').addClass('glyphicon-align-justify');
+$('#menu').hide();
+$('#szukaj_pol').html("<%= escape_javascript (render partial: 'szukaj_polisy') %>");
+$('#szukaj_pol').dialog( "open" );

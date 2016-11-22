@@ -1,0 +1,11 @@
+<%= form_for @oddzial, :remote => true, :html => { :id => 'form_oddz' } do |f| %>
+<div class="field" style="margin-top:30px; margin-left:30px;">
+  <%= f.hidden_field :agencje_id %>
+  <%= f.label :miasto %><br>
+  <%= f.text_field :miasto, :class => "input-sm izolty" %>
+</div>
+<%= link_to "", @oddzial, method: :delete,:remote => true, :id => "usun_odz_link" %>
+<% end %>
+
+<div class="komunikat_odz_u" title="Uwaga">
+</div>

@@ -1,0 +1,85 @@
+<%= form_for @raty_sum, :remote => true, :html => { :id => 'form_rata' } do |f| %>
+  <!--input id="idfraty"-->
+
+    <div class="form-group form-inline nomargin">
+       <%= f.label :przypominac,"Nie przypominać : ", :class => "control-label",:style => "color:green; font-weight:bold;font-size:12px;" %>
+       <%= f.check_box :przypominac, :class => "form-control", :id => "przypominac" %>
+   </div>
+
+    <div class="col-md-6">
+	   <fieldset>
+	      <legend class="nomargin"><h6>Rata</h6></legend>
+          <div class="form-group form-inline nomargin">
+            <%= f.label :nr_raty, "Nr. raty", :class => "control-label" %><br>
+            <%= f.text_field :nr_raty, :class => "form-control input-sm izolty", :id => "nr_raty",:style => "width:96px;", :disabled => "disabled" %>
+          </div>
+         <div class="form-group form-inline nomargin">
+           <%= f.label :tnazwy_poli_id, "Nazwa ryzyka :", :class => "control-label" %><br>
+           <%= collection_select(:raty_sum, :nazwy_pol_id, NazwyPol.all, :id, :nazwa_polisy,{},{:class=>"form-control izolty", :style => "width:230px;", :disabled => "disabled"}) %>
+         </div>
+         <div class="form-group form-inline nomargin">
+           <%= f.label :kwota, "Kwota :", :class => "control-label" %><br>
+           <%= f.text_field :kwota, :class => "form-control input-sm izolty", :value => (number_with_precision(f.object.kwota, :precision => 2).to_s.sub '.', ',' || 0), :id => "kwota_r",:style => "width:120px;" %>
+         </div>
+        <div class="form-group form-inline nomargin">
+          <%= f.label :data, "Data płatności :", :class => "control-label"  %><br>
+          <%= f.text_field :data, :class => "form-control input-sm izolty data", :id => "data_plat",:style => "width:96px;" %>
+        </div>
+        <div class="form-group form-inline nomargin">
+            <%= f.label :zapl,"Zapłacił : ", :class => "control-label" %>
+            <%= f.check_box :zapl, :class => "form-control", :id => "zaplacil_r" %>
+        </div>
+	   </fieldset>
+	  </div>
+
+    <div class="col-md-6">
+	  <fieldset>
+	  <legend class="nomargin"><h6>Rozliczenie agenta z agencją</h6></legend>
+    <div class="form-group form-inline nomargin">
+      <%= f.label :nr_dw, "Dowód wpłaty :", :class => "control-label" %><br>
+      <%= f.text_field :nr_dw, :class => "form-control input-sm izolty", :id => "dow_wpl",:style => "width:150px;" %>
+    </div>
+    <!--label style="display:block;margin-top:12px;" for="dow_wpl">Dowód wpłaty</label>
+	  <input class="magazyn izolty" id="dow_wpl" name="dow_wpl"-->
+
+    <div class="form-group form-inline nomargin">
+      <%= f.label :rodzaj_platnosci_id, "F. płatności :", :class => "control-label" %><br>
+      <%= collection_select(:raty_sum, :rodzaj_platnosci_id, RodzajPlatnosci.all, :id, :typ,{},{:class=>"form-control", :style => "width:150px;"}) %>
+    </div>
+      <div class="form-group form-inline nomargin">
+        <%= f.label :typ_platnosci_id, "Kto :", :class => "control-label" %><br>
+        <%= collection_select(:raty_sum, :typ_platnosci_id, TypPlatnosci.all, :id, :nazwa_typu,{},{:class=>"form-control", :style => "width:150px;"}) %>
+      </div>
+
+     <div class="form-group form-inline nomargin">
+       <%= f.label :data_w, "Data wpłaty :", :class => "control-label"  %><br>
+       <%= f.text_field :data_w, :class => "form-control input-sm izolty data", :id => "data_wpl",:style => "width:96px;" %>
+     </div>
+      </fieldset>
+	  </div>
+
+
+	  <div class="col-md-12">
+	  <fieldset>
+	    <legend class="nomargin"><h6>Rozliczenie z TU</h6></legend>
+
+      <div class="form-group form-inline nomargin">
+          <%= f.label :rozliczona,"Rozliczona z TU : ", :class => "control-label" %>
+          <%= f.check_box :rozliczona, :class => "form-control", :id => "rozliczona_z_tu" %>
+      </div>
+
+      <div class="form-group form-inline nomargin">
+        <%= f.label :data_roz, "Data rozliczenia z TU :", :class => "control-label"  %><br>
+        <%= f.text_field :data_roz, :class => "form-control input-sm izolty data", :id => "data_roz",:style => "width:96px;" %>
+      </div>
+
+      <div class="form-group form-inline nomargin">
+          <%= f.label :roz_owca,"Rozliczona z OWCA : ", :class => "control-label" %>
+          <%= f.check_box :roz_owca, :class => "form-control", :id => "rozliczona_z_owca" %>
+      </div>
+	  </fieldset>
+      </div>
+    </div>
+
+
+<% end %>

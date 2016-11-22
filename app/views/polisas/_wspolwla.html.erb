@@ -1,0 +1,7 @@
+<%= content_tag_for(:tr, @wspolwlas) do |wspolwla| %>
+ <td style="display:none;"><%= wspolwla.polisa_id %></td>
+<td><%= link_to '', edit_wspolwla_path(wspolwla),:class => "otworz_o", :remote => "true" %></td>
+
+ <td style="width:120px;"><%= wspolwla.nazwisko %></td>
+ <td style="width:150px;"><%= wspolwla.imie %></td>
+<% end %>

@@ -1,0 +1,56 @@
+<%= form_for(@ryz_pol) do |f| %>
+  <% if @ryz_pol.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ryz_pol.errors.count, "error") %> prohibited this ryz_pol from being saved:</h2>
+
+      <ul>
+      <% @ryz_pol.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :idryz %><br>
+    <%= f.number_field :idryz %>
+  </div>
+  <div class="field">
+    <%= f.label :idpol %><br>
+    <%= f.number_field :idpol %>
+  </div>
+
+  <div class="field">
+    <%= f.label :suma_ubezp %><br>
+    <%= f.text_field :suma_ubezp %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stawka %><br>
+    <%= f.text_field :stawka %>
+  </div>
+  <div class="field">
+    <%= f.label :uwagi %><br>
+    <%= f.text_area :uwagi %>
+  </div>
+  <div class="field">
+    <%= f.label :waluta %><br>
+    <%= f.text_field :waluta %>
+  </div>
+  <div class="field">
+    <%= f.label :kod_taryfy %><br>
+    <%= f.text_field :kod_taryfy %>
+  </div>
+  <div class="field">
+    <%= f.label :przypis %><br>
+    <%= f.text_field :przypis %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ilosc %><br>
+    <%= f.number_field :ilosc %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

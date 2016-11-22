@@ -1,0 +1,30 @@
+$( ".komunikat_poj" ).dialog({
+              autoOpen: false,
+              maxWidth:450,
+              maxHeight: 220,
+              width: 450,
+              height: 220,
+              modal: true,
+              buttons:[
+                      {
+                        id:"ok_kom_model",
+                        text: "Ok",
+                        click: function() {
+                          $('.komunikat_poj').dialog("close");
+                          $('.komunikat_poj').empty();
+                        }
+                      }
+                    ]
+});
+
+$("#ok_kom_model").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#ok_kom_model").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#ok_kom_model').removeClass();
+$('#ok_kom_model').addClass('btn btn-danger btn-sm');
+
+$('.komunikat_poj').html("<%= escape_javascript (render partial: 'blad') %>");
+$('.komunikat_poj').dialog( "open" );

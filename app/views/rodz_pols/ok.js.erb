@@ -1,0 +1,32 @@
+$( "#komunikat_os" ).dialog({
+              autoOpen: false,
+              maxWidth:450,
+              maxHeight: 220,
+              width: 450,
+              height: 220,
+              modal: true,
+              buttons:[
+                      {
+                        id:"ok_kom_np",
+                        text: "Ok",
+                        click: function() {
+                          /*$("#grupa_ryzyk option:selected").text($('#rodz_pol_nazwa_rodz').val().toUpperCase());
+                          $('#dodaj_grupe').tooltip();
+                          $('#komunikat_os').dialog("close");
+                          $('#add_grupa').dialog("close");*/
+                        }
+                      }
+                    ]
+});
+
+$("#ok_kom_np").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#ok_kom_np").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#ok_kom_np').removeClass();
+$('#ok_kom_np').addClass('btn btn-success btn-sm');
+
+$('#komunikat_os').html("<%= escape_javascript (render partial: 'ok') %>");
+$('#komunikat_os').dialog( "open" );

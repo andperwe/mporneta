@@ -1,0 +1,77 @@
+<fieldset style="width: 90%;margin-left:5%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+    <div style="margin:4px;" class="row">
+
+       <div class="col-md-4">
+        <strong><input type="text" id="t_szukaj_u" placeholder="Szukaj użytkownika" autocomplete="off" class="form-control"></strong>
+      </div>
+       <div class="col-md-3">
+        <button id="pokaz_user" class="btn btn-primary">Pokaż wszystkich użytkowników</button>
+      </div>
+      <div class="col-md-2">
+        <%= button_to('Dodaj użytkownika', new_user_path, :class => 'btn btn-success', :remote => true, :method => :get)  %>
+      </div>
+      <div class="col-md-2">
+        <%= button_to('Dodaj agencje', new_agencje_path, :class => 'btn btn-success', :remote => true, :method => :get)  %>
+      </div>
+
+
+    </div>
+
+<table id="users-table" class="display tabela" cellspacing="0" data-source="<%= users_path(format: :json) %>">
+  <thead style="background-color:ThreeDFace;">
+    <tr>
+      <th style="padding: 4px 10px !important;"></th>
+      <th style="padding: 4px 10px !important;"></th>
+      <th style="padding: 4px 10px !important;">id</th>
+      <th style="padding: 4px 10px !important;">Nazwa agencji</th>
+      <th style="padding: 4px 10px !important;">Funkcja użytkownika</th>
+      <th style="padding: 4px 10px !important;">Nazwa użytkownika</th>
+      <th style="padding: 4px 10px !important;">Login</th>
+      <th style="padding: 4px 10px !important;">email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+</fieldset>
+
+<fieldset style="width: 90%; margin-left:5%; margin-top:4px; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+<table id="agencjes-table" class="display tabela" cellspacing="0" data-source="<%= agencjes_path(format: :json) %>">
+  <thead style="background-color:ThreeDFace;">
+    <tr>
+      <th style="padding: 4px 10px !important;"></th>
+      <th style="padding: 4px 10px !important;"></th>
+      <th style="padding: 4px 10px !important;">id</th>
+      <th style="padding: 4px 10px !important;">Nazwa agencji</th>
+      <th style="padding: 4px 10px !important;">Właściciel</th>
+      <th style="padding: 4px 10px !important;">Telefony</th>
+      <th style="padding: 4px 10px !important;">Kod</th>
+      <th style="padding: 4px 10px !important;">Miasto</th>
+      <th style="padding: 4px 10px !important;">Adres</th>
+      <th style="padding: 4px 10px !important;">Nazwa skrócona</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+</fieldset>
+
+<div id="add_user"  title="Użytkownik" style="background-color:white;">
+  <div class="user_dane">
+  </div>
+</div>
+
+<div id="add_agencja"  title="Agencja" style="background-color:white;">
+  <div class="agencja_dane">
+  </div>
+</div>
+
+
+<div id="add_oddzial"  title="Oddział" style="background-color:white;">
+  <div class="oddzial_dane">
+  </div>
+</div>

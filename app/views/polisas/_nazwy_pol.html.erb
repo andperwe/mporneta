@@ -1,0 +1,16 @@
+<%= content_tag_for(:tr, @nazwy_pols) do |nazwy_pol| %>
+      <td style="display:none;"><input name="idryzyka"></td>
+      <td align="center" style="background-color: #f2f2f2;width:37px;"><input class="jest" name="jest" type="checkbox" value="0"></td>
+      <td style="background-color: #f2f2f2;width:129px;"><div style="margin-left:5px;"><%= truncate(nazwy_pol.nazwa_polisy, length: 23) %></div></td>
+      <td class="edycja" style="width:89px;"><input style="width:88px; height:24px; padding-left:10px;" class="flat ramka numeric3" name="sumau" readonly value='0,00'></td>
+      <td class="edycja" style="width:56px;"><input style="width:40px;height:24px; padding-left:10px;" class="flat ramka" name="waluta" value="PLN" readonly>
+				  <select name="cwaluta" class="ramka" style="display:none;">
+				     <option value="PLN">PLN</option>
+					   <option value="Euro">Euro</option>
+					   <option value="$">$</option>
+					 </select></td>
+      <td class="edycja"><input style="width:78px;height:24px; padding-left:10px;" class="flat ramka" name="kodt" readonly></td>
+      <td class="edycja"><input style="width:58px;height:24px; padding-left:10px;" class="flat ramka numeric3" name="przypis" readonly value='0,00'></td>
+      <td class="edycja"><input style="width:58px;height:24px; padding-left:10px;" class="flat ramka numeric3" name="stawka" readonly value='0,00'></td>
+      <td class="edycja"><input style="width:36px;height:24px; padding-left:10px;" class="flat ramka numeric1" name="ilosc" value="1" readonly></td>
+<% end %>

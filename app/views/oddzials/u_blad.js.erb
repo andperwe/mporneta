@@ -1,0 +1,30 @@
+$( "#komunikat_os" ).dialog({
+              autoOpen: false,
+              maxWidth:450,
+              maxHeight: 220,
+              width: 450,
+              height: 220,
+              modal: true,
+              buttons:[
+                      {
+                        id:"ok_kom_odz",
+                        text: "Ok",
+                        click: function() {
+                          $('#komunikat_os').dialog("close");
+                        }
+                      }
+                    ]
+});
+
+$("#ok_kom_odz").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#ok_kom_odz").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#ok_kom_odz').removeClass();
+$('#ok_kom_odz').addClass('btn btn-danger btn-sm');
+
+
+$('#komunikat_os').html("<%= escape_javascript (render partial: 'u_blad') %>");
+$('#komunikat_os').dialog( "open" );

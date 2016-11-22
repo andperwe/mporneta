@@ -1,0 +1,11 @@
+<%= content_tag_for(:tr, @nazwy_pols, :t2) do |nazwy_pol| %>
+		<td style="background-color: #f2f2f2;height:25px;width:284px;"><p style="margin-bottom:0px;font-size:10px;"><%= truncate(nazwy_pol.nazwa_polisy, length: 23) %></p></td>
+		<td class="p2" style="width:97px;"><input class="ramka flat2 numeric3 pln" style="width:88px;" name="suma_rat" readonly value='0,00'></td>
+		<td class="p2"><input class="ramka flat2" name="iilosc_rat" style="margin-left:3px;width:119px;" readonly  value="platność jednorazowa">
+		<select style="display:none;" class="ramka flat2" style="width:169px;" name="ilosc_rat">
+			<option value="1">płatność jednorazowa</option>
+			<option value="2">2 raty</option>
+      <option value="4">4 raty</option>
+      <option value="12">12 rat</option>
+		</select></td>
+<% end %>

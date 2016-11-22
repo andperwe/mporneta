@@ -1,0 +1,46 @@
+$( "#add_user" ).dialog({
+              autoOpen: false,
+              maxWidth:450,
+              maxHeight: 450,
+              width: 450,
+              height: 450,
+              modal: true,
+              buttons:[
+                      {
+                        id:"dodaj_user",
+                        text: "Dodaj",
+                        click: function() {
+                          if (!puste_pola_user())
+                            $('#form_r_user').submit();
+                          }
+                        }
+                    ]
+});
+
+$('.user_dane').html("<%= escape_javascript (render partial: 'form') %>");
+
+$("#dodaj_user").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#dodaj_user").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#dodaj_user').removeClass();
+$('#dodaj_user').addClass('btn btn-success btn-sm');
+
+
+$('#user_email').change(function(){
+   if (!ValidateEmail($("#user_email").val())) {
+      $('#user_email').val('');
+      alert_t("Niepoprawny adres email.");
+   }
+});
+
+$('#user_password').change(function(){
+   if ($.trim($("#user_password").val()).length < 6) {
+      $('#user_password').val('');
+      alert_t("Hasło jest za krótkie !!!");
+   }
+});
+
+$('#add_user').dialog( "open" );

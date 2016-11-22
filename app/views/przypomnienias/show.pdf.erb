@@ -1,0 +1,81 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<%= form_for @polisa, :remote => true, :html => { :id => 'form_przyp' } do |f| %>
+
+
+
+<div style="text-align: center;font-size:28pt;">
+   <strong>BIURO UBEZPIECZEŃ</strong>
+</div><br />
+<div style="text-align: center;font-size:18pt;">
+  <strong>MARTA PERWEJNIS</strong>
+</div><br />
+<div style="text-align: center;font-size:12pt;">
+tel. 603-117-896
+</div><br />
+<div style="text-align: center;font-size:10pt;">
+<strong><u>TANIE OC I NAJLEPSZE AC</u></strong>
+</div><br />
+<div style="text-align: center;font-size:10pt;">
+AKTUALNIE W NASZEJ OFERCIE BLISKO 30 TOWARZYSTW UBEZPIECZENIOWYCH
+</div>
+<div style="text-align: center;font-size:10pt;">
+UBEZPIECZENIE MIESZKANIA JUŻ OD 50 ZŁ
+</div>
+<div style="text-align: center;font-size:10pt;">
+<u>PO TRZECH LATACH BEZWYPADKOWEJ JAZDY U NAS OTRZYMASZ</u>
+</div>
+<div style="text-align: center;font-size:10pt;">
+<u>60 PROCENT ZNIŻKI!!!</u>
+</div><br /><br />
+<div style="text-align:right;font-size:9pt;">
+<strong>Orneta : <%= Date.today %></strong>
+</div><br /><br /><br />
+<div style="text-align:center;font-size:12pt;">
+<strong>Pan/Pani</strong>
+</div><br /><br />
+
+<div style="text-align:center;font-size:16pt;">
+<strong><%= @polisa.ubezpieczony %></strong>
+</div><br />
+<div style="font-size:14pt;">
+
+
+
+<% if @pol_auto.nil? %>
+Uprzejmie informujemy, że w dniu <strong><%= @polisa.data_wznowienia %></strong> kończy się polisa
+<% if @polisa.typ == 2 %>
+majątkowa
+<% else %>
+na życie
+<% end %>
+o numerze <strong><%= @polisa.numer %></strong>.
+<% else %>
+  Uprzejmie informujemy, że w dniu <strong><%= @polisa.data_wznowienia %></strong> kończy się polisa komunikacyjna o numerze <strong><%= @polisa.numer %></strong> na pojazd o numerze rejestracyjnym <strong><%= @rej.nr_rej %></strong>.
+<% end %>
+<!--}
+else
+{-->
+
+<!--}-->
+</div><br />
+<div style="font-size:14pt;">
+W związku z powyższym zapraszamy <strong>Pana/Panią</strong> do naszego biura w <strong>Ornecie przy ul. Przemysłowej 16 (I piętro) lub naszej filii w Dobrym Mieście przy ul. Grudziądzkiej 7a.</strong>
+</div><br /><br /><br /><br />
+<div style="text-align:center;font-size:12pt;">
+<strong>Biura czynne:</strong>
+</div><br />
+<div style="text-align:right;font-size:14pt;">
+<strong>Orneta</strong>
+</div><br />
+<div style="text-align:right;font-size:12pt;">
+od poniedziałku do piątku od 9:00 do 17:00<br />
+w soboty od 10:00 do 13:00
+</div><br />
+<div style="text-align:right;font-size:14pt;">
+<strong>Dobre Miasto</strong>
+</div><br />
+<div style="text-align:right;font-size:12pt;">
+od poniedziałku do piątku od 9:00 do 16:00<br />
+</div><br />
+
+<% end %>

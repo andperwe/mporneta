@@ -1,0 +1,4 @@
+<%= content_tag_for(:tr, @oddzials) do |oddzial| %>
+ <td><%= link_to '', edit_oddzial_path(oddzial),:class => "otworz_o", :remote => "true" %></td>
+ <td style="width:160px;"><%= oddzial.miasto %></td>
+<% end %>

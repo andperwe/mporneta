@@ -1,0 +1,14 @@
+<%= form_for @rodz_pol, :remote => true, :html => { :id => 'form_r_grupa' } do |f| %>
+
+<%= f.hidden_field :towarzystwo_id %>
+
+<div class="form-group" style="margin-bottom:7px;">
+  <%= f.label :nazwa_rodz,"Nazwa rodzaju", :class => "margines" %>
+  <%= f.text_field :nazwa_rodz, class: "form-control input-sm izolty" %>
+</div>
+<div class="form-group" style="margin-bottom:7px;">
+  <label for="rodz_pol_typ">Typ</label>
+  <%= select(:rodz_pol, :typ, [['polisa komunikacyjna', 1], ['polisa majątkowa (lub transportowa, OC, rolna)', 2],['polisa na życie',3],['deklaracja OFE',4],['dowód wpłaty',5],['certyfikat',6],['assistance',7],['zielona karta',8],['inny druk',9],['polisa pakietowa/uniwersalna',10],['aneks',11],['polisa z funduszem kapitałowym',12],['polisa ubezpieczenia grupowego',13]], {:prompt => "wybierz"}, { :class => 'form-control izolty' }) %>
+
+</div>
+<% end %>

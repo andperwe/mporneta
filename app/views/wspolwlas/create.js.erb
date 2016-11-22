@@ -1,0 +1,7 @@
+$.ajax({url: 'polisa/rysuj_ws/',
+  type:'POST',
+  success: function(data){
+    $('.freezetable-body > #t_wspol tbody').html(data);
+  }
+});
+$('#wspolwlafd').dialog( "close" );

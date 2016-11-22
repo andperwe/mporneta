@@ -1,0 +1,3 @@
+  <%= select_tag "tu_ryzyk", options_from_collection_for_select(@tu_ryzyka, "id", "nazwa"), {:prompt => "wybierz", :class => 'form-control', :style => "min-width: 95%;"} %>
+  <button type="button" id="dodaj_tu" class="btn btn-primary btn-xs" data-placement="right" data-toggle="tooltip" class="tooltip" data-original-title="Dodaj towarzystwo"><span class="glyphicon glyphicon-plus"></span></button>
+   <%= link_to '', new_towarzystwo_path, :remote => true, :id => "dodaj_t_link" %>

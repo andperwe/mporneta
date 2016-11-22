@@ -1,0 +1,74 @@
+<div class="loader"></div>
+
+<fieldset style="width: 90%;margin-left:5%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+    <div style="margin:4px; float:left" class="row">
+
+
+       <div class="col-sm-9 col-md-9">
+        <strong><input type="text" id="t_szukaj_o" placeholder="Szukaj klienta" autocomplete="off" class="form-control"></strong>
+      </div>
+       <div class="col-sm-3 col-md-3">
+        <button id="pokaz_osoby" class="btn btn-primary">Pokaż wszystkich klientów</button>
+      </div>
+
+    </div>
+
+<table id="osobas-table" class="display tabela" cellspacing="0" data-source="<%= osobas_path(format: :json) %>">
+  <thead style="background-color:ThreeDFace;">
+    <tr>
+      <th style="padding: 4px 10px !important;"></th>
+      <th style="padding: 4px 10px !important;">id</th>
+      <th style="padding: 4px 10px !important;">Ubezpieczony</th>
+      <th style="padding: 4px 10px !important;">Miejscowość</th>
+      <th style="padding: 4px 10px !important;">Ulica</th>
+      <th style="padding: 4px 10px !important;">Telefon</th>
+      <th style="padding: 4px 10px !important;">Pesel</th>
+      <th style="padding: 4px 10px !important;">Uwagi</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+</fieldset>
+
+<fieldset style="width: 90%; margin-top:10px; margin-left:5%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+  <table id="polisas-table" class="display tabela" cellspacing="0" data-source="<%= polisas_path(format: :json) %>">
+    <thead style="background-color:ThreeDFace;">
+      <tr>
+        <th style="padding: 4px 10px !important;"></th>
+        <th style="padding: 4px 10px !important;">idpolisy</th>
+        <th style="padding: 4px 10px !important;">Numer</th>
+        <th style="padding: 4px 10px !important;">Od</th>
+        <th style="padding: 4px 10px !important;">Do</th>
+        <th style="padding: 4px 10px !important;">Data wyst.</th>
+        <th style="padding: 4px 10px !important;">TU nazwa polisy</th>
+        <th style="padding: 4px 10px !important;">Sprzedany</th>
+        <th style="padding: 4px 10px !important;">dni</th>
+        <th style="padding: 4px 10px !important;">osoba_id</th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</fieldset>
+
+<div id="osobafd" title="Klient" style="background-color:white;">
+  <div class="osoba_dane">
+  </div>
+</div>
+
+
+
+<div id="wspolwlafd" title="Współwłaściciel" style="background-color:white;">
+</div>
+
+<!--div id="twspolwlafd" title="Współwłaściciel" style="background-color:white;">
+</div-->
+
+<div id="platnosc" title="Szczegóły płatności" style="background-color:white;">
+  <div class="wplata_dane">
+  </div>
+</div>
+
+<%= render 'polisas/dialog_polisa' %>

@@ -1,0 +1,37 @@
+$( "#add_oddzial" ).dialog({
+              autoOpen: false,
+              maxWidth:300,
+              maxHeight: 250,
+              width: 300,
+              height: 250,
+              modal: true,
+              buttons:[
+                      {
+                        id:"dodaj_oddzial_ok",
+                        text: "Dodaj",
+                        click: function() {
+                          //$('#new_marki_poj').submit();
+                          $('#form_oddz').submit();
+                          //$('#add_oddzial').dialog("close");
+                        }
+                      }
+                    ]
+});
+
+$('.oddzial_dane').html("<%= escape_javascript (render partial: 'form') %>");
+
+
+$("#dodaj_oddzial_ok").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#dodaj_oddzial_ok").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+
+$('#oddzial_miasto').change(function(){
+  $('#oddzial_miasto').val(pierwsza_d($('#oddzial_miasto').val()));
+});
+
+$('#dodaj_oddzial_ok').removeClass();
+$('#dodaj_oddzial_ok').addClass('btn btn-success btn-sm');
+$('#add_oddzial').dialog( "open" );

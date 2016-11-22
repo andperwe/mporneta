@@ -1,0 +1,40 @@
+$( "#komunikat_os" ).dialog({
+              autoOpen: false,
+              maxWidth:450,
+              maxHeight: 220,
+              width: 450,
+              height: 220,
+              modal: true,
+              buttons:[
+                      {
+                        id:"ok_oddz",
+                        text: "Ok",
+                        click: function() {
+                          $.ajax({url: 'agencje/rysuj_oddzial/',
+                            data:{agencje_id:$('#oddzial_agencje_id').val()},
+                            type:'POST',
+                            success: function(data){
+                              $('.freezetable-body > #t_oddzial tbody').html(data);
+                            }
+                          });
+                          $('#komunikat_os').dialog("close");
+                          $('#add_oddzial').dialog("close");
+
+
+
+                        }
+                      }
+                    ]
+});
+
+$("#ok_oddz").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#ok_oddz").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#ok_oddz').removeClass();
+$('#ok_oddz').addClass('btn btn-success btn-sm');
+
+$('#komunikat_os').html("<%= escape_javascript (render partial: 'ok') %>");
+$('#komunikat_os').dialog( "open" );

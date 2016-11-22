@@ -1,0 +1,38 @@
+$( "#komunikat_os" ).dialog({
+              autoOpen: false,
+              maxWidth:450,
+              maxHeight: 220,
+              width: 450,
+              height: 220,
+              modal: true,
+              buttons:[
+                      {
+                        id:"ok_kom_t",
+                        text: "Ok",
+                        click: function() {
+                          $.ajax({url: 'ryzyka/tu_ryzyka/',
+                            success: function(data){
+                              $('#tu_select').html(data);
+                              //alert();
+                              $("#tu_select option:selected").text($('#towarzystwo_nazwa').val().toUpperCase());
+                              $('#dodaj_tu').tooltip();
+                            }
+                          });
+                          $('#komunikat_os').dialog("close");
+                          $('#add_towarzystwo').dialog("close");
+                        }
+                      }
+                    ]
+});
+
+$("#ok_kom_t").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#ok_kom_t").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#ok_kom_t').removeClass();
+$('#ok_kom_t').addClass('btn btn-success btn-sm');
+
+$('#komunikat_os').html("<%= escape_javascript (render partial: 'ok') %>");
+$('#komunikat_os').dialog( "open" );

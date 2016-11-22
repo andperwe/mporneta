@@ -1,0 +1,15 @@
+<%= content_tag_for(:tr, @raty_sums) do |raty_sum| %>
+   <td><%= link_to '', edit_raty_sum_path(raty_sum),:class => "otworz_o", :remote => "true" %></td>
+   <td style="display:none;"><%= raty_sum.id %></td>
+   <td style="width:53px;" class='rata_nr'><%= raty_sum.nr_raty %></td>
+   <td style="width:60px;" class='kwota_wplaty'><%= number_with_precision(raty_sum.kwota, :precision => 2).to_s.sub '.', ',' %></td>
+   <td style="width:100px;"><%= raty_sum.data %></td>
+   <td style="width:33px;"><%= check_box_tag 'wplata_zapl'+raty_sum.id.to_s, raty_sum.zapl,raty_sum.zapl, :disabled => true %></td>
+   <td style="width:100px;"><%= raty_sum.nr_dw %></td>
+   <td style="width:80px;"><%= raty_sum.forma_text %></td>
+   <td style="width:85px;"><%= raty_sum.kto %></td>
+   <td style="width:146px;"><%= truncate(raty_sum.nazwy_pol.nazwa_polisy, length: 23) %></td>
+   <td style="width:70px;"><%= number_with_precision(raty_sum.prow_kwota, :precision => 2).to_s.sub '.', ',' %></td>
+   <td style="width:90px;"><%= check_box_tag 'wplata_prow_otrzymana'+raty_sum.id.to_s,raty_sum.prow_otrzymana, raty_sum.prow_otrzymana, :disabled => true %></td>
+   <td style="width:80px;"><%= check_box_tag 'wplata_przypominac'+raty_sum.id.to_s, raty_sum.przypominac, raty_sum.przypominac, :disabled => true %></td>
+<% end %>

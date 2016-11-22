@@ -1,0 +1,45 @@
+<div style="margin-top:50px;"></div>
+
+<div class="panel panel-default devise-bs" style="margin-left:20%;margin-right:20%;padding:3px;">
+  <div class="panel-heading">
+    <h4 class="dialog-jq"><%= t('.sign_up', :default => "Sign up") %></h4>
+  </div>
+  <div class="panel-body">
+
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f| %>
+   <%= devise_error_messages! %>
+    <div class="form-group" style="margin-bottom:7px;">
+      <%= f.label :agencje_id, "Nazwa agencji" %>
+      <%= collection_select(:user, :agencje_id, Agencje.all, :id, :nazwa_s,{include_blank: 'wybierz'},{:class=>"form-control", :id=>"agencje_id"}) %>
+    </div>
+    <div class="form-group" style="margin-bottom:7px;">
+      <%= f.label :funkcje_id, "Funkcja użytkownika" %>
+      <%= collection_select(:user, :funkcje_id, Funkcje.all, :id, :nazwa_funkcji,{include_blank: 'wybierz'},{:class=>"form-control", :id=>"funkcje_id"}) %>
+    </div>
+    <div class="form-group" style="margin-bottom:7px;">
+      <%= f.label :nazwa, "Nazwa użytkownika" %>
+      <%= f.text_field :nazwa, class: "form-control input-sm" %>
+    </div>
+    <div class="form-group" style="margin-bottom:7px;">
+      <%= f.label :loginn, "Login" %>
+      <%= f.text_field :loginn, class: "form-control input-sm" %>
+    </div>
+      <div class="form-group" style="margin-bottom:7px;">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control input-sm" %>
+      </div>
+      <div class="form-group" style="margin-bottom:7px;">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control input-sm" %>
+      </div>
+      <div class="form-group" style="margin-bottom:7px;">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control input-sm" %>
+      </div>
+      <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary btn-sm pull-right" %>
+    <% end %>
+  </div>
+</div>
+<div style="margin-left:20%;">
+<%= render "devise/shared/links" %>
+</div>

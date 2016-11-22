@@ -1,0 +1,148 @@
+<div style="width: 90%;margin-left:5%;">
+<div style="text-align:center;" class="col-md-10">
+<p style="font-weight:bold;margin-top:3px;margin-bottom:0px;">KOŃCZĄCE SIĘ POLISY</p>
+
+<fieldset style="margin-top:2px; padding-top:5px; padding-bottom:5px; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+<table id="polisa_przyp" class="display tabela" cellspacing="0" data-source="<%= przypomnienias_path(format: :json) %>">
+  <thead style="background-color:ThreeDFace; font-size:12px;">
+    <tr>
+      <!--th style="padding: 4px 10px !important;"></th-->
+      <th style="padding: 4px 10px !important;">id</th>
+      <th style="padding: 4px 10px !important;">Numer</th>
+      <th style="padding: 4px 10px !important;">Ubezpieczony</th>
+      <th style="padding: 4px 10px !important;">Nazwa</th>
+      <th style="padding: 4px 10px !important;">Data wznowienia</th>
+      <th style="padding: 4px 10px !important;">osoba id</th>
+      <th style="padding: 4px 10px !important;">Telefon</th>
+      <th style="padding: 4px 10px !important;">Ilość dni</th>
+      <th style="padding: 4px 10px !important;">email</th>
+      <!--th style="padding: 4px 10px !important;">Pesel</th>
+      <th style="padding: 4px 10px !important;">Uwagi</th-->
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+</fieldset>
+</div>
+
+
+  <div class="col-md-2 text-center">
+    <div style="margin-top:57px">
+      <button type="button" id="pok_p_pg" class="btn btn-primary">
+          <span class="glyphicon glyphicon-edit"></span> Pokaż polise
+      </button>
+      <%= button_to("", edit_polisa_path(0),:method => :get, :id => "pok_p_p", :remote => "true", :hidden =>"true") %>
+    </div>
+    <!--div style="margin-top:57px"><button id="pok_p_p" style="margin-left:25px;height:25px; width:25px">Pokaż polisę</button><label class="raty">Polisa</label></div-->
+    <div style="margin-top:10px">
+      <button type="button" id="pok_p_og" class="btn btn-primary">
+          <span class="glyphicon glyphicon-user"></span> Pokaż osobe
+      </button>
+      <%= button_to("", edit_osoba_path(0),:method => :get, :id => "pok_p_o", :remote => "true", :hidden => "true" ) %>
+    </div>
+    <!--div style="margin-top:10px"><button id="pok_p_o" style="margin-left:25px;height:25px; width:25px">Pokaż osobę</button><label  class="raty">Osoba</label></div-->
+    <div style="margin-top:10px;"
+    <button type="button" id="drukuj_p_p" class="btn btn-primary">
+        <span class="glyphicon glyphicon-print"></span> Drukuj
+    </button>
+  </div>
+   <div style="margin-top:10px;">
+     <button type="button" id="wyslij_p_p" class="btn btn-primary">
+         <span class="glyphicon glyphicon-envelope"></span> email
+     </button>
+   </div>
+    <!--div style="margin-top:10px"><button id="drukuj_p_p" style="margin-left:25px;height:25px; width:25px">Drukuj przypomnienie</button><label class="raty">Drukuj</label></div-->
+    <!--div style="margin-top:10px"><button id="wyslij_p_p" style="margin-left:25px;height:25px; width:25px">Wyślij przypomnienie</button><label class="raty">email</label></div-->
+    <a href="" download class="ck"></a>
+  </div>
+
+<%= link_to "", przypomnienia_path(0, format: :pdf),:id=>"drukuj_p",:hidden=>"true", :onclick=>"window.open(this.href,'', 'height=600, width=900');return false;"  %>
+<%= render 'polisas/dialog_polisa' %>
+
+<div id="osobafd" title="Klient" style="background-color:white;">
+  <div class="osoba_dane">
+  </div>
+</div>
+
+<div id="wyslij_p">
+<%= link_to "", :controller => "przypomnienias", :action => "send_polisa_mail", :idp => 0, :remote => "true", :class => "ukryj" %>
+</div>
+
+<div class="col-md-12" style="margin-top:10px;">
+   <button type="button" id="raport_p" class="btn btn-success">
+      <span class="glyphicon glyphicon-list-alt"></span> Raport przypomnień
+  </button>
+</div>
+
+<%= link_to "r_l", przypomnienia_raport_path(format: :pdf),:id=>"raport_p_l", :hidden=>"true",:class => "ukryj", :onclick=>"window.open(this.href,'', 'height=600, width=900');return false;"  %>
+
+
+<div style="text-align:center;" class="col-md-10">
+<p style="font-weight:bold;margin-top:3px;margin-bottom:0px;">KOŃCZĄCE SIĘ RATY</p>
+
+<fieldset style="margin-top:2px; padding-top:5px; padding-bottom:5px; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+<table id="rata_przyp" class="display tabela" cellspacing="0" data-source="<%= przypomnienia_rats_path(format: :json) %>">
+  <thead style="background-color:ThreeDFace; font-size:12px;">
+    <tr>
+      <!--th style="padding: 4px 10px !important;"></th-->
+      <th style="padding: 4px 10px !important;">polisa_id</th>
+      <th style="padding: 4px 10px !important;">osoba_id</th>
+      <th style="padding: 4px 10px !important;">Numer</th>
+      <th style="padding: 4px 10px !important;">Ubezpieczony</th>
+      <th style="padding: 4px 10px !important;">Polisa</th>
+      <th style="padding: 4px 10px !important;">Data płat.</th>
+      <th style="padding: 4px 10px !important;">Kwota</th>
+      <th style="padding: 4px 10px !important;">Nr. raty</th>
+      <th style="padding: 4px 10px !important;">Tel.</th>
+      <th style="padding: 4px 10px !important;">email</th>
+      <th style="padding: 4px 10px !important;">Ilość dni</th>
+
+      <!--th>email</th>
+      <!--th style="padding: 4px 10px !important;">Pesel</th>
+      <th style="padding: 4px 10px !important;">Uwagi</th-->
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+</fieldset>
+</div>
+
+<div>
+  <div class="col-md-2 text-center">
+    <div style="margin-top:57px">
+      <button type="button" id="pok_r_pg" class="btn btn-info">
+          <span class="glyphicon glyphicon-edit"></span> Pokaż polise
+      </button>
+      <%= button_to("", edit_polisa_path(0),:method => :get, :id => "pok_r_p", :remote => "true", :hidden =>"true") %>
+    </div>
+    <div style="margin-top:10px">
+      <button type="button" id="pok_r_og" class="btn btn-info">
+          <span class="glyphicon glyphicon-user"></span> Pokaż osobe
+      </button>
+      <%= button_to("", edit_osoba_path(0),:method => :get, :id => "pok_r_o", :remote => "true", :hidden => "true" ) %>
+    </div>
+    <div style="margin-top:10px;"
+    <button type="button" id="drukuj_r_p" class="btn btn-info">
+        <span class="glyphicon glyphicon-print"></span> Drukuj
+    </button>
+  </div>
+   <div style="margin-top:10px;">
+     <button type="button" id="wyslij_r_p" class="btn btn-info">
+         <span class="glyphicon glyphicon-envelope"></span> email
+     </button>
+   </div>
+    <a href="" download class="ck"></a>
+  </div>
+</div>
+<%= link_to "", przypomnienia_rat_path(0, format: :pdf),:id=>"drukuj_r",:hidden=>"true", :onclick=>"window.open(this.href,'', 'height=600, width=900');return false;"  %>
+
+<div id="wyslij_r">
+<%= link_to "", :controller => "przypomnienia_rats", :action => "send_rata_mail", :idp => 0, :remote => "true", :class => "ukryj" %>
+</div>
+</div>

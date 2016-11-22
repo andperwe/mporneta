@@ -1,0 +1,2 @@
+module AdministracjasHelper
+end

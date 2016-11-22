@@ -1,0 +1,1 @@
+json.extract! @raty_sumy, :id, :id_pol, :kwota, :data, :zapl, :forma, :nr_dw, :nr_raty, :id_ryz, :prow_proc, :prow_kwota, :prow_ag_proc, :prow_ag_kwota, :prow_otrzymana, :uwagi, :data_w, :prow_dowolna, :odsetki, :id_agent, :rozliczona, :roz_owca, :nr_wyk, :data_roz, :kwota_owca, :created_at, :updated_at

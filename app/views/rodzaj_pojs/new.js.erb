@@ -1,0 +1,40 @@
+if($('#marka_f').val() == 0)
+  {
+    alert_t("Wybierz wcześniej markę pojazdu !");
+  }
+  else if ($('#model_f').val() == 0) {
+    alert_t("Wybierz wcześniej model pojazdu !");
+  }
+
+else
+{
+$( ".rodzajf" ).dialog({
+              autoOpen: false,
+              maxWidth:300,
+              maxHeight: 250,
+              width: 300,
+              height: 250,
+              modal: true,
+              buttons:[
+                      {
+                        id:"dodaj_rodz",
+                        text: "Dodaj",
+                        click: function() {
+                          $('#new_rodzaj_poj').submit();
+                        }
+                      }
+                    ]
+});
+
+$("#dodaj_rodz").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#dodaj_rodz").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+
+$('#dodaj_rodz').removeClass();
+$('#dodaj_rodz').addClass('btn btn-primary btn-sm');
+$('.rodzajf').html("<%= escape_javascript (render partial: 'form') %>");
+$('.rodzajf').dialog( "open" );
+}

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+
+<fieldset style="width: 90%;margin-left:5%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+  <table id="polisas-table" class="display" cellspacing="0" data-source="<%= polisas_path(format: :json, :osoba_id => 11) %>">
+    <thead style="background-color:ThreeDFace;">
+      <tr>
+        <th style="padding: 4px 10px !important;"></th>
+        <th style="padding: 4px 10px !important;">id</th>
+        <th style="padding: 4px 10px !important;">Numer</th>
+        <th>Od</th>
+        <th>Do</th>
+        <th>Data wyst.</th>
+        <th>TU nazwa polisy</th>
+        <th>Sprzedany</th>
+        <th>dni</th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+
+</fieldset>
+<br>
+
+<div class="new-polisa"></div>
+
+<%= render 'dialog_polisa' %>
+<%= link_to 'New Polisa', new_polisa_path, remote: true %>

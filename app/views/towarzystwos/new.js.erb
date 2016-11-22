@@ -1,0 +1,49 @@
+$( "#add_towarzystwo" ).dialog({
+              autoOpen: false,
+              maxWidth:1000,
+              maxHeight: 460,
+              width: 1000,
+              height: 460,
+              modal: true,
+              buttons:[
+                      {
+                        id:"dodaj_t",
+                        text: "Dodaj",
+                        click: function() {
+                          if (!puste_pola_t())
+                            $('#form_r_towarzystwo').submit();
+                          }
+                        }
+                    ]
+});
+
+$('.towarzystwo_dane').html("<%= escape_javascript (render partial: 'form') %>");
+
+$("#dodaj_t").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#dodaj_t").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#dodaj_t').removeClass();
+$('#dodaj_t').addClass('btn btn-success btn-sm');
+
+$("#towarzystwo_kod").mask("99-999");
+
+$('#towarzystwo_nazwa_max').change(function(){
+  $('#towarzystwo_nazwa_max').val(pierwsza_d($('#towarzystwo_nazwa_max').val()));
+});
+
+$('#towarzystwo_miasto').change(function(){
+  $('#towarzystwo_miasto').val(pierwsza_d($('#towarzystwo_miasto').val()));
+});
+
+$('#towarzystwo_ulica').change(function(){
+  $('#towarzystwo_ulica').val(pierwsza_d($('#towarzystwo_ulica').val()));
+});
+
+$('#towarzystwo_bank').change(function(){
+  $('#towarzystwo_bank').val(pierwsza_d($('#towarzystwo_bank').val()));
+});
+
+$('#add_towarzystwo').dialog( "open" );

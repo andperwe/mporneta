@@ -1,0 +1,371 @@
+
+
+<%= form_for @polisa ,remote: true, :html => { :id => 'form_r_polisa' } do |f| %>
+<%= f.hidden_field :dzis, :disabled => true %>
+<%= f.hidden_field :osoba_id, :id => "osobaid" %>
+<%= link_to "delete", @polisa, method: :delete, :remote => true, :id => "usun_pol_link" %>
+
+    <!--input id="kwota_calkowita" value="0" style="display:none;"-->
+    <div id="tabs" role="navigation" style="margin-left:5px; margin-top:2px;margin-right:5px;">
+          <ul class="nav nav-tabs nav-justified">
+             <li class="active"><a data-toggle="tab" href="#tabs-1">Dane ogólne</a></li>
+             <li><a data-toggle="tab" href="#tabs-2">Płatności</a></li>
+             <li><a data-toggle="tab" href="#tabs-3">Dane pojazdu</a></li>
+             <li><a data-toggle="tab" href="#tabs-4">Uwagi</a></li>
+             <!--li><a href="#tabs-5">Zdjęcia</a></li-->
+  	      </ul>
+
+     </div>
+
+     <div class="tab-content">
+      <div id="tabs-1" class="tab-pane fade in active">
+       <div class="row">
+         <div class="col-md-9 col-sm-9">
+        <fieldset class="nopadding ">
+		        <legend class="nomargin"><h6>Info agent</h6></legend>
+               <!--agencja dodać -->
+
+                 <div class="form-group nomargin col-md-4 col-sm-4">
+                   <%= f.label :user_id,"Wprowadził", :class => "control-label" %>
+                   <%= collection_select(:polisa, :user_id, @user, :id, :nazwa, {}, {:class=>"form-control input-sm", :id=>"userid", :style =>"background:#D8F6CE !important;", :disabled => "disabled"}) %>
+                 </div>
+                 <div class="form-group nomargin col-md-4 col-sm-4">
+                    <%= f.label :agent_id,"Agent", :class => "control-label" %>
+                    <%= collection_select(:polisa, :agencje_id, @agencje, :id, :nazwa_s, {}, {:class=>"form-control input-sm", :id=>"agencjeid", :style =>"background:#D8F6CE !important;", :disabled => "disabled"}) %>
+                 </div>
+                 <div class="form-group nomargin col-md-4 col-sm-4">
+                    <%= f.label :oddzial_id,"Oddzial", :class => "control-label" %>
+                    <%= collection_select(:polisa, :oddzial_id, @oddzial, :id, :miasto, {}, {:class=>"form-control input-sm", :id=>"oddzialid", :style =>"background:#D8F6CE !important;"}) %>
+                 </div>
+        </fieldset>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <fieldset class="nopadding ">
+		        <legend class="nomargin"><h6>Przypominać</h6></legend>
+            <div class="form-group">
+              <div class="checkbox-inline" style="margin-top:21px;">
+                <label for="przypominac" class ="control-label" style="color:green; font-weight:bold;font-size:14px;">Nie przypominać : </label>
+                <%= f.check_box :przypominac, :id => "przypominac", :style=> "margin-left: 5px;" %>
+              </div>
+            </div>
+       </fieldset>
+      </div>
+    </div>
+        <div class="col-md-8 col-sm-8" style="padding-left:0px;">
+        <fieldset class="nopadding">
+          <legend class="nomargin"><h6>Polisa</h6></legend>
+             <div class="text-center">
+                 <div class="top-buffer">
+                    <div class="form-group form-inline">
+                        <label for="Ubezpieczony" class ="control-label">Ubezpieczony:</label>
+                        <%= f.text_field :ubezpieczony, :class => "form-control input-sm izolty", :id => "Ubezpieczony",:style => "width:500px;background:#FFCC99;" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group form-inline margin5">
+                     <label for="select_t" class = "control-label col-md-3 col-sm-3 label-mar-5">TU :</label>
+                     <%= collection_select(:polisa, :towarzystwo_id, @towarzystwa, :id, :nazwa, {:prompt => "Wybierz"}, {:class=>"form-control input-sm izolty", :id=>"select_t", :style => "min-width: 180px;"}) %>
+                     <%= f.hidden_field :rodz_pol_id, :id => "temp_rodz_pol" %>
+                  </div>
+                  <div class="form-group form-inline margin5">
+                     <label for="numer" class = "control-label col-md-3 col-sm-3 label-mar-5">Numer : </label>
+                     <%= f.text_field :numer, :class => "form-control input-sm izolty", :id => "numer",:style => "width:180px;" %>
+                  </div>
+                  <div class="form-group form-inline margin5">
+                    <label for="select_rp" class = "control-label col-md-3 col-sm-3 label-mar-5">Nazwa : </label>
+                    <div id="rodzpol1">
+                    </div>
+                  </div>
+                  <div class="form-group form-inline margin5">
+                     <label for="idtypu" class = "control-label col-md-3 col-sm-3 label-mar-5">Typ :</label>
+                      <%= collection_select(:polisa, :typ_pol_id, @typy, :id, :nazwa_typu ,{},{:class=>"form-control input-sm izolty", :id=>"idtypu", :style => "min-width: 180px;"}) %>
+                  </div>
+                  <div class="form-group form-inline margin5">
+                    <label for="ozn" class = "control-label col-md-3 col-sm-3 label-mar-5">Ozn : </label>
+                     <%= f.text_field :ozn, :class => "form-control input-sm", :id => "ozn",:style => "width:180px;" %>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group form-inline margin5">
+                    <label for="nr_wniosku" class = "control-label col-md-5 col-sm-5 label-mar-5">Nr. wniosku:</label>
+                    <%= f.text_field :nr_wniosku, :class => "form-control input-sm", :id => "nr_wniosku",:style => "width:150px;" %>
+                  </div>
+                  <div class="form-group form-inline margin5">
+                    <label for="data_wniosku" class = "control-label col-md-5 col-sm-5 label-mar-5">Data wniosku:</label>
+                    <%= f.text_field :data_wnios, :class => "form-control input-sm izolty data", :id => "data_wniosku",:style => "width:120px;" %>
+                  </div>
+                  <div class="form-group form-inline margin5">
+                   <label for="certyfikat" class = "control-label col-md-5 col-sm-5 label-mar-5">Certyfikat:</label>
+                   <%= f.text_field :certyfikat, :class => "form-control input-sm", :id => "certyfikat",:style => "width:150px;" %>
+                 </div>
+                 <div class="form-group form-inline margin5">
+                    <label for="pl" class = "control-label col-md-5 col-sm-5 label-mar-5">PL/:</label>
+                    <%= f.text_field :pl, :class => "form-control input-sm", :id => "pl",:style => "width:150px;" %>
+                 </div>
+                </div>
+
+        </fieldset>
+
+        <fieldset class="top-buffer nopadding">
+            <legend class="nomargin"><h6>Ryzyka polisy</h6></legend>
+         <div class="col-md-6 col-sm-6 top-buffer", style="padding-left:0px;">
+         <div style="display: inline-block;">
+          <table id="TRyzyka" cellspacing="0">
+          <thead>
+            <tr>
+              <!--th style="width: 31px; display:none;">id</th-->
+              <th style="display:none;">id_ryz</th>
+              <th style="width:33px;">Jest</th>
+              <th style="width:116px;">Nazwa ryzyka</th>
+              <th style="width:80px;">Suma ubezp.</th>
+              <th style="width:50px;">Waluta</th>
+              <th style="width:80px;">Kod taryfy</th>
+              <th style="width:60px;">Przypis</th>
+              <th style="width:60px;">Stawka</th>
+              <th style="width:38px;">Ilość</th>
+             </tr>
+          </thead>
+          <tbody class="ttnazwy_p">
+          </tbody>
+          </table>
+         </div>
+       </div>
+     </fieldset>
+
+     <fieldset class="top-buffer nopadding col-md-11 col-sm-11">
+        <legend class="nomargin"><h6>Współwłaściciel</h6></legend>
+          <div style="float:left;" class="top-buffer">
+            <table id="t_wspol">
+              <thead>
+                <tr>
+                  <th style="display:none;"></th>
+                  <th style="width:25px;"></th>
+                  <th style="width:120px;">Nazwisko</th>
+                  <th style="width:150px;">Imię</th>
+                </tr>
+              </thead>
+              <tbody class="twspol_p">
+
+              </tbody>
+            </table>
+          </div>
+            <div class="top-buffer">
+              <button id="dodaj_wspol" class="dodaj_b" data-placement="right" data-toggle="tooltip" class="tooltip" data-original-title="Dodaj współwłaściciela" style="margin-left:15px;"><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+
+            <%= link_to 'Newws', new_wspolwla_path(:polisa_id => @polisa.id), :remote => true, :id => "dodaj_ws_link" %>
+
+
+
+       </fieldset>
+         </div>
+   <!--/fieldset-->
+          <div class="col-md-4 col-sm-4">
+           <fieldset>
+               <legend class="nomargin"><h6>Daty</h6></legend>
+              <div class="top-buffer">
+               <div class="form-group form-inline margin5">
+                  <label for="pocz_okr_ubez" class ="control-label col-md-6 col-sm-6 label-mar-5">Pocz. okresu ubez :</label>
+                  <%= f.text_field :pocz_okresu_ubezp, :class => "form-control input-sm izolty data", :id => "pocz_okr_ubez",:style => "width:114px;" %>
+              </div>
+            </div>
+
+
+              <div class="form-group form-inline margin5">
+                <label for="koniec_okresu_ubezp" class = "control-label col-md-6 col-sm-6 label-mar-5">Koniec okresu ubez :</label>
+                <%= f.text_field :koniec_okresu_ubezp, :class => "form-control input-sm izolty data", :id => "koniec_okresu_ubezp",:style => "width:114px;" %>
+              </div>
+
+
+              <div class="form-group form-inline margin5">
+                <label for="data_wystawienia" class ="control-label col-md-6 col-sm-6 label-mar-5">Data wystawienia :</label>
+                <%= f.text_field :data_wystawienia, :class => "form-control input-sm izolty data", :id => "data_wystawienia",:style => "width:114px;" %>
+              </div>
+
+
+              <div class="form-group form-inline margin5">
+                <label for="data_wprowadzenia" class ="control-label col-md-6 col-sm-6 label-mar-5">Data wprowadzenia :</label>
+                <%= f.text_field :data_wprowadzenia, :class => "form-control input-sm izolty",:readonly => true, :id => "data_wprowadzenia",:style => "width:114px;" %>
+              </div>
+
+              <div class="form-group form-inline margin5">
+                <label for="data_wznowienia" class = "control-label col-md-6 col-sm-6 label-mar-5">Data wznowienia :</label>
+                <%= f.text_field :data_wznowienia, :class => "form-control input-sm izolty data", :id => "data_wznowienia",:style => "width:114px;" %>
+              </div>
+
+
+          </fieldset>
+          <fieldset class="top-buffer nopadding">
+              <legend class="nomargin"><h6>Informacje dodatkowe</h6></legend>
+
+                <div class="form-group form-inline margin5">
+                  <label for="pzps" class ="control-label col-md-6 col-sm-6 label-mar-5">Pol. zwróc. po sprzed.:</label>
+                  <%= f.check_box :polisa_zwrocona_po_sprzed, :id => "pzps" %>
+                </div>
+
+                <div class="form-group form-inline margin5">
+                  <label for="dzp" class ="control-label col-md-6 col-sm-6 label-mar-5">Data zwotu pol.:</label>
+                  <%= f.text_field :data_zwrotu_polisy, :class => "form-control input-sm data", :id => "dzp",:style => "width:114px;" %>
+                </div>
+
+                <div class="form-group form-inline margin5">
+                  <label for="pnpw" class ="control-label col-md-6 col-sm-6 label-mar-5">Pol. nie podl. wzn.:</label>
+                  <%= f.check_box :polisa_nie_podlega_wzn, :id => "pnpw" %>
+                </div>
+
+                <div class="form-group form-inline margin5">
+                  <label for="ws" class ="control-label col-md-6 col-sm-6 label-mar-5">Wyst. szkoda:</label>
+                  <%= f.check_box :wystapila_szkoda, :id => "ws" %>
+                </div>
+
+          </fieldset>
+          <fieldset class="top-buffer nopadding">
+              <legend class="nomargin"><h6>Zniżki, zwyżki</h6></legend>
+            <div class="form-group form-inline nomargin">
+              <div class="col-md-6 col-sm-6 top-buffer">
+              <label for="zn" class ="control-label">Zn :</label>
+              <%= f.text_field :zn, :class => "form-control input-sm",:style => "width:50px", :id => "zn" %>
+            </div>
+            <div class="col-md-6 col-sm-6 top-buffer">
+              <label for="zw" class = "control-label">Zw :</label>
+              <%= f.text_field :zw, :class => "form-control input-sm",:style => "width:50px", :id => "zw" %>
+            </div>
+            </div>
+          </fieldset>
+          <fieldset class="top-buffer nopadding col-md-6 col-sm-6">
+              <legend class="nomargin"><h6>Kod typu klienta</h6></legend>
+                <%= f.text_field :kod_typu_klienta, :class => "form-control input-sm top-buffer",:style => "width:100px", :id => "ktk" %>
+          </fieldset>
+          <fieldset class="top-buffer nopadding col-md-6 col-sm-6">
+              <legend class="nomargin"><h6>Kod rodzaju polisy</h6></legend>
+              <%= f.text_field :kod_rodzaju_polisy, :class => "form-control input-sm top-buffer",:style => "width:100px", :id => "krp" %>
+          </fieldset>
+          </div>
+
+    </div>
+
+      <div id="tabs-2" class="tab-pane fade">
+
+        <div style="height: 480px;" class="top-buffer col-md-12 col-sm-12 nopadding">
+          <fieldset style="height: 210px;">
+             <table id="wplata">
+              <thead>
+                <tr>
+                  <th style="width:30px;"></th>
+                  <th style="display:none;">idpr</th>
+                  <th style="width:53px;">Nr. raty</th>
+                  <th style="width:60px;">Kwota</th>
+                  <th style="width:100px;">Data płatności</th>
+                  <th style="width:33px;">Zapł.</th>
+                  <th style="width:100px;">Dowód wpłaty</th>
+                  <th style="width:80px;">F. płatności</th>
+				          <th style="width:85px;">Kto</th>
+                  <th style="width:146px;">Ryzyko</th>
+                  <th style="width:70px;">Prowizja</th>
+                  <th style="width:90px;">Prowizja otrz.</th>
+				          <th style="width:80px;">Nie przypominać</th>
+                </tr>
+               </thead>
+               <tbody class = "wplaty_tbody">
+               </tbody>
+             </table>
+           </fieldset>
+           <!--PODZIAŁ NA RATY-->
+           <div style="background-color:lightgray;">
+             <table>
+              <thead>
+                <tr>
+                  <th><label class="raty" for="d_wplaty">Data p.</label></th>
+                  <th><label class="raty">Zapłacił</label></th>
+                  <th><label class="raty">DW</label></th>
+                  <th><label class="raty">Data w.</label></th>
+                  <th><label class="raty">Kto</label></th>
+                  <th><label class="raty" style="margin-left:5px">Typ płatności</label></th>
+				          <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                   <td><div class="form-inline"><%= text_field_tag 'd_wplaty', nil, :class => "form-control input-sm izolty data", :style => "width:114px;" %></div></td>
+                   <td align="center"><%= check_box_tag 'zaplacil_rp',"0",false, class: 'ibialy' %></td>
+                   <td><%= text_field_tag 'dw_wplaty',nil, :class => "form-control input-sm ibialy", :style => "width:150px;" %></td>
+                   <td><div class="form-inline"><%= text_field_tag 'd_wpl', nil, :class => "form-control input-sm data ibialy", :style => "width:114px;" %></div></td>
+                   <td><%= collection_select(:polisa, :typ_platnosci_id,@typ_platnosci, :id, :nazwa_typu ,{:prompt=> 'wybierz'},{:class=>"form-control input-sm izolty", :id=>"kto"}) %>
+                      <%= f.hidden_field :typ_platnosci_id %>
+                   </td>
+
+                   <td><%= select_tag 'rodzaj_zaplaty', options_from_collection_for_select(@rodzaj_platnosci, "id", "typ"), prompt: "Wybierz", :class=>"form-control input-sm izolty" %></td>
+
+                    <td><button id="podziel" style="height:25px;margin-left:10px; width:25px" disabled>Podziel na raty.</button></td>
+                    <td><button id="usun_p_w" style="height:25px;margin-left:10px; width:25px">Usuń wpłaty</button></td>
+                  </tr>
+              </tbody>
+             </table>
+           </div>
+            <!-- guziki-->
+            <div style="margin-top:10px;" class="col-md-8 col-sm-8" id="rodzaj_p2">
+              <fieldset style="height:162px">
+
+            <table id="t_rodzaj_p2">
+		         <thead>
+		          <tr>
+               <th style="width:280px;">Ryzyko</th>
+               <th style="width:90px;">Suma rat</th>
+               <th style="width:152px;">Ilość rat</th>
+               <!--th style="display:none;">zmiana</th-->
+		          </tr>
+		         </thead>
+		         <tbody class="t_rodzaj_p2_tbody">
+		         </tbody>
+		       </table>
+               </fieldset>
+            </div><!--tabela2-->
+            <fieldset class="top-buffer nopadding">
+                <legend class="nomargin"><h6>Sumy płatności</h6></legend>
+              <div style="margin-top:10px;" id="w1_suma">
+              </div>
+
+              <div style="margin-top:10px;" id="w2_suma">
+              </div>
+
+              <div style="margin-top:10px;" id="w3_suma">
+              </div>
+
+              <div style="margin-top:10px;" id="w4_suma">
+              </div>
+        </fieldset>
+        </div>
+
+       </div>
+
+       <div id="tabs-3" class="tab-pane fade">
+         <div style="height: 480px;">
+           <fieldset class="nopadding">
+             <legend class="nomargin"><h6>Szukaj pojazd</h6></legend>
+              <div class="form-inline">
+               <label for="szukaj" style="margin-top:20px;margin-left:300px;">Szukaj : </label>
+               <input type="text" style="background:yellow; width: 180px;font-weight: bold; font-family: arial;" id="szukaj" name="szukaj" placeholder="Podaj nr. rejestracji" class="form-control input-sm">
+             </div>
+           </fieldset>
+           <fieldset class="nopadding">
+              <legend class="nomargin"><h6>Pojazd</h6></legend>
+            <div class="pojazd_partial">
+            </div>
+          </fieldset>
+       </div>
+
+    </div>
+
+        <div id="tabs-4" class="tab-pane fade">
+          <fieldset class="nopadding">
+             <legend class="nomargin"><h6>Uwagi</h6></legend>
+             <div class="text-center top-buffer">
+               <div class="form-group" >
+                  <%= f.text_area :uwagi_dodatkowe,rows: 20,:class => "form-control" %>
+               </div>
+             </div>
+          </fieldset>
+         </div>
+<% end %>
