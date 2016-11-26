@@ -10,9 +10,7 @@ $( "#komunikat_os" ).dialog({
                         id:"ok_kom_ag",
                         text: "Ok",
                         click: function() {
-                          nowa_agencja == 0;
                           $('#komunikat_os').dialog("close");
-                          $('#add_agencja').dialog( "close" );
                           t8.ajax.reload( null, false );
                         }
                       }
@@ -28,5 +26,5 @@ $("#ok_kom_ag").focus(function () {
 $('#ok_kom_ag').removeClass();
 $('#ok_kom_ag').addClass('btn btn-success btn-sm');
 
-$('#komunikat_os').html("<%= escape_javascript (render partial: 'ok') %>");
+$('#komunikat_os').html("<%= escape_javascript (render partial: 'u_ok') %>");
 $('#komunikat_os').dialog( "open" );

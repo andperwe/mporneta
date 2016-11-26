@@ -4,17 +4,24 @@
     <h4 class="dialog-jq"><%= t('.sign_in', :default => "Sign in") %></h4>
   </div>
   <div class="panel-body">
+    <%= devise_error_messages! %>
+     <%= render 'layouts/messages' %>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
-    <%= devise_error_messages! %>
-  <%= render 'layouts/messages' %>
       <div class="form-group">
         <%= f.label :login, "Login / Email" %>
-        <%= f.text_field :login, autofocus: true, placeholder: "Podaj login lub email", class: "form-control" %>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+        <%= f.text_field :login, autofocus: true, placeholder: "Podaj login lub email", class: "form-control", :autocomplete => :off %>
+      </div>
       </div>
       <div class="form-group">
         <%= f.label :password %>
+        <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
         <%= f.password_field :password, placeholder: "Podaj hasło", autocomplete: "off", class: "form-control" %>
+        </div>
       </div>
       <% if devise_mapping.rememberable? %>
         <div class="checkbox">
@@ -29,4 +36,5 @@
 </div>
 <div style="margin-left:20%;">
 <%= render "devise/shared/links" %>
+
 </div>

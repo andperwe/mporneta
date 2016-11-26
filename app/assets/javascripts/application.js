@@ -22,11 +22,20 @@
 //= require_tree .
 
 $(document).ajaxError(function(e, error) {
-  switch(error.status) {
+switch(error.status) {
 
-    case 401: {
+   case 401: {
       // unauthorised (possible timeout)
-      location.reload();
+       //alert('brak sesji');
+      //location.reload();
+    window.location.href = '/users/sign_in';
+
+      /*"<div class='alert alert-alert'>"+
+        "<a class='close' href="+'#'+" data-dismiss='alert'>×</a>"+
+        "<ul>"+
+           "<li> Sesja wygasła, aby kontynuować zaloguj się ponownie. </li>"+
+        "</ul>"+
+      "</div>");*/
     //  alert(xhr.responseText);
       //break;
     }
@@ -52,7 +61,7 @@ $.rails.confirmed = function(link){
 
 
 
-var t, t2, t3, t4,t5, t6, osoba_id=0, osoba="", nowa_polisa=1, raty_sum=0, polisaf_id=0;
+var t, t2, t3, t4,t5, t6, osoba_id=0, osoba="", nowa_polisa=1, raty_sum=0, polisaf_id=0, nowa_agencja=1;
 $.fn.bootstrapBtn = $.fn.button.noConflict();
 
 

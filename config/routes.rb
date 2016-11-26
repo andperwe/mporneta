@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     root :to => 'osobas#index', :as => :authenticated_root
   end
     root :to => redirect('/users/sign_in')
+
   resources :pojazds
   resources :towarzystwos
   resources :ryzykas

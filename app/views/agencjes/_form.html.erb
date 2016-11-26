@@ -3,39 +3,43 @@
   <%= f.label :nazwa, "Nazwa agencji", :class => "margines" %>
   <%= f.text_field :nazwa, class: "form-control input-sm izolty" %>
 </div>
+
 <div class="form-group" style="margin-bottom:7px;">
   <%= f.label :wlasciciel, "Właściciel", :class => "margines" %>
   <%= f.text_field :wlasciciel, class: "form-control input-sm izolty" %>
 </div>
+
 <div class="form-group" style="margin-bottom:7px;">
   <%= f.label :tel, "Telefon", :class => "margines" %>
   <%= f.text_field :tel, class: "form-control input-sm izolty" %>
 </div>
 
-<div class="form-inline top-buffer">
+<div class="form-inline" style="margin-top:12px;">
 <div class="form-group col-md-3" style="margin-bottom:7px;padding-left:0px;">
   <%= f.label :kod, "Kod", :class => "margines" %>
-  <%= f.text_field :kod, class: "form-control input-sm izolty", style: "width:70px;" %>
+  <%= f.text_field :kod, class: "form-control input-sm izolty", style: "width:70px;"%>
 </div>
-  <div class="form-group col-md-9" style="margin-bottom:7px;">
-    <%= f.label :miasto,"Miasto", :class => "margines" %>
-    <%= f.text_field :miasto, class: "form-control input-sm izolty" %>
-  </div>
+<div class="form-group col-md-9" style="margin-bottom:7px;padding-left:0px;padding-rigth:0px;">
+  <%= f.label :miasto, "Miasto", :class => "margines" %>
+  <%= f.text_field :miasto, class: "form-control input-sm izolty" %>
 </div>
-  <div class="form-group" style="margin-bottom:7px;">
-    <%= f.label :adres,"Adres", :class => "margines" %>
-    <%= f.text_field :adres, class: "form-control input-sm izolty" %>
-  </div>
+</div>
 
-  <div class="form-group" style="margin-bottom:7px;">
-    <%= f.label :nazwa_s,"Nazwa skrócona", :class => "margines" %>
-    <%= f.text_field :nazwa_s, class: "form-control input-sm izolty" %>
-  </div>
+<div class="form-group" style="margin-bottom:7px;">
+  <%= f.label :adres, "Adres", :class => "margines" %>
+  <%= f.text_field :adres, class: "form-control input-sm izolty" %>
+</div>
+
+<div class="form-group" style="margin-bottom:7px;">
+  <%= f.label :nazwa_s, "Nazwa skrócona", :class => "margines" %>
+  <%= f.text_field :nazwa_s, class: "form-control input-sm izolty" %>
+</div>
 
 <div>
      <label class="margines">Oddział</label>
 </div>
-       <div style="float:left;">
+
+<div style="float:left;">
          <table id="t_oddzial">
            <thead>
              <tr>
@@ -48,13 +52,13 @@
               <%= render 'oddzial' %>
            </tbody>
          </table>
-       </div>
+</div>
 
-
-         <div class="top-buffer">
-           <button id="dodaj_oddzial" class="dodaj_b" data-placement="right" data-toggle="tooltip" class="tooltip" data-original-title="Dodaj oddział" style="margin-left:15px;"><span class="glyphicon glyphicon-plus"></span></button>
-         </div>
-         <%= link_to '', new_oddzial_path(:agencje_id => @agencje.id), :remote => true, :id => "dodaj_oddz_link" %>
-    </fieldset>
-     <div id="test1"></div>
+<div class="top-buffer">
+   <button id="dodaj_oddzial" class="dodaj_b" data-placement="right" data-toggle="tooltip" class="tooltip" data-original-title="Dodaj oddział" style="margin-left:15px;">
+     <span class="glyphicon glyphicon-plus"></span>
+   </button>
+ </div>
+          <%= link_to '', new_oddzial_path(), :remote => true, :id => "dodaj_oddz_link" %>
+<%= link_to "delete", @agencje, method: :delete,:remote => true, :id => "usun_agencja_link" %>
 <% end %>

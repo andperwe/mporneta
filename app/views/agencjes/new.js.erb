@@ -14,7 +14,13 @@ $( "#add_agencja" ).dialog({
                             $('#form_r_agencje').submit();
                           }
                         }
-                    ]
+                    ],
+                    close: function() {
+
+                       if (nowa_agencja == 1){
+                         $('#usun_agencja_link').click();
+                       }
+                    }
 });
 
 $('.agencja_dane').html("<%= escape_javascript (render partial: 'form') %>");
@@ -22,15 +28,14 @@ $('#t_oddzial').freezeTable({
    'autoHeight': false,
    'height': 55
 });
-
+nowa_agencja = 1;
 
 $( "#dodaj_oddzial" ).button().on( "click", function(e) {
    e.preventDefault();
-
-//    $("#dodaj_oddz_link").click();
+   $("#dodaj_oddz_link").click();
 });
 
-
+$('div').removeClass("field_with_errors");
 
 $(".dodaj_b").mouseover(function() {
    $('button').removeClass("ui-state-hover");

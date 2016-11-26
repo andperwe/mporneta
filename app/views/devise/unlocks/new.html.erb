@@ -7,12 +7,18 @@
     <h4 class="dialog-jq"><%= t('.resend_unlock_instructions', :default => "Resend unlock instructions") %></h4>
   </div>
   <div class="panel-body">
-
+   <%= devise_error_messages! %>
+    <%= render 'layouts/messages' %>
     <%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post, html: { role: "form" } }) do |f| %>
-    <%= devise_error_messages! %>
+
       <div class="form-group">
+
         <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+
+        <div class="input-group">
+           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <%= f.email_field :email, autofocus: true, class: "form-control" %>
+         </div>
       </div>
       <%= f.submit t('.resend_unlock_instructions', :default => "Resend unlock instructions"), class: "btn btn-primary btn-sm pull-right"%>
     <% end %>

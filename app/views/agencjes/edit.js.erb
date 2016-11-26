@@ -16,7 +16,7 @@ $( "#add_agencja" ).dialog({
                         }
                     ]
 });
-
+nowa_agencja=0;
 $('.agencja_dane').html("<%= escape_javascript (render partial: 'form') %>");
 $('#t_oddzial').freezeTable({
    'autoHeight': false,

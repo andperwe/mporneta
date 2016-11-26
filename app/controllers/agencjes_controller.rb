@@ -9,12 +9,15 @@ class AgencjesController < ApplicationController
 
   def new
     @agencje = Agencje.new
+    @agencje.save
+    session[:agencjeid] = @agencje.id
   end
 
   def edit
     @agencje = Agencje.find(params[:id])
     #puts @agencje.id
-  @oddzials = Oddzial.where :agencje_id => @agencje.id
+    @oddzials = Oddzial.where :agencje_id => @agencje.id
+    session[:agencjeid] = @agencje.id
   end
 
   def update
@@ -50,7 +53,7 @@ class AgencjesController < ApplicationController
   end
 
   def rysuj_oddzial
-    @oddzials = Oddzial.where :agencje_id => params[:agencje_id]
+    @oddzials = Oddzial.where :agencje_id => session[:agencjeid]
     respond_to do |format|
         format.html {render :partial => 'oddzial'}
     end

@@ -8,9 +8,10 @@
 
     <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, role: "form" }) do |f| %>
       <%= devise_error_messages! %>
+      <%= render 'layouts/messages' %>
       <div class="form-group">
         <%= f.label :login %>
-        <%= f.login_field :login, autofocus: true, class: "form-control"  %>
+        <%= f.login_field :login, autofocus: true, class: "form-control", :autocomplete => :off  %>
       </div>
 
       <%= f.submit t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions'), class: "btn btn-primary btn-sm pull-right" %>

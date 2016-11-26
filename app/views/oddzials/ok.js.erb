@@ -11,7 +11,6 @@ $( "#komunikat_os" ).dialog({
                         text: "Ok",
                         click: function() {
                           $.ajax({url: 'agencje/rysuj_oddzial/',
-                            data:{agencje_id:$('#oddzial_agencje_id').val()},
                             type:'POST',
                             success: function(data){
                               $('.freezetable-body > #t_oddzial tbody').html(data);

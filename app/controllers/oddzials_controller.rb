@@ -9,7 +9,7 @@ class OddzialsController < ApplicationController
 
   def new
       @oddzial = Oddzial.new
-      @oddzial.agencje_id = params[:agencje_id]
+
   end
 
   # GET /twspolwlas/1/edit
@@ -22,6 +22,7 @@ class OddzialsController < ApplicationController
   # POST /twspolwlas.json
   def create
     @oddzial = Oddzial.new(oddzial_params)
+    @oddzial.agencje_id = session[:agencjeid]
     respond_to do |format|
       if @oddzial.save
 
@@ -65,7 +66,7 @@ class OddzialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def oddzial_params
-      params.require(:oddzial).permit(:miasto, :agencje_id)
+      params.require(:oddzial).permit(:miasto)
     end
 
 

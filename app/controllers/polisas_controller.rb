@@ -6,11 +6,11 @@ class PolisasController < ApplicationController
   # GET /polisas
   # GET /polisas.json
   def index
-  #    if user_signed_in?
-  puts user_signed_in?
+
     respond_to do |format|
       format.html
       format.json { render json: PolisaDatatable.new(view_context, { osoba_id: params[:osoba_id] }) }
+
     end
   #else
   #  respond_to do |format|
