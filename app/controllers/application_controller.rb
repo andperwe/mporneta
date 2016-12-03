@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   #  before_action :authenticate_user!
 #    auto_session_timeout 1.minutes
-
+def redirect_user
+  redirect_to '/404'
+end
 
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?

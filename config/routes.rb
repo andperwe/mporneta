@@ -159,4 +159,6 @@ post "pojazd/szukaj_rej" => "pojazds#szukaj_rej"
   #     resources :products
   #   end
   match '*path', via: :all, to: redirect('/')
+  #If no route matches
+match ":url" => "application#redirect_user", :constraints => { :url => /.*/ }
 end
