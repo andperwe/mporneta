@@ -5,44 +5,72 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script type="text/javascript">
-      $(window).load(function() {
-	  $(".loader").fadeOut("slow");
-    })
-</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-<div class="loader"></div>
-
-<!--a href="#0" class="cd-logo"><img src="img/cd-logo.svg" alt="Logo"></a-->
-<nav class="navbar navbar-inverse" id="menu">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li <% if [params[:controller], params[:action]] == ["osobas","index"] %>class="active"<% end %>><%= link_to image_tag("home.png",size: "32x32"), osobas_path, :class => "menu_icon", :id => "m1"  %></li>
-      <li><%= link_to image_tag("service1.gif",size: "32x32") +"Nowy klient", new_osoba_path(), :class => "menu_icon", :id => "m2", remote: true %><!--a id="m2" class="menu_icon" href="#"><%= image_tag("service1.gif",size: "32x32") %> Nowy klient</a--></li>
-      <li><%= link_to image_tag("paste_256.gif",size: "32x32") +"Nowa polisa" , new_polisa_path(), :class => "menu_icon", :id => "m3", remote: true %><!--a id="m3" class="menu_icon" href="#"><%= image_tag("paste_256.gif",size: "32x32") %> Nowa polisa</a--></li>
-      <li <% if [params[:controller], params[:action]] == ["pojazds","index"] %>class="active"<% end %>><%= link_to image_tag("car.gif",size: "32x32") + "Pojazdy", pojazds_path, :class => "menu_icon", :id => "m4" %></li>
-      <li><%= link_to image_tag("find.png",size: "32x32") + "Szukaj polis", osoba_szukaj_form_path, :class => "menu_icon", :id => "m5", remote: true %></li>
-      <li <% if [params[:controller], params[:action]] == ["przypomnienias","index"] %>class="active"<% end %>><%= link_to image_tag("kalendarz.gif",size: "32x32") + "Przypomnienia", przypomnienias_path, :class => "menu_icon", :id =>"m6" %></li>
-      <li <% if [params[:controller], params[:action]] == ["excels","index"] %>class="active"<% end %>><%= link_to image_tag("icon.png",size: "32x32") + "Wykaz", excels_path, :class => "menu_icon", :id => "m7" %></li>
-      <li><a id="m8" class="menu_icon" href="#"><%= image_tag("mag.gif",size: "32x32") %> Magazyn</a></li>
-      <li><%= link_to image_tag("lock_256.gif",size: "32x32")+"Wyloguj", destroy_user_session_path, method: :delete, :class => "menu_icon", :id => "m9" %></li>
-      <% if current_user.funkcje_id == 1 %>
-          <li <% if [params[:controller], params[:action]] == ["administracjas","index"] %>class="active"<% end %>><%= link_to image_tag("user.gif",size: "32x32") + "Administracja", administracjas_path, :class => "menu_icon", :id =>"m10" %></li>
-      <% end %>
-    </ul>
+  <div style="width:40px;float:right;">
+  <header class="cd-header">
+      <a href="" class="cd-3d-nav-trigger" id='menu0'>
+        Menu
+        <span></span>
+      </a>
+    </header> <!-- .cd-header -->
   </div>
-</nav>
-<div style="margin-top:5px;">
-</div>
+    <div style="float:left; margin-top:3px; width: -webkit-calc(100% - 40px); width:-moz-calc(100% - 40px); width: calc(100% - 40px);">
+    <main style="font-size:100% !important">
+      <%= yield %>
+    </main>
+  </div>
+<nav class="cd-3d-nav-container">
+  <ul class="cd-3d-nav">
+    <li <% if [params[:controller], params[:action]] == ["osobas","index"] %>class="cd-selected"<% end %>>
+      <!--a  id="m1" href="#">Home</a-->
+      <%= link_to "Home", osobas_path, :id => "m1" %>
+    </li>
 
-<div class='zmiana' style="float:right; margin-right:15px;margin-top:5px;">
-      <p><span id='menu_b' class="glyphicon glyphicon-align-justify" style="color:white;font-size: 30px;"></span></p>
-</div>
-<div class='nonav'>
-<%= yield %>
-</div>
+    <li>
+      <!--a  id="m2" href="#">Nowy<br />klient</a-->
+      <%= link_to "Nowy klient", new_osoba_path(), :id => "m2", remote: true %>
+    </li>
+
+    <li>
+      <!--a  id="m3" href="#">Nowa<br />polisa</a-->
+      <%= link_to "Nowa polisa" , new_polisa_path(), :id => "m3", remote: true %>
+    </li>
+
+    <li <% if [params[:controller], params[:action]] == ["pojazds","index"] %>class="cd-selected"<% end %>>
+      <%= link_to "Pojazdy", pojazds_path, :id => "m4" %>
+    </li>
+
+    <li>
+      <%= link_to "Szukaj polisę",osoba_szukaj_form_path, :id => "m5", remote: true %>
+    </li>
+
+    <li <% if [params[:controller], params[:action]] == ["przypomnienias","index"] %>class="cd-selected"<% end %>>
+      <%= link_to "Przypomnienia", przypomnienias_path, :id =>"m6" %>
+    </li>
+
+    <li <% if [params[:controller], params[:action]] == ["excels","index"] %>class="cd-selected"<% end %>>
+      <%= link_to "Wykaz", excels_path, :id =>"m7" %>
+    </li>
+
+    <li>
+      <a id="m8" href="#">Magazyn</a>
+    </li>
+
+    <li>
+      <%= link_to "Wyloguj", '/users/sign_out', method: :delete, :id =>"m9" %>
+    </li>
+
+    <li  <% if [params[:controller], params[:action]] == ["administracjas","index"] %>class="cd-selected"<% end %>>
+      <%= link_to "Administracja", administracjas_path, :id =>"m10" %>
+    </li>
+  </ul> <!-- .cd-3d-nav -->
+  <span class="cd-marker color-1"></span>
+</nav> <!-- .cd-3d-nav-container -->
+
+
 <div id="alert_t" title="Uwaga" style="background-color:white;">
 </div>
 

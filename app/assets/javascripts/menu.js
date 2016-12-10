@@ -1,5 +1,13 @@
 $(document).on('turbolinks:load', function() {
-$('#menu').hide();
+$('body').on('click','#menu0',function(e) {
+  e.preventDefault();
+});
+
+$('body').on('click','main',function(){
+  if ($('.cd-header').hasClass('nav-is-visible'))
+  $('#menu0').click();
+});
+/*$('#menu').hide();
 
 $('.zmiana').click(function(event) {
    if ($('#menu_b').hasClass('glyphicon-align-justify'))
@@ -21,5 +29,5 @@ $('.zmiana').click(function(event) {
   //alert('szukaj');
 
  });
-
+*/
 });

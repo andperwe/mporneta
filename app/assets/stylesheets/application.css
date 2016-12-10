@@ -19,9 +19,27 @@
  *= require_self
  */
 
+
+span.ui-dialog-title{
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+ #t_szukaj_u, #t_szukaj_rej, #t_szukaj_o{
+   padding-top: 0px;
+   padding-bottom: 0px;
+   height: 28px;
+ }
+
+span.ui-button-text, #nowy_user, #nowa_agencja{
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+
 .panel-heading{
    padding-top: 3px;
-   padding-bottom: 3px;  
+   padding-bottom: 3px;
 }
 
 
@@ -596,7 +614,7 @@ label{
    padding-bottom: 2px !important;
  }
 */
-body { background-color: #DEB887;}
+
 
 tbody > tr.selected { background-color: #b0bed9 !important }
 

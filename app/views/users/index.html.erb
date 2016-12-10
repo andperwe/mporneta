@@ -1,4 +1,4 @@
-<fieldset style="width: 90%;margin-left:5%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+<fieldset style="width: 95%;margin-left:2%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
     <div style="margin:4px;" class="row">
 
        <div class="col-md-4">
@@ -8,10 +8,10 @@
         <button id="pokaz_user" class="btn btn-primary">Pokaż wszystkich użytkowników</button>
       </div>
       <div class="col-md-2">
-        <%= button_to('Dodaj użytkownika', new_user_path, :class => 'btn btn-success', :remote => true, :method => :get)  %>
+        <%= button_to('Dodaj użytkownika', new_user_path, :class => 'btn btn-success', :remote => true, :method => :get, :id => "nowy_user")  %>
       </div>
       <div class="col-md-2">
-        <%= button_to('Dodaj agencje', new_agencje_path, :class => 'btn btn-success', :remote => true, :method => :get)  %>
+        <%= button_to('Dodaj agencje', new_agencje_path, :class => 'btn btn-success', :remote => true, :method => :get, :id => "nowa_agencja")  %>
       </div>
 
 
@@ -37,7 +37,8 @@
 </table>
 </fieldset>
 
-<fieldset style="width: 90%; margin-left:5%; margin-top:4px; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+<fieldset style="width: 95%; margin-left:2%; margin-top:4px; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+<div style="margin-top:3px;"></div>
 <table id="agencjes-table" class="display tabela" cellspacing="0" data-source="<%= agencjes_path(format: :json) %>">
   <thead style="background-color:ThreeDFace;">
     <tr>

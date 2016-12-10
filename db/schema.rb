@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114232459) do
+ActiveRecord::Schema.define(version: 20161210135147) do
 
   create_table "agencjes", force: :cascade do |t|
     t.string "nazwa",      limit: 100
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 20161114232459) do
 
   create_table "funkcjes", force: :cascade do |t|
     t.string "nazwa_funkcji", limit: 50
+  end
+
+  create_table "magazyns", force: :cascade do |t|
+    t.string   "numer",          limit: 30
+    t.integer  "towarzystwo_id", limit: 4
+    t.integer  "nazwa_dr_id",    limit: 4
+    t.integer  "stan_id",        limit: 4
+    t.date     "data_wpl"
+    t.date     "data_zda"
+    t.integer  "user_id",        limit: 4
+    t.date     "data_zmiany"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "marki_pojs", force: :cascade do |t|
@@ -47,6 +60,10 @@ ActiveRecord::Schema.define(version: 20161114232459) do
 
   create_table "nadwozies", force: :cascade do |t|
     t.string "typ_nadw", limit: 40
+  end
+
+  create_table "nazwa_drs", force: :cascade do |t|
+    t.string "nazwa", limit: 30
   end
 
   create_table "nazwy_pols", force: :cascade do |t|
@@ -91,8 +108,8 @@ ActiveRecord::Schema.define(version: 20161114232459) do
 
   create_table "pojazds", force: :cascade do |t|
     t.string  "nr_rej",             limit: 50
-    t.integer "idmarki",            limit: 4
-    t.integer "idmodelu",           limit: 4
+    t.integer "marki_poj_id",       limit: 4
+    t.integer "model_poj_id",       limit: 4
     t.integer "rodzaj_poj_id",      limit: 4
     t.string  "pojemn",             limit: 10
     t.integer "rok_prod",           limit: 4
@@ -107,8 +124,8 @@ ActiveRecord::Schema.define(version: 20161114232459) do
     t.text    "notatka",            limit: 65535
     t.integer "diesel",             limit: 1
     t.integer "gaz",                limit: 1
-    t.integer "idpaliwa",           limit: 4
-    t.integer "idnadwozia",         limit: 4
+    t.integer "paliwo_id",          limit: 4
+    t.integer "nadwozie_id",        limit: 4
     t.string  "nr_dow_rej",         limit: 30
     t.string  "miejsce_wydania",    limit: 50
     t.string  "nr_silnika",         limit: 60
@@ -227,6 +244,10 @@ ActiveRecord::Schema.define(version: 20161114232459) do
     t.string  "kod_taryfy",   limit: 25
     t.decimal "przypis",                    precision: 8,  scale: 2
     t.integer "ilosc",        limit: 4
+  end
+
+  create_table "stans", force: :cascade do |t|
+    t.string "stan", limit: 30
   end
 
   create_table "towarzystwos", force: :cascade do |t|

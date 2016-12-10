@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
     root :to => redirect('/users/sign_in')
 
+  resources :magazyns
   resources :pojazds
   resources :towarzystwos
   resources :ryzykas
