@@ -95,7 +95,7 @@
                   </div>
                   <div class="form-group form-inline margin5">
                     <label for="data_wniosku" class = "control-label col-md-5 col-sm-5 label-mar-5">Data wniosku:</label>
-                    <%= f.text_field :data_wnios, :class => "form-control input-sm izolty data", :id => "data_wniosku",:style => "width:120px;" %>
+                    <%= f.text_field :data_wnios, :class => "form-control input-sm izolty data", :id => "data_wniosku",:style => "width:130px;" %>
                   </div>
                   <div class="form-group form-inline margin5">
                    <label for="certyfikat" class = "control-label col-md-5 col-sm-5 label-mar-5">Certyfikat:</label>
@@ -169,31 +169,31 @@
               <div class="top-buffer">
                <div class="form-group form-inline margin5">
                   <label for="pocz_okr_ubez" class ="control-label col-md-6 col-sm-6 label-mar-5">Pocz. okresu ubez :</label>
-                  <%= f.text_field :pocz_okresu_ubezp, :class => "form-control input-sm izolty data", :id => "pocz_okr_ubez",:style => "width:114px;" %>
+                  <%= f.text_field :pocz_okresu_ubezp, :class => "form-control input-sm izolty data", :id => "pocz_okr_ubez",:style => "width:130px;" %>
               </div>
             </div>
 
 
               <div class="form-group form-inline margin5">
                 <label for="koniec_okresu_ubezp" class = "control-label col-md-6 col-sm-6 label-mar-5">Koniec okresu ubez :</label>
-                <%= f.text_field :koniec_okresu_ubezp, :class => "form-control input-sm izolty data", :id => "koniec_okresu_ubezp",:style => "width:114px;" %>
+                <%= f.text_field :koniec_okresu_ubezp, :class => "form-control input-sm izolty data", :id => "koniec_okresu_ubezp",:style => "width:130px;" %>
               </div>
 
 
               <div class="form-group form-inline margin5">
                 <label for="data_wystawienia" class ="control-label col-md-6 col-sm-6 label-mar-5">Data wystawienia :</label>
-                <%= f.text_field :data_wystawienia, :class => "form-control input-sm izolty data", :id => "data_wystawienia",:style => "width:114px;" %>
+                <%= f.text_field :data_wystawienia, :class => "form-control input-sm izolty data", :id => "data_wystawienia",:style => "width:130px;" %>
               </div>
 
 
               <div class="form-group form-inline margin5">
                 <label for="data_wprowadzenia" class ="control-label col-md-6 col-sm-6 label-mar-5">Data wprowadzenia :</label>
-                <%= f.text_field :data_wprowadzenia, :class => "form-control input-sm izolty",:readonly => true, :id => "data_wprowadzenia",:style => "width:114px;" %>
+                <%= f.text_field :data_wprowadzenia, :class => "form-control input-sm izolty",:readonly => true, :id => "data_wprowadzenia",:style => "width:130px;" %>
               </div>
 
               <div class="form-group form-inline margin5">
                 <label for="data_wznowienia" class = "control-label col-md-6 col-sm-6 label-mar-5">Data wznowienia :</label>
-                <%= f.text_field :data_wznowienia, :class => "form-control input-sm izolty data", :id => "data_wznowienia",:style => "width:114px;" %>
+                <%= f.text_field :data_wznowienia, :class => "form-control input-sm izolty data", :id => "data_wznowienia",:style => "width:130px;" %>
               </div>
 
 
@@ -208,7 +208,7 @@
 
                 <div class="form-group form-inline margin5">
                   <label for="dzp" class ="control-label col-md-6 col-sm-6 label-mar-5">Data zwotu pol.:</label>
-                  <%= f.text_field :data_zwrotu_polisy, :class => "form-control input-sm data", :id => "dzp",:style => "width:114px;" %>
+                  <%= f.text_field :data_zwrotu_polisy, :class => "form-control input-sm data", :id => "dzp",:style => "width:130px;" %>
                 </div>
 
                 <div class="form-group form-inline margin5">
@@ -290,10 +290,10 @@
               </thead>
               <tbody>
                 <tr>
-                   <td><div class="form-inline"><%= text_field_tag 'd_wplaty', nil, :class => "form-control input-sm izolty data", :style => "width:114px;" %></div></td>
+                   <td><div class="form-inline"><%= text_field_tag 'd_wplaty', nil, :class => "form-control input-sm izolty data", :style => "width:130px;" %></div></td>
                    <td align="center"><%= check_box_tag 'zaplacil_rp',"0",false, class: 'ibialy' %></td>
                    <td><%= text_field_tag 'dw_wplaty',nil, :class => "form-control input-sm ibialy", :style => "width:150px;" %></td>
-                   <td><div class="form-inline"><%= text_field_tag 'd_wpl', nil, :class => "form-control input-sm data ibialy", :style => "width:114px;" %></div></td>
+                   <td><div class="form-inline"><%= text_field_tag 'd_wpl', nil, :class => "form-control input-sm data ibialy", :style => "width:130px;" %></div></td>
                    <td><%= collection_select(:polisa, :typ_platnosci_id,@typ_platnosci, :id, :nazwa_typu ,{:prompt=> 'wybierz'},{:class=>"form-control input-sm izolty", :id=>"kto"}) %>
                       <%= f.hidden_field :typ_platnosci_id %>
                    </td>

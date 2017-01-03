@@ -63,7 +63,7 @@ t2=$('#polisas-table').DataTable({
                                     "sSortDescending":": aktywuj, by posortować kolumnę malejąco"
                                     }
                                  },
-	                       "scrollY": 250,
+	                       "scrollY": 135,
                          "serverSide": true,
 			                   "order": [[1,'desc']],
                          "processing": true,

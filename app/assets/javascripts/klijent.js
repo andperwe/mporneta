@@ -26,7 +26,7 @@ t=$('#osobas-table').DataTable({
                                     "sSortDescending":": aktywuj, by posortować kolumnę malejąco"
                                     }
                                  },
-	                       "scrollY": 250,
+	                       "scrollY": 270,
                          "serverSide": true,
 			                   "order": [[1,'desc']],
                          "processing": true,
