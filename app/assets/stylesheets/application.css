@@ -116,7 +116,7 @@ span.ui-button-text, #nowy_user, #nowa_agencja, #pokaz_mag, #dodaj_mag{
 
 
 .panel-heading h4{
-  font-family: Verdana,Arial,sans-serif !important;
+  font-family: Verdana,​Arial,​sans-serif !important;
   font-size: 1.1em !important;
 }
 
@@ -205,20 +205,20 @@ span.ui-button-text, #nowy_user, #nowa_agencja, #pokaz_mag, #dodaj_mag{
  .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
     background-color: #8a3204 !important;
     color: #fff !important;
-    font-family: Verdana,sans-serif;
+    font-family: Verdana,​Arial,​sans-serif;
     font-size: 12px;
 }
 
 .navbar-inverse .navbar-nav > li > a {
     color: #e2e0de !important;
-    font-family: Verdana,sans-serif;
+    font-family: Verdana,​Arial,​sans-serif;
     font-size: 12px;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus  {
     color: #fff !important;
     background-color: #8b4513 !important;
-    font-family: Verdana,sans-serif;
+    font-family: Verdana,​Arial,​sans-serif;
     font-size: 12px;
 }
 
