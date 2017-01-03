@@ -2,6 +2,9 @@
 <html>
 <head>
   <title><%= "Agent #{current_user.nazwa}" %></title>
+  <noscript>
+     <meta http-equiv="refresh" content="0;url=http://www.enable-javascript.com/pl">
+ </noscript>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -55,8 +58,8 @@
       <%= link_to "Wykaz", excels_path, :id =>"m7" %>
     </li>
 
-    <li>
-      <a id="m8" href="#">Magazyn</a>
+    <li <% if [params[:controller], params[:action]] == ["magazyns","index"] %>class="cd-selected"<% end %>>
+      <%= link_to "Magazyn", magazyns_path, :id =>"m8" %>
     </li>
 
     <li>
@@ -82,6 +85,22 @@
 
 <div id="szukaj_pol" title="Szukaj polis">
 </div>
+
+<div id="osobafd" title="Klient" style="background-color:white;">
+  <div class="osoba_dane">
+  </div>
+</div>
+
+
+
+<div id="wspolwlafd" title="Współwłaściciel" style="background-color:white;">
+</div>
+
+
+<div id="platnosc" title="Szczegóły płatności" style="background-color:white;">
+</div>
+
+<%= render 'polisas/dialog_polisa' %>
 
 </body>
 </html>

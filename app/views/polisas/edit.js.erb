@@ -1,4 +1,28 @@
 $('.polisa_dane').html("<%= escape_javascript (render partial: 'form') %>");
 $('#usun_pol_link').hide();
 nowa_polisa = 0;
+
+zapisano_pol = 0;
+
+$.ajax({
+   url: "picture/rysuj_zdjecia",
+   type: 'GET',
+   contentType: 'application/json',
+   dataType: 'json',
+});
+$('#zdjecia_f').html("<%= escape_javascript (render partial: 'pictures/form') %>");
+$('#fileupload').fileupload();
+$.getJSON($('#fileupload').prop('action'), function (files) {
+var fu = $('#fileupload').data('blueimpFileupload'),
+template;
+//  fu._adjustMaxNumberOfFiles(-files.length);
+template = fu._renderDownload(files)
+.appendTo($('#fileupload .files'));
+// Force reflow:
+fu._reflow = fu._transition && template.length &&
+template[0].offsetWidth;
+template.addClass('in');
+$('#loading').remove();
+});
+
 $('#polisafd').dialog( "open" );

@@ -1,7 +1,6 @@
+if ($('.cd-header').hasClass('nav-is-visible'))
+$('#menu0').click();
 
-$('#menu_b').removeClass('glyphicon-remove');
-$('#menu_b').addClass('glyphicon-align-justify');
-$('#menu').hide();
 if (osoba_id == 0)alert_t('Wybierz osobę !');
 else {
   $('.polisa_dane').html("<%= escape_javascript (render partial: 'form') %>");
@@ -15,5 +14,28 @@ else {
   $("#data_wystawienia").val($('#polisa_dzis').val());
   $("#data_wprowadzenia").val($('#polisa_dzis').val());
   nowa_polisa=1;
+  zapisano_pol = 0;
+
+  $.ajax({
+     url: "picture/rysuj_zdjecia",
+     type: 'GET',
+     contentType: 'application/json',
+     dataType: 'json',
+  });
+  $('#zdjecia_f').html("<%= escape_javascript (render partial: 'pictures/form') %>");
+  $('#fileupload').fileupload();
+  $.getJSON($('#fileupload').prop('action'), function (files) {
+  var fu = $('#fileupload').data('blueimpFileupload'),
+  template;
+  //  fu._adjustMaxNumberOfFiles(-files.length);
+  template = fu._renderDownload(files)
+  .appendTo($('#fileupload .files'));
+  // Force reflow:
+  fu._reflow = fu._transition && template.length &&
+  template[0].offsetWidth;
+  template.addClass('in');
+  $('#loading').remove();
+  });
+
   $('#polisafd').dialog( "open" );
 }

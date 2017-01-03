@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210135147) do
+ActiveRecord::Schema.define(version: 20161230173615) do
 
   create_table "agencjes", force: :cascade do |t|
     t.string "nazwa",      limit: 100
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161210135147) do
     t.date     "data_zmiany"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "idpol",          limit: 4
   end
 
   create_table "marki_pojs", force: :cascade do |t|
@@ -100,10 +101,19 @@ ActiveRecord::Schema.define(version: 20161210135147) do
     t.string   "regon",         limit: 15
     t.integer  "typ_prawny",    limit: 4
     t.string   "n_firmy",       limit: 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "paliwos", force: :cascade do |t|
     t.string "rodzaj_paliwa", limit: 40
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.integer  "polisa_id",  limit: 4
+    t.string   "avatar",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "pojazds", force: :cascade do |t|
@@ -151,44 +161,47 @@ ActiveRecord::Schema.define(version: 20161210135147) do
   end
 
   create_table "polisas", force: :cascade do |t|
-    t.integer "towarzystwo_id",            limit: 4
-    t.integer "rodz_pol_id",               limit: 4
-    t.string  "numer",                     limit: 50
-    t.integer "typ_pol_id",                limit: 4
-    t.string  "ozn",                       limit: 50
-    t.string  "nr_wniosku",                limit: 50
-    t.date    "data_wnios"
-    t.string  "ubezpieczony",              limit: 100
-    t.date    "pocz_okresu_ubezp"
-    t.date    "koniec_okresu_ubezp"
-    t.date    "data_wystawienia"
-    t.date    "data_wprowadzenia"
-    t.date    "data_wznowienia"
-    t.boolean "polisa_zwrocona_po_sprzed",               default: false
-    t.date    "data_zwrotu_polisy"
-    t.boolean "polisa_nie_podlega_wzn",                  default: false
-    t.boolean "wystapila_szkoda",                        default: false
-    t.integer "zn",                        limit: 3
-    t.integer "zw",                        limit: 3
-    t.string  "kod_typu_klienta",          limit: 50
-    t.string  "kod_rodzaju_polisy",        limit: 50
-    t.text    "uwagi_dodatkowe",           limit: 65535
-    t.integer "osoba_id",                  limit: 4
-    t.string  "certyfikat",                limit: 50
-    t.string  "pl",                        limit: 50
-    t.string  "zk",                        limit: 50
-    t.string  "miejsce_ub",                limit: 50
-    t.boolean "przypominac",                             default: false
-    t.integer "user_id",                   limit: 4
-    t.boolean "zmag_n",                                  default: false
-    t.boolean "zmag_c",                                  default: false
-    t.boolean "zmag_zk",                                 default: false
-    t.boolean "zmag_ktk",                                default: false
-    t.integer "agencje_id",                limit: 4
-    t.string  "wprowadzil",                limit: 60
-    t.integer "rodzaj_polisy",             limit: 4
-    t.integer "typ_platnosci_id",          limit: 4
-    t.integer "oddzial_id",                limit: 4
+    t.integer  "towarzystwo_id",            limit: 4
+    t.integer  "rodz_pol_id",               limit: 4
+    t.string   "numer",                     limit: 50
+    t.integer  "typ_pol_id",                limit: 4
+    t.string   "ozn",                       limit: 50
+    t.string   "nr_wniosku",                limit: 50
+    t.date     "data_wnios"
+    t.string   "ubezpieczony",              limit: 100
+    t.date     "pocz_okresu_ubezp"
+    t.date     "koniec_okresu_ubezp"
+    t.date     "data_wystawienia"
+    t.date     "data_wprowadzenia"
+    t.date     "data_wznowienia"
+    t.boolean  "polisa_zwrocona_po_sprzed",               default: false
+    t.date     "data_zwrotu_polisy"
+    t.boolean  "polisa_nie_podlega_wzn",                  default: false
+    t.boolean  "wystapila_szkoda",                        default: false
+    t.integer  "zn",                        limit: 3
+    t.integer  "zw",                        limit: 3
+    t.string   "kod_typu_klienta",          limit: 50
+    t.string   "kod_rodzaju_polisy",        limit: 50
+    t.text     "uwagi_dodatkowe",           limit: 65535
+    t.integer  "osoba_id",                  limit: 4
+    t.string   "certyfikat",                limit: 50
+    t.string   "pl",                        limit: 50
+    t.string   "zk",                        limit: 50
+    t.string   "miejsce_ub",                limit: 50
+    t.boolean  "przypominac",                             default: false
+    t.integer  "user_id",                   limit: 4
+    t.boolean  "zmag_n",                                  default: false
+    t.boolean  "zmag_c",                                  default: false
+    t.boolean  "zmag_zk",                                 default: false
+    t.boolean  "zmag_ktk",                                default: false
+    t.integer  "agencje_id",                limit: 4
+    t.string   "wprowadzil",                limit: 60
+    t.integer  "rodzaj_polisy",             limit: 4
+    t.integer  "typ_platnosci_id",          limit: 4
+    t.integer  "oddzial_id",                limit: 4
+    t.boolean  "zmag_dw",                                 default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "raty_sums", force: :cascade do |t|
@@ -218,6 +231,7 @@ ActiveRecord::Schema.define(version: 20161210135147) do
     t.string  "kom",                 limit: 30
     t.boolean "przypominac",                                            default: false
     t.integer "typ_platnosci_id",    limit: 4
+    t.boolean "zmag_dw",                                                default: false
   end
 
   create_table "rodz_pols", force: :cascade do |t|
@@ -367,6 +381,43 @@ ActiveRecord::Schema.define(version: 20161210135147) do
     t.integer "oddzial_id",       limit: 4
     t.string  "numer",            limit: 50
     t.string  "ubezpieczony",     limit: 100
+  end
+
+  create_table "view_vmag2s", id: false, force: :cascade do |t|
+    t.integer "id_n",           limit: 4
+    t.string  "numer",          limit: 30
+    t.integer "towarzystwo_id", limit: 4
+    t.string  "nazwa",          limit: 30
+    t.integer "nazwa_dr_id",    limit: 4
+    t.string  "dokument",       limit: 30
+    t.integer "stan_id",        limit: 4
+    t.string  "stan",           limit: 30
+    t.integer "user_id",        limit: 4
+    t.string  "uzytkownik",     limit: 100
+    t.date    "data_wpl"
+    t.date    "data_zda"
+  end
+
+  create_table "view_vmag3s", id: false, force: :cascade do |t|
+    t.integer "id",             limit: 4,   default: 0, null: false
+    t.string  "numer",          limit: 30
+    t.integer "towarzystwo_id", limit: 4
+    t.string  "nazwa",          limit: 30
+    t.integer "nazwa_dr_id",    limit: 4
+    t.string  "dokument",       limit: 30
+    t.integer "stan_id",        limit: 4
+    t.string  "stan",           limit: 30
+    t.integer "user_id",        limit: 4
+    t.string  "user",           limit: 100
+    t.date    "data_wpl"
+    t.date    "data_zda"
+  end
+
+  create_table "view_vmags", id: false, force: :cascade do |t|
+    t.integer "id_n",           limit: 4
+    t.integer "towarzystwo_id", limit: 4
+    t.string  "numer",          limit: 30
+    t.integer "nazwa_dr_id",    limit: 4
   end
 
   create_table "wspolwlas", force: :cascade do |t|

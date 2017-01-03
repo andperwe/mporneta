@@ -1,0 +1,130 @@
+<div style="height: 480px;">
+  <fieldset>
+
+<%= form_for(Picture.new, :html => { :multipart => true, :id => "fileupload" }) do |f| %>
+  <div class="row fileupload-buttonbar" style="margin-top:15px;margin-left:3%;">
+  <div class="col-lg-7">
+
+    <span class="btn btn-success btn-sm fileinput-button">
+       <i class="glyphicon glyphicon-plus"></i>
+       <span>Dodaj pliki...</span>
+       <%= f.fields_for :files do |p| %>
+         <%= p.file_field :avatar, :multiple => true, :name => "files[avatar][]" %>
+       <% end %>
+    </span>
+  <button class="btn btn-primary btn-sm start" type="submit">
+     <i class="glyphicon glyphicon-upload"></i>
+     <span>Transferuj</span>
+  </button>
+  <button class="btn btn-warning btn-sm cancel" type="reset">
+    <i class="glyphicon glyphicon-ban-circle"></i>
+    <span>Anuluj transfer</span>
+  </button>
+  <button class="btn btn-danger btn-sm delete" type="button">
+    <i class="glyphicon glyphicon-trash"></i>
+    <span>Usuń</span>
+  </button>
+  <input class="toggle" type="checkbox">
+  <span class="fileupload-process"></span>
+</div>
+<div class="col-lg-5 fileupload-progress fade">
+   <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+   </div>
+<!--div class="progress-extended"> </div-->
+</div>
+</div>
+<div id="zdjecia_div" style="height: 450px;overflow-x:hidden; overflow-y: scroll; margin-left:3%; width: 94%;">
+  <table class="table" id="zdjecia" role="presentation" style="background: #5f5f5f none repeat scroll 0 0;">
+     <tbody class="files"></tbody>
+  </table>
+<% end %>
+</div>
+</fieldset>
+</div>
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+                     <div class="dark slides"></div>
+                         <h3 class="title"></h3>
+                         <a class="prev bialy_napis">‹</a>
+                         <a class="next bialy_napis">›</a>
+                         <a class="close bialy_napis">×</a>
+                         <a class="play-pause"></a>
+                         <ol class="indicator"></ol>
+</div>
+
+<script id="template-upload" type="text/x-tmpl">
+
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary btn-sm start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning btn-sm cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Anuluj</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+
+<script id="template-download" type="text/x-tmpl">
+
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnail_url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnail_url%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" style="color:orange !important;" download="{%=file.name%}" {%=file.thumbnail_url?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size" style="color:white !important;">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.delete_url) { %}
+                <button class="btn btn-danger btn-sm delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Usuń</span>
+                </button>
+                <input type="checkbox" name="delete" value="1" class="toggle">
+            {% } else { %}
+                <button class="btn btn-warning btn-sm cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>

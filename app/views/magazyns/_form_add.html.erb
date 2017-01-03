@@ -1,0 +1,56 @@
+<fieldset class="nopadding">
+  <legend class="nomargin"><h6>Przekazanie</h6></legend>
+    <div style="text-align:left;">
+      <div class="radio">
+       <label style="font-weight:bold">
+         <input type="radio" name="agenttu" value="1" style="margin-top: 0px; top: 0px;" checked/>
+         Towarzystwo dla agenta
+       </label>
+   </div>
+    <div class="radio">
+      <label style="font-weight:bold">
+        <input type="radio" name="agenttu" value="2" style="margin-top: 0px; top: 0px;"/>
+          Agent dla towarzystwa
+    </label>
+   </div>
+    </div>
+    <div style="text-align:right" class="checkbox">
+      <label style="font-weight:bold;">
+         <input type="checkbox" name="usun_mag" id="usun_mag" style="top: 0px; margin-top: 0px;"/>
+         Usuń
+      </label>
+    </div>
+</fieldset>
+
+ <fieldset class="nopadding">
+  <legend class="nomargin"><h6>TU, nazwa druku</h6></legend>
+
+  <%= select_tag "tu", options_from_collection_for_select(@towarzystwa, "id", "nazwa"), :prompt => "wybierz", :class => "form-control input-sm izolty", :style => "margin-top:10px;", :id => "TU_mag" %>
+    <!--select style="width: 183px" name="TU_mag" id="TU_mag" class="izolty z"-->
+
+
+    <%= select_tag "dokument", options_from_collection_for_select(@nazwa_dr, "id", "nazwa"), :prompt => "wybierz", :class => "form-control input-sm izolty", :style => "margin-top:10px;", :id => "typ_doc" %>
+     <!--select style="width: 183px;" name="typ_doc" id="typ_doc" class="izolty z"-->
+
+ </fieldset>
+
+  <fieldset class="nopadding">
+    <legend class="nomargin"><h6>Numery</h6></legend>
+    <div class="row form-inline" style="margin-top:10px;">
+        <span><label>Od :</label> <input size="17" name="nr_od" id="nr_od" class="form-control input-sm izolty"/></span>
+        <span><label>Do :</label> <input size="17" name="nr_do" id="nr_do" class="form-control input-sm izolty"/></span>
+    </div>
+  </fieldset>
+
+  <div class="row form-inline">
+      <fieldset class="nopadding" style="width:35%;float:left; col-md-3">
+        <legend class="nomargin"><h6>Data przekazania</h6></legend>
+         <input size="10" id="data_wplyw" class="form-control input-sm izolty data" style="margin-top:10px;" value="<%= Time.now.strftime('%Y-%m-%d') %>"/>
+      </fieldset>
+
+      <fieldset class="nopadding col-md-7">
+        <legend class="nomargin"><h6>Przekazujący</h6></legend>
+        <%= select_tag "uzytkownik", options_from_collection_for_select(@users, "id", "nazwa", current_user.id), :class => "form-control input-sm izolty", :style => "margin-top:10px;", :id => "user" %>
+          <!--select name="user" id="user" disabled class="izolty z"-->
+      </fieldset>
+ </div>

@@ -1,20 +1,128 @@
-$('.wplata_dane').html("<%= escape_javascript (render partial: 'form') %>");
-$.ajax({
-   url: "raty_sum/ilosc_rata",
-   type: 'POST',
-   data:{nazwy_pol_id:$('#raty_sum_nazwy_pol_id').val()},
-   success: function(date)
-   {
-    if (date == 1)   $('#kwota_r').attr('disabled', true);
-   }
+var zapisz_dw = 0;
+
+$('#platnosc').html("<%= escape_javascript (render partial: 'form') %>");
+
+var old_dw = '';
+if ($('#raty_sum_zmag_dw').val())
+{
+  old_dw = $('#dow_wpl').val();
+}
+
+var old_dw2 = '';
+/*if ($('#raty_sum_zmag_dw').val())
+{
+  old_dw2 = $('#dow_wpl').val();
+}
+*/
+$( "#platnosc" ).dialog({//formularz płatność
+  autoOpen: false,
+  height: 550,
+  width: 580,
+  modal: true,
+  open: function( event, ui ) {
+                               $("#zapisz_raty, #zapisz_rata").mouseover(function() {
+                                    $('button').removeClass("ui-state-hover");
+                               });
+                               $("#zapisz_raty, #zapisz_rata").focus(function () {
+                                  $(this).removeClass("ui-state-focus");
+                               });
+                               $('#zapisz_raty').removeClass();
+                               $('#zapisz_raty').addClass('btn btn-default btn-sm');
+                               $('#zapisz_rata').removeClass();
+                               $('#zapisz_rata').addClass('btn btn-primary btn-sm');
+                               zapisz_dw = 0;
+                             },
+  buttons: [
+            {
+             id:"zapisz_raty",
+             text: "Zapisz do pozostałych rat",
+             click: function() {
+               zapisz_dw = 1;
+              $.ajax({
+                 url: "raty_sum/zapisz_raty",
+                 type: 'POST',
+                 data:{nr_raty:$('#nr_raty').val(), przypominac:$('#przypominac_r').val(), data:$('#data_plat').val(), nr_dw:$('#dow_wpl').val(), data_w:$('#data_wpl').val(), zapl:$('#zaplacil_r').val(), rozliczona:$('#rozliczona_z_tu').val(), zmag_dw:$('#raty_sum_zmag_dw').val(), data_roz:$('#data_roz').val(), roz_owca:$('#rozliczona_z_owca').val()}
+              });
+              $('#kwota_r').val($('#kwota_r').val().replace(',', '.'));
+              $('#form_rata').submit();
+             }
+            },
+            {
+              id:"zapisz_rata",
+              text: "Zapisz",
+              click: function() {
+                zapisz_dw = 1;
+                $('#kwota_r').val($('#kwota_r').val().replace(',', '.'));
+                $('#form_rata').submit();
+             }
+           }],
+     beforeClose: function() {
+       if (zapisz_dw == 0)
+       {
+         if (old_dw != $('#dow_wpl').val())
+         {
+           $.ajax({
+                   url: "/magazyn/close_platnosc",
+                   type: 'POST',
+                   data: {old_dw:old_dw, zmag_dw:$('#raty_sum_zmag_dw').val(), towarzystwo_id:$('#select_t').val(), numer:old_dw2}
+           });
+         }
+       }
+
+     }
+ });
+
+
+ daty_pl();
+ $(".data").mask("9999-99-99");
+
+$('#dow_wpl').autocomplete({
+    source: function( request, response ) {
+    $.ajax( {
+             url: "magazyn/szukaj_nr_dok/",
+             type:'POST',
+             dataType: "json",
+             data: {
+                    term: request.term,
+                    towarzystwo_id:$('#select_t').val(),
+                    nazwa_dr_id:4
+                   },
+           success: function( data ) {
+                                     response( data );
+                         }
+         } );
+           },
+           minLength: 1,
+        change: function( event, ui ) {
+                                        if (ui.item)
+                                        {
+
+                                           $('#raty_sum_zmag_dw').val(true);
+                                            $.ajax({
+                                                    url: "/raty_sum/zmag_dw",
+                                                    type: 'POST',
+                                                    data:{numer:$('#dow_wpl').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:4, zmag:1, old_dw:old_dw2, nr_raty:$('#nr_raty').val()},
+                                                    success: function(){
+                                                      old_dw2 = $('#dow_wpl').val();
+                                                    }
+                                            });
+
+                                        }
+                                         else{
+                                           //była z magazynu
+                                           $('#raty_sum_zmag_dw').val(false);
+                                           $.ajax({
+                                                   url: "/raty_sum/zmag_dw",
+                                                   type: 'POST',
+                                                   data:{numer:$('#dow_wpl').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:4, zmag:0, old_dw:old_dw2, nr_raty:$('#nr_raty').val()},
+                                                  success: function(){
+                                                    old_dw2 = $('#dow_wpl').val();
+                                                  }
+                                           });
+
+                                         }
+                                       }
 });
-$(".data").mask("9999-99-99");
-if ($('#data_wpl').val() == ''){
-  $('#data_wpl').val('0000-00-00');
-}
-if ($('#data_roz').val() == ''){
-  $('#data_roz').val('0000-00-00');
-}
 
 
 $('#platnosc').dialog( "open" );

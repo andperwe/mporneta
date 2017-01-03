@@ -1,0 +1,150 @@
+var pom_ods='',ods='',odn,pom_dos='',dos='',don;
+
+$("#f_mag").dialog({
+  autoOpen: false,
+  height: 450,
+  width: 490,
+  modal: true,
+  /*close:function(){
+                   $('#TU_mag').val('0');
+                   $('#typ_doc').val('0');
+                   $('#nr_od').val('');
+                   $('#nr_do').val('');
+                   $('#usun_mag').prop( "checked", false );
+                   $('#TU_mag').removeClass('pusty');
+                   $('#typ_doc').removeClass('pusty');
+                   $('#nr_od').removeClass('pusty');
+                 },*/
+  buttons:[{
+            text:"OK",
+            id:"f_mag_OK",
+            click:function(){$("#f_mag_OK").attr('disabled', true);
+                             puste_pola_mag=false;
+                             if($('#TU_mag').val() == ''){$('#TU_mag').addClass('blad');puste_pola_mag = true;}
+                             else {$('#TU_mag').removeClass('blad');}
+                             if($('#typ_doc').val() == ''){$('#typ_doc').addClass('blad');puste_pola_mag = true;}
+                             else {$('#typ_doc').removeClass('blad');}
+                             if($('#nr_od').val().length === 0){puste_pola_mag = true;$('#nr_od').addClass('blad');}
+                             else {$('#nr_od').removeClass('blad');}
+                             if ($('#usun_mag').is(':checked')){}
+                             else
+                             {
+                              if($('#stan').val() == '0'){$('#stan').addClass('blad');puste_pola_mag = true;}
+                              else {$('#stan').removeClass('blad');}
+                             }
+                              if(puste_pola_mag == true)
+                              {
+                               alert_t('Wszystkie pola na żółto powinny być wypełnione. Proszę uzupełnić dane i spróbować jeszcze raz!');
+                               $("#f_mag_OK").attr('disabled', false);
+                              }
+                              else
+                              {
+                               $("#f_mag_OK").attr('disabled', true);
+                               pom_ods=$('#nr_od').val().toUpperCase();
+                               ods = pom_ods.replace (/[^a-zA-Z-\/]+$/, '' );//seria
+                               odn=parseInt(pom_ods.replace (ods, '' ));
+                               pom_dos=$('#nr_do').val().toUpperCase();
+                               dos = pom_dos.replace (/[^a-zA-Z-\/]+$/, '' );//seria
+                               don=parseInt(pom_dos.replace (dos, '' ));
+                               ilosc=don-odn;
+                               ilosc_k=ilosc+1;
+                               operacja="";
+                               if ($('#usun_mag').is(':checked')) {operacja="usunąć";}
+                               else if($("input:radio[name ='agenttu']:checked").val()==1){operacja="dodać";}
+                               else {operacja="zwrócić";}
+                               text_dok="";
+                               if(ilosc_k===1){text_dok="dokument?";};
+                               if(ilosc_k > 1 && ilosc_k < 5 ){text_dok="dokumenty?";};
+                               if(ilosc_k >= 5 && ilosc_k < 22){text_dok="dokumentów?";};
+                               if (ilosc_k > 21)
+                               {
+                                if ((ilosc_k % 10) >= 2 && (ilosc_k % 10<=4)){text_dok="dokumenty?";}
+                                else{text_dok="dokumentów?";}
+                               }
+                                //$("#p_f_mag").text("&nbspCzy chcesz "+operacja+" "+ilosc_k+" "+text_dok);
+                                $('#tekst_alert').html("&nbspCzy chcesz "+operacja+" "+ilosc_k+" "+text_dok);
+                                $("#alert_mag_dodaj").dialog("open");
+
+                                $("#f_mag_OK").attr('disabled', false);
+                              }
+                           }
+         }]
+});
+
+$("#f_mag_OK").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#f_mag_OK").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#f_mag_OK').removeClass();
+$('#f_mag_OK').addClass('btn btn-success btn-sm');
+
+
+
+$( "#alert_mag_dodaj" ).dialog({
+  autoOpen: false,
+  height: 180,
+  width: 600,
+  modal: true,
+  buttons: [{
+             id:"alert_mag_dodaj_ok",
+             text:"OK",
+             click: function(){ $(this).dialog('close');
+                                var usun_druk = 0;
+                                if ($('#usun_mag').is(':checked')) {
+                                  usun_druk = 1;
+                                }
+
+                                  $.ajax({
+                                     url: "/magazyn/dodaj",
+                                     type: 'POST',
+                                     data:{ilosc:don-odn,towarzystwo_id:$('#TU_mag').val(),ods:ods,odn:odn,nazwa_dr_id:$('#typ_doc').val(),data_wpl:$('#data_wplyw').val(),
+                                     kier:$("input:radio[name ='agenttu']:checked").val(), usun:usun_druk
+                                   },
+                                   success: function(data) {
+                                                              switch(data)
+                                                              {
+                                                                case 0:$('#f_mag').dialog( "close" ); t10.ajax.reload().draw(); break;
+                                                                case 1: alert_t("Jeden z podanych dokumentów nie istnieje. Proszę zmienić zakres !");break;
+                                                                case 2: alert_t("Jeden z podanych dokumentów ma status inny niż na magazynie. Proszę zmienić zakres !");break;
+                                                                case 3: alert_t("Jeden z podanych dokumentów jest już na magazynie. Proszę zmienić zakres !");break;
+                                                                case 4: alert_t("Jeden z podanych dokumentów nie istnieje. Proszę zmienić zakres !");break;
+                                                                case 5: alert_t("Jeden z podanych dokumentów ma status inny niż na magazynie. Proszę zmienić zakres !");break;
+                                                              }
+                                   }
+                                  });
+
+                    }
+            },
+            {
+            id:"anuluj_mag_dodaj",
+             text:"Anuluj",
+             click: function(){
+                        $(this).dialog('close');
+                    }
+           }]
+ });
+
+$("#alert_mag_dodaj_ok").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#alert_mag_dodaj_ok").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#alert_mag_dodaj_ok').removeClass();
+$('#alert_mag_dodaj_ok').addClass('btn btn-success btn-sm');
+
+$("#anuluj_mag_dodaj").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#anuluj_mag_dodaj").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#anuluj_mag_dodaj').removeClass();
+$('#anuluj_mag_dodaj').addClass('btn btn-danger btn-sm');
+
+
+$('#alert_mag_dodaj').html("<%= escape_javascript (render partial: 'alert_mag_dodaj') %>");
+$('#f_mag').html("<%= escape_javascript (render partial: 'form_add') %>");
+$('#f_mag').dialog( "open" );

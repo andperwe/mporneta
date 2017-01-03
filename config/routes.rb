@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   end
     root :to => redirect('/users/sign_in')
 
+get 'picture/rysuj_zdjecia' => "pictures#rysuj_zdjecia"
+get 'magazyns_ajax/datatable_ajax', to: 'magazyns#datatable_ajax'
+get 'magazyns_ajax/datatable_ajax2', to: 'magazyns#datatable_ajax2'
+resources :pictures, :only => [:index, :create, :destroy]
+
   resources :magazyns
   resources :pojazds
   resources :towarzystwos
@@ -28,6 +33,14 @@ Rails.application.routes.draw do
   get "excel/generuj" => "excels#generuj"
   post "raty_sum/zapisz_raty" => "raty_sums#zapisz_raty"
   post "raty_sum/ilosc_rata" => "raty_sums#ilosc_rata"
+
+  post "magazyn/dodaj" => "magazyns#dodaj"
+  post "magazyn/zmien" => "magazyns#zmien"
+  post "polisa/zmiana_tu" => "polisas#zmiana_tu"
+  post "raty_sum/zmag_dw" => "raty_sums#zmag_dw"
+  post "polisa/close" => "polisas#close"
+  post "polisa/czysc_dw" => "polisas#czysc_dw"
+  post "magazyn/close_platnosc" => "magazyns#close_platnosc"
   #, only: [:index, :create, :new, :destroy, :update, :edit]
 
   resources :users, only: [:index, :edit, :destroy, :new, :create, :update]
@@ -56,6 +69,7 @@ Rails.application.routes.draw do
   post "model_poj/szukaj_model" => "model_pojs#szukaj_model"
   post "rodzaj_poj/szukaj_rodzaj" => "rodzaj_pojs#szukaj_rodzaj"
 
+  post "magazyn/szukaj_nr_dok" => "magazyns#szukaj_nr_dok"
 
   resources :raty_sums
   resources :wspolwlas

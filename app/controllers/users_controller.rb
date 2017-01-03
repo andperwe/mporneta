@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:edit, :update, :destroy]
-  layout 'administracja'
+  layout 'administracja', only: [:index]
   def index
   if current_user.funkcje_id == 1
      respond_to do |format|

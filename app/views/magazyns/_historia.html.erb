@@ -1,0 +1,20 @@
+<fieldset style="height: 280px; width:98%;margin-left:1%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+
+  <%= form_for @magazyn, :remote => true, :html => { :id => 'form_magazyn_h' }  do |f| %>
+<%= f.text_field :numer, :id => "numh", :hidden => true %><%= f.text_field :towarzystwo_id, :id => "tuh", :hidden => true %><%= f.text_field :nazwa_dr_id, :id =>"dokumenth", :hidden => true  %>
+<% end %>
+ <table id="h_magazyn" class="display">
+  <thead style="background-color:ThreeDFace;">
+      <tr>
+          <th>id</th>
+          <th style="text-align: center">Numer</th>
+          <th style="text-align: center">TU</th>
+          <th style="text-align: center">Typ dokumentu</th>
+          <th style="text-align: center">Stan</th>
+          <th style="text-align: center">Użytkownik</th>
+          <th style="text-align: center">Data wplyn.</th>
+          <th style="text-align: center">Data zdarz.</th>
+      </tr>
+  </thead>
+ </table>
+</fieldset>

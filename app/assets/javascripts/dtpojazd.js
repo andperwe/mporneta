@@ -26,7 +26,7 @@ t3=$('#pojazds-table').DataTable({
               "sSortDescending":": aktywuj, by posortować kolumnę malejąco"
               }
            },
-   "scrollY": 250,
+   "scrollY": 210,
   "serverSide": true,
   "processing": true,
   "createdRow": function (row, data, dataIndex){

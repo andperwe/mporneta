@@ -60,5 +60,5 @@
    </button>
  </div>
           <%= link_to '', new_oddzial_path(), :remote => true, :id => "dodaj_oddz_link" %>
-<%= link_to "delete", @agencje, method: :delete,:remote => true, :id => "usun_agencja_link" %>
+<%= link_to "delete", @agencje, method: :delete,:remote => true, :id => "usun_agencja_link", :hidden => true %>
 <% end %>

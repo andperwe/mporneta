@@ -1,0 +1,102 @@
+  <%= form_for @magazyn, :remote => true, :html => { :id => 'form_magazyn' }  do |f| %>
+  <fieldset class="nopadding">
+  <legend class="nomargin"><h6>TU, nazwa druku</h6></legend>
+  <!--select class="izolty z" style="width:183px;" name="TU_mag_e" id="TU_mag_e"-->
+     <%= collection_select(:magazyn, :towarzystwo_id, Towarzystwo.all, :id, :nazwa,{},{:class=>"form-control",:style=>"margin-top:10px;", :id=>"TU_mag_e"}) %>
+      <%= collection_select(:magazyn, :nazwa_dr_id, NazwaDr.all, :id, :nazwa,{},{:class=>"form-control",:style=>"margin-top:10px;", :id=>"typ_doc_e"}) %>
+  <!--?php
+      if ($polaczenie->connect_errno!=0)
+       {
+        echo "Error: ".$polaczenie->connect_errno;
+       }
+       else
+       {
+        $polaczenie->set_charset("utf8");
+        $rezultat = @$polaczenie->query("SELECT * FROM ttowarzystwa ORDER BY nazwa ASC");
+        echo '<option value=0>Wybierz'."</option>\n";
+        while($row = $rezultat->fetch_assoc()) {
+                                                echo '<option value="' . $row['id'].'">'.$row['nazwa'] ."</option>\n";
+                                               }
+        $rezultat->free_result();
+       }
+  ?-->
+  <!--/select><br><br-->
+
+  <!--select class="izolty z" style="width:183px;" name="typ_doc_e" id="typ_doc_e">
+  <!--?php
+     if ($polaczenie->connect_errno!=0)
+       {
+        echo "Error: ".$polaczenie->connect_errno;
+       }
+       else
+       {
+        $polaczenie->set_charset("utf8");
+        $rezultat = @$polaczenie->query("SELECT * FROM typ_dokumentu");
+        echo '<option value=0>Wybierz'."</option>\n";
+        while($row = $rezultat->fetch_assoc()) {
+                                                echo '<option value="' . $row['id'].'">'.$row['dokument'] ."</option>\n";
+                                               }
+        $rezultat->free_result();
+       }
+  ?-->
+  <!--/select-->
+
+  </fieldset>
+  <fieldset class="nopadding">
+   <legend class="nomargin"><h6>Numer</h6></legend>
+      <%= f.text_field :numer, :class => "form-control input-sm izolty", :id => "numer_e",:style=>"margin-top:10px;", :disabled => true %>
+   <!--input type="text" id="numer_e" name="numer_e" class="izolty" style="width:183px;" disabled/-->
+  </fieldset>
+
+  <fieldset class="nopadding">
+  <legend class="nomargin"><h6>Data zmiany</h6></legend>
+  <!--?php $czas=date("Y-m-d");?-->
+     <%= f.text_field :data_zda, :class => "form-control input-sm izolty",:style=>"margin-top:10px;", :id => "data_wplyw_e", :disabled => true, :value => Time.now.strftime('%Y-%m-%d') %>
+  <!--input name="data_wplyw_e" id="data_wplyw_e" class="izolty" style="width:163px;" value="<?php echo "$czas"; ?>" disabled/-->
+  </fieldset>
+
+  <fieldset class="nopadding">
+  <legend class="nomargin"><h6>Przekazujący</h6></legend>
+     <%= collection_select(:magazyn, :user_id, User.all, :id, :nazwa,{},{:class=>"form-control izolty",:style=>"margin-top:10px;", :id=>"user_e", :disabled => true}) %>
+  <!--select class="izolty z" name="user_e" id="user_e" disabled>
+    <!--?php
+      if ($polaczenie->connect_errno!=0)
+       {
+        echo "Error: ".$polaczenie->connect_errno;
+       }
+       else
+       {
+        $polaczenie->set_charset("utf8");
+        $rezultat = @$polaczenie->query("SELECT id,nazwa FROM uzytkownicy");
+        echo '<option value=0>Wybierz'."</option>\n";
+        while($row = $rezultat->fetch_assoc()) {
+                                                echo '<option value="' . $row['id'].'">'.$row['nazwa'] ."</option>\n";
+                                               }
+        $rezultat->free_result();
+       }
+   ?-->
+  <!--/select-->
+  </fieldset>
+  <fieldset class="nopadding">
+  <legend class="nomargin"><h6>Stan</h6></legend>
+   <%= collection_select(:magazyn, :stan_id, Stan.all, :id, :stan,{},{:class=>"form-control izolty",:style=>"margin-top:10px;", :id=>"stan_e"}) %>
+  <!--select name="stan_e" id="stan_e" class="izolty z"-->
+   <!--?php
+     if ($polaczenie->connect_errno!=0)
+       {
+        echo "Error: ".$polaczenie->connect_errno;
+       }
+       else
+       {
+        $polaczenie->set_charset("utf8");
+        $rezultat = @$polaczenie->query("SELECT * FROM stany");
+        echo '<option value=0>Wybierz'."</option>\n";
+        while($row = $rezultat->fetch_assoc()) {
+                                                echo '<option value="' . $row['id'].'">'.$row['stan'] ."</option>\n";
+                                               }
+        $rezultat->free_result();
+       }
+    ?-->
+  <!--/select-->
+  </fieldset>
+  <% end %>

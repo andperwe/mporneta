@@ -36,7 +36,7 @@ function daty_pl()
   showOn: "button",
   buttonImage:"/assets/calendar.gif",
   buttonImageOnly: true,
-  buttonText: "Wybierz date",
+  buttonText: "Wybierz date"
 
   });
 }
@@ -188,38 +188,12 @@ function puste_pola_osoba()
 
 function alert_t(tekst)
 {
-  $( "#alert_t" ).dialog({
-                autoOpen: false,
-                maxWidth:450,
-                maxHeight: 220,
-                width: 450,
-                height: 220,
-                modal: true,
-                buttons:[
-                        {
-                          id:"alert_kom",
-                          text: "Ok",
-                          click: function() {
-                            $('#alert_t').dialog("close");
-                          }
-                        }
-                      ]
-  });
-   $('#alert_t').html(
-     "<div class='alert alert-danger' role='alert'>"+
-     "<p class='text-center'><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>"+
-     "<span class='sr-only'>Error:</span>"+
-     "<strong>&nbsp"+tekst+"</strong></p>"+
-     "</div>"
-   );
-
-    $("#alert_kom").mouseover(function() {
-          $('button').removeClass("ui-state-hover");
-    });
-    $("#alert_kom").focus(function () {
-          $(this).removeClass("ui-state-focus");
-    });
-    $('#alert_kom').removeClass();
-    $('#alert_kom').addClass('btn btn-danger btn-sm');
+  $('#alert_t').html(
+    "<div class='alert alert-danger' role='alert'>"+
+    "<p class='text-center'><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>"+
+    "<span class='sr-only'>Error:</span>"+
+    "<strong>&nbsp"+tekst+"</strong></p>"+
+    "</div>"
+  );
     $('#alert_t').dialog( "open" );
 }

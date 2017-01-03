@@ -11,6 +11,16 @@ $('#rok').val('2016');
     <h4 class="dialog-jq">Wykaz</h4>
   </div>
   <div class="panel-body">
+
+    <div class="form-group text-center">
+      <label for="towarzystwo_id">TU</label>
+     <div class="form-inline">
+         <%= select_tag "towarzystwo_id", options_from_collection_for_select(@towarzystwas, "id", "nazwa"), {:prompt => "wybierz", :class => "form-control input-sm izolty", :id => "towarzystwo_id", :style=>"width:188px; font-weight: bold;"} %>
+
+    </div>
+   </div>
+
+
          <div class="form-group text-center">
            <label for="nr_wyk">Numer wykazu</label>
           <div class="form-inline">

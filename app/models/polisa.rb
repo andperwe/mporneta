@@ -7,10 +7,9 @@ class Polisa < ActiveRecord::Base
   has_many :wspolwlas, dependent: :destroy
   has_many :raty_sums, dependent: :destroy
   has_many :ryz_pols, dependent: :destroy
+has_many :pictures, dependent: :destroy
   belongs_to :oddzial
   belongs_to :agencje
-  #has_one :pol_auto
-  #has_one :pojazd
 
   def polisa_n_r
      nazwa+" "+nazwa_rodz

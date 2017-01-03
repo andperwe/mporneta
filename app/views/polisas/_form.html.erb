@@ -11,7 +11,8 @@
              <li class="active"><a data-toggle="tab" href="#tabs-1">Dane ogólne</a></li>
              <li><a data-toggle="tab" href="#tabs-2">Płatności</a></li>
              <li><a data-toggle="tab" href="#tabs-3">Dane pojazdu</a></li>
-             <li><a data-toggle="tab" href="#tabs-4">Uwagi</a></li>
+             <li><a data-toggle="tab" href="#tabs-4">Zdjęcia</a></li>
+             <li><a data-toggle="tab" href="#tabs-5">Uwagi</a></li>
              <!--li><a href="#tabs-5">Zdjęcia</a></li-->
   	      </ul>
 
@@ -19,6 +20,7 @@
 
      <div class="tab-content">
       <div id="tabs-1" class="tab-pane fade in active">
+         <div style="display:none"><label>mag n</label><%= f.text_field :zmag_n%><label>mag c</label> <%= f.text_field :zmag_c %><label>mag zk</label><%= f.text_field :zmag_zk %><label>mag ktk</label><%= f.text_field :zmag_ktk %><label>mag dw</label><%= f.text_field :zmag_dw %></div>
        <div class="row">
          <div class="col-md-9 col-sm-9">
         <fieldset class="nopadding ">
@@ -357,8 +359,12 @@
        </div>
 
     </div>
+    <div id="tabs-4" class="tab-pane fade">
+     <div id="zdjecia_f"></div>
+    </div>
 
-        <div id="tabs-4" class="tab-pane fade">
+
+        <div id="tabs-5" class="tab-pane fade">
           <fieldset class="nopadding">
              <legend class="nomargin"><h6>Uwagi</h6></legend>
              <div class="text-center top-buffer">

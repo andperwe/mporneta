@@ -1,14 +1,33 @@
 $(document).on('turbolinks:load', function() {
 
-  $('body').on("click",".nonav",function(){
 
-     if ($('#menu_b').hasClass('glyphicon-remove'))
-     {
-       $('#menu_b').removeClass('glyphicon-remove');
-       $('#menu_b').addClass('glyphicon-align-justify');
-       $('#menu').hide();
-     }
+  $( "#alert_t" ).dialog({
+                autoOpen: false,
+                maxWidth:450,
+                maxHeight: 220,
+                width: 450,
+                height: 220,
+                modal: true,
+                buttons:[
+                        {
+                          id:"alert_kom",
+                          text: "Ok",
+                          click: function() {
+                            $('#alert_t').dialog("close");
+                          }
+                        }
+                      ]
   });
+
+
+    $("#alert_kom").mouseover(function() {
+          $('button').removeClass("ui-state-hover");
+    });
+    $("#alert_kom").focus(function () {
+          $(this).removeClass("ui-state-focus");
+    });
+    $('#alert_kom').removeClass();
+    $('#alert_kom').addClass('btn btn-danger btn-sm');
 
 t2=$('#polisas-table').DataTable({
                          "dom":'<tpr>',
@@ -52,7 +71,7 @@ t2=$('#polisas-table').DataTable({
                                         {
                                          "targets": [0],
                                          "orderable":false,
-                                         "width":"5%",
+                                         "width":"5%"
 
                                        },
                                         {
@@ -349,43 +368,6 @@ $('body').on("keyup","input.flat",function(e){
 });
 
 
-
-  /*$('body').on("change",'[name="cwaluta"]',function () {
-     $(this).parent().children("input").val($(this).val());
-  });
-
-
-  $('body').on("focusout",'[name="cwaluta"]',function () {
-    $(this).hide();
-    $(this).parent().children("input").show();
-  });
-
-
-  $('body').on("change",'[name="przypis"]',function(){
-	  var sum = 0;
-
-    $('[name="przypis"]').each(function() {
-        var price = parseFloat(($(this).val()).replace(',','.'));
-		if (! isNaN(price)){sum=sum+price;}
-    });
-	 $( "#polisafd" ).dialog( "option", "title", "Polisa "+$('#Ubezpieczony').val()+"  Suma = "+zamiana(sum.toString())+" zł" );
-   $('#t2_'+$(this).parent().parent().attr('id')).children('td').children('[name="suma_rat"]').val(zamiana(this.value));
-});
-
-$('body').on("change",'[name="suma_rat"]',function(){
- $('#'+$(this).parent().parent().attr('id').substr(3)).children('td').children('[name="przypis"]').val(zamiana(this.value));
- var sum = 0;
-
- $('[name="przypis"]').each(function() {
-     var price = parseFloat(($(this).val()).replace(',','.'));
- if (! isNaN(price)){sum=sum+price;}
- });
- $( "#polisafd" ).dialog( "option", "title", "Polisa "+$('#Ubezpieczony').val()+"  Suma = "+zamiana(sum.toString())+" zł" );
-});
-
-
-*/
-
 $('body').on("change",'[name="suma_rat"]',function(){
  trr_t=$(this).parent().parent().attr('id');
  trr="#"+trr_t.substring(3);
@@ -666,11 +648,16 @@ $('body').on("keyup","input.flat2",function(e){
                            if (!puste_pola_polisa()){
                              nowa_polisa = 0;
                              if ($('#wplata tbody').children().length == 0){
+                               $('.nav li').removeClass("active");
+
+                               $('.nav-tabs a[href="#tabs-2"]').tab('show');
+
                                alert_t('Brak wpłat !');
                              }
                            else
                           {
                                var ryzyka=[];
+                               zapisano_pol = 1;
                                //ZAPISZ RYZYKA
                             $('.freezetable-body > #TRyzyka tr').each(function(){
                                if($(this).find("td").eq(1).children().val()==1){
@@ -703,14 +690,244 @@ $('body').on("keyup","input.flat2",function(e){
                      ],
          open: function() {
 
+    $('#numer').autocomplete({
+       source: function( request, response ) {
+       $.ajax( {
+                url: "magazyn/szukaj_nr_dok/",
+                type:'POST',
+                dataType: "json",
+                data: {
+                       term: request.term,
+                       towarzystwo_id:$('#select_t').val(),
+                       nazwa_dr_id:1
+                      },
+              success: function( data ) {
+                                        response( data );
+                            }
+            } );
+              },
+              minLength: 1,
+           change: function( event, ui ) {
+                                           if (ui.item)
+                                           {
+                                              $('#polisa_zmag_n').val(true);
+                                               $.ajax({
+                                                       url: "/polisa/zmiana_tu",
+                                                       type: 'POST',
+                                                       data:{numer:$('#numer').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:1, zmag:1}
+                                               });
+                                           }
+                                            else{
+                                              //była z magazynu
+                                              $('#polisa_zmag_n').val(false);
+                                              $.ajax({
+                                                      url: "/polisa/zmiana_tu",
+                                                      type: 'POST',
+                                                      data:{numer:$('#numer').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:1, zmag:0}
+                                              });
+
+                                            }
+                                          }
+
+           });
+
+           $('#certyfikat').autocomplete({
+              source: function( request, response ) {
+              $.ajax( {
+                       url: "magazyn/szukaj_nr_dok/",
+                       type:'POST',
+                       dataType: "json",
+                       data: {
+                              term: request.term,
+                              towarzystwo_id:$('#select_t').val(),
+                              nazwa_dr_id:3
+                             },
+                     success: function( data ) {
+                                               response( data );
+                                   }
+                   } );
+                     },
+                     minLength: 1,
+                  change: function( event, ui ) {
+                                                  if (ui.item)
+                                                  {
+                                                     $('#polisa_zmag_c').val(true);
+                                                      $.ajax({
+                                                              url: "/polisa/zmiana_tu",
+                                                              type: 'POST',
+                                                              data:{numer:$('#certyfikat').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:3, zmag:1}
+                                                      });
+                                                  }
+                                                   else{
+                                                     $('#polisa_zmag_c').val(false);
+                                                     $.ajax({
+                                                             url: "/polisa/zmiana_tu",
+                                                             type: 'POST',
+                                                             data:{numer:$('#certyfikat').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:3, zmag:0}
+                                                     });
+
+                                                   }
+                                                 }
+
+                  });
+
+                  $('#pl').autocomplete({
+                     source: function( request, response ) {
+                     $.ajax( {
+                              url: "magazyn/szukaj_nr_dok/",
+                              type:'POST',
+                              dataType: "json",
+                              data: {
+                                     term: request.term,
+                                     towarzystwo_id:$('#select_t').val(),
+                                     nazwa_dr_id:2
+                                    },
+                            success: function( data ) {
+                                                      response( data );
+                                          }
+                          } );
+                            },
+                            minLength: 1,
+                         change: function( event, ui ) {
+                                                         if (ui.item)
+                                                         {
+                                                            $('#polisa_zmag_zk').val(true);
+                                                             $.ajax({
+                                                                     url: "/polisa/zmiana_tu",
+                                                                     type: 'POST',
+                                                                     data:{numer:$('#pl').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:2, zmag:1}
+                                                             });
+                                                         }
+                                                          else{
+                                                            $('#polisa_zmag_zk').val(false);
+                                                            $.ajax({
+                                                                    url: "/polisa/zmiana_tu",
+                                                                    type: 'POST',
+                                                                    data:{numer:$('#pl').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:2, zmag:0}
+                                                            });
+
+                                                          }
+                                                        }
+
+                         });
+
+                         $('#ktk').autocomplete({
+                            source: function( request, response ) {
+                            $.ajax( {
+                                     url: "magazyn/szukaj_nr_dok/",
+                                     type:'POST',
+                                     dataType: "json",
+                                     data: {
+                                            term: request.term,
+                                            towarzystwo_id:$('#select_t').val(),
+                                            nazwa_dr_id:5
+                                           },
+                                   success: function( data ) {
+                                                             response( data );
+                                                 }
+                                 } );
+                                   },
+                                   minLength: 1,
+                                change: function( event, ui ) {
+                                                                if (ui.item)
+                                                                {
+                                                                   $('#polisa_zmag_ktk').val(true);
+                                                                    $.ajax({
+                                                                            url: "/polisa/zmiana_tu",
+                                                                            type: 'POST',
+                                                                            data:{numer:$('#ktk').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:5, zmag:1}
+                                                                    });
+                                                                }
+                                                                 else{
+                                                                   $('#polisa_zmag_ktk').val(false);
+                                                                   $.ajax({
+                                                                           url: "/polisa/zmiana_tu",
+                                                                           type: 'POST',
+                                                                           data:{numer:$('#ktk').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:5, zmag:0}
+                                                                   });
+
+                                                                 }
+                                                               }
+
+                                });
+
+                                $('#dw_wplaty').autocomplete({
+                                   source: function( request, response ) {
+                                   $.ajax( {
+                                            url: "magazyn/szukaj_nr_dok/",
+                                            type:'POST',
+                                            dataType: "json",
+                                            data: {
+                                                   term: request.term,
+                                                   towarzystwo_id:$('#select_t').val(),
+                                                   nazwa_dr_id:4
+                                                  },
+                                          success: function( data ) {
+                                                                    response( data );
+                                                        }
+                                        } );
+                                          },
+                                          minLength: 1,
+                                       change: function( event, ui ) {
+                                                                       if (ui.item)
+                                                                       {
+                                                                         zmag_dw = 1;
+                                                                          /*$('#polisa_zmag_zmag_dw').val(true);
+                                                                           $.ajax({
+                                                                                   url: "/polisa/zmiana_tu",
+                                                                                   type: 'POST',
+                                                                                   data:{numer:$('#dw_wplaty').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:4, zmag:1}
+                                                                           });*/
+                                                                       }
+                                                                        else{
+                                                                          zmag_dw = 0;
+                                                                          /*$('#polisa_zmag_zmag_dw').val(false);
+                                                                          $.ajax({
+                                                                                  url: "/polisa/zmiana_tu",
+                                                                                  type: 'POST',
+                                                                                  data:{numer:$('#dw_wplaty').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:4, zmag:0}
+                                                                          });*/
+
+                                                                        }
+                                                                      }
+
+                                       });
 
 
+
+//jeżeli nie wybrano TU
+
+$('#numer').focus(function(e) {
+  e.preventDefault();
+  if($('#select_t').val() ==""){ $('#select_t').focus();alert_t("Wybierz wcześniej towarzystwo !")}
+});
+
+$('#certyfikat').focus(function(e) {
+  e.preventDefault();
+  if($('#select_t').val() ==""){ $('#select_t').focus();alert_t("Wybierz wcześniej towarzystwo !")}
+});
+
+$('#pl').focus(function(e) {
+  e.preventDefault();
+  if($('#select_t').val() ==""){ $('#select_t').focus();alert_t("Wybierz wcześniej towarzystwo !")}
+});
+
+$('#ktk').focus(function(e) {
+  e.preventDefault();
+  if($('#select_t').val() ==""){ $('#select_t').focus(); alert_t("Wybierz wcześniej towarzystwo !")}
+});
+
+$('#dw_wplaty').focus(function(e) {
+  e.preventDefault();
+  if($('#select_t').val() ==""){ $('#d_wpl').focus(); alert_t("Wybierz wcześniej towarzystwo !")}
+});
 
 
 //zapłacił wpłatę
 $("#zaplacil_rp").on("change",function(){
   this.value = this.checked ? 1 : 0;
 }).change();
+
 
 //usuń i zapisz buttons
 $("#usun_p, #zapisz_p").mouseover(function() {
@@ -818,11 +1035,6 @@ $("#usun_p, #zapisz_p").focus(function () {
          });
 
          podziel();
-              //var dataj=JSON.stringify(raty);
-              //console.log(dataj);
-             //console.log(JSON.stringify(raty));
-             //var ratys=JSON.stringify(raty);
-             //console.log(ratys);
 
 
        $( "#usun_p_w" ).button({
@@ -834,40 +1046,25 @@ $("#usun_p, #zapisz_p").focus(function () {
 
        $("#usun_p_w").on("click", function(e) {
          e.preventDefault();
-         wlacz_wplaty();
+         $(this).button( "option", "disabled", true );
          $.ajax({url: 'raty_sum/usun/',
-           data:{polisa_id:$('#idpolisy').text()},
            type:'POST',
            success: function(data){
              $(".freezetable-body > #wplata tbody").empty();
              wlacz_wplaty();
            }
          });
+
+
+
+            $('#dw_wplaty').val("");
+            $.ajax({
+                    url: "/polisa/czysc_dw",
+                    type: 'POST'
+            });
+
+
        });
-
-//RYSUJ NAZWY
-/*
-  $('#select_rp').val($('#temp_rodz_pol').val());
-  var s1 = $("#select_rp option:selected").text().toLowerCase();
-  if (s1.indexOf("komunikacja") >= 0 || s1.indexOf("pakietowe") >= 0)
-  {
-    $.ajax({
-             url:  "/pojazd/rysuj_pojazd",
-             type:'POST',
-             data: {
-                 polisa_id:$('#idpolisy').text()
-             },
-             success: function(data){
-                $('.pojazd_partial').html(data);
-
-             }
-       });
-
-  }
-  else {
-    ukryj_tab();
-  }*/
-
 
 //Rysuj nazwy
 
@@ -903,35 +1100,50 @@ $.ajax({url: 'polisa/rp_select/',
     }
     }
 });
-//$('#temp_rodz_pol').val('');
-
 
 //ZMIANA TOWAZYSTWA
            $('body').on('change','#select_t',function(){
+              zmiana_tu = 1;
+              alert('zmiana');
+              $('#numer').val('');
+              $('#polisa_zmag_n').val(false);
+              $('#polisa_zmag_zk').val(false);
+              $('#polisa_zmag_c').val(false);
+              $('#polisa_zmag_ktk').val(false);
+              $('#polisa_zmag_dw').val(false);
+              $('#certyfikat').val('');
+              $('#pl').val('');
+              $('#ktk').val('');
+              $('#dw_wplaty').val('');
+              $( "#polisafd" ).dialog( "option", "title", "Polisa "+$('#Ubezpieczony').val()+"  Suma = 0 zł" );
+              $(".freezetable-body > #t_rodzaj_p2 tbody").empty();
              $('#select_rp').empty();
              $('.ttnazwy_p').empty();
+             $(".freezetable-body > #wplata tbody").empty();
+             wlacz_wplaty();
+             $("#podziel" ).button( "option", "disabled", false );
              $.ajax({url: 'polisa/rp_select/',
                data: 'id=' + this.value,
                success: function(data){
                  $('#rodzpol1').html(data);
-
-                 }
+               }
              });
              $('#temp_rodz_pol').val('');
            });
+
 
 //ZMIANA NAZWY POLISY
            $('body').on("change","#select_rp",function(){
              $('#temp_rodz_pol').val(this.value);
              $('.ttnazwy_p').empty();
-
+                 $(".freezetable-body > #wplata tbody").empty();
+                 wlacz_wplaty();
 
              $.ajax({url: 'polisa/nazwy_pol_j/',
                data: 'rodz_pol_id=' + $('#temp_rodz_pol').val(),
                success: function(data){
                  $('.freezetable-body > #TRyzyka tbody').html(data);
 
-                //  $('body').on( "change",".jest",jest);
                  $.ajax({url: 'polisa/t_rodzaj_p2/',
                    data: 'rodz_pol_id=' + $('#temp_rodz_pol').val(),
                    success: function(data){
@@ -948,9 +1160,6 @@ $.ajax({url: 'polisa/rp_select/',
                $.ajax({
                         url:  "/pojazds/new",
                         type:'GET',
-                        data: {
-                            polisa_id:$('#idpolisy').text()
-                        },
                         success: function(data){
                            $('.pojazd_partial').html(data);
                            daty_pl();
@@ -988,11 +1197,7 @@ $('#szukaj').autocomplete({
                $("#nr_rej").val(data['nr_rej']);
                $('#moc').val(data['moc']);
                $('#km').val(data['km']);
-               //if (data['km'] === true){$("#km").prop('checked', true);}
-               //else {$("#km").prop('checked', false);}
                $('#kw').val(data['kw']);
-               //if (data['kw'] == 1){$("#kw").prop('checked', true);}
-               //else {$("#kw").prop('checked', false);}
                $('#marka_f').val(data['marki_poj_id']);
                $('#model_f').val(data['model_poj_id']);
                $('#rodzaj_f').val(data['rodzaj_poj_id']);
@@ -1015,18 +1220,6 @@ $('#szukaj').autocomplete({
 });
 
 
-           /*$.ajax({url: 'polisa/rp_select/',
-             data: 'id=' + $('#select_t').val(),
-             success: function(data){
-               $('#rodzpol1').html(data);
-               $('#select_rp').val($('#temp_rodz_pol').val());
-
-               else {
-                 ukryj_tab();
-               }
-             }
-           });*/
-
 
 //STARA
           if(nowa_polisa == 1){
@@ -1041,7 +1234,6 @@ $('#szukaj').autocomplete({
                'height': 55
             });
 
-          //  $('body').on( "change",".jest",jest);
             $('#TRyzyka').freezeTable({
                  'autoHeight': false,
                  'height': 101
@@ -1061,7 +1253,6 @@ $('#szukaj').autocomplete({
             });
 
            $.ajax({url: 'polisa/rysuj_ws/',
-             //data:{polisa_id:$('#idpolisy').text()},
              type:'POST',
              success: function(data){
 
@@ -1087,12 +1278,6 @@ $('#szukaj').autocomplete({
                $("input.numeric3").numeric(",");
                $("input.numeric1").numeric_int();
 
-
-
-               //rysuj_ryzyka();
-
-
-               //$('body').on( "change",".jest",jest);
                $.ajax({url: 'polisa/t_rodzaj_p2/',
                  data: 'rodz_pol_id=' + $('#temp_rodz_pol').val(),
                  success: function(data){
@@ -1113,196 +1298,59 @@ $('#szukaj').autocomplete({
               }
              });
 
-          /*   $.ajax({url: 'polisa/t_rodzaj_p2/',
-            data: 'rodz_pol_id=' + $('#temp_rodz_pol').val(),
-            success: function(data){
-
-              $('.t_rodzaj_p2_tbody').html(data);
-              $('#t_rodzaj_p2').freezeTable({
-                 'autoHeight': false,
-                  'height': 116
-              });
-              $('.t2_nazwy_pol').hide();
-            }
-          });*/
-
-           /**/
 
          }
-
-
-
-
-
-
-
-/*
-
-           $('body').on('focusout','input.flat',function(){
-             $(this).removeClass("edycja");
-             $(this).prop('readonly', true);
-           });
-
-        $('a.otworz_o').removeClass('ui-widget-content');
-           //blokada tab key
-        /*  $("table#TRyzyka, table#t_rodzaj_p2").keypress(function( event ) {
-            if ( event.keyCode == 9 ) {
-		            return false;
-            }
-          });*/
-
-  /*        $('.nav.nav-tabs > li').on('click', function () {
-
-           //$('.nav.navbar-nav > li').removeClass('active');
-              var href = $(this).children("a").attr('href');//    $(this).addClass('active');
-              if (href == "#tabs-3"){
-
-                daty_pl();
-
-
-
-                $('#kw').on('change', function(){
-                 this.value = this.checked ? 1 : 0;
-                 if (this.value==1){
-                     $("#km").val(0);
-                     $("#km").prop('checked', false);
-                  }
-               }).change();
-
-               $('#km').on('change', function(){
-                this.value = this.checked ? 1 : 0;
-                if (this.value==1){
-                   $("#kw").val(0);
-                   $("#kw").prop('checked', false);
-                }
-              }).change();
-
-              }
-           });
-
-	        $('body').on( "click","input.flat",kliknij);
-	        $('body').on("focusout","input.flat[name=sumau]",function () {
-	   			       $(this).val(zamiana($(this).val()));
-	        });
-
-
-
-
-
-
-
-
-          $.ajax({url: 'polisa/t_rodzaj_p2/',
-            data: 'rodz_pol_id=' + $('#temp_rodz_pol').val(),
-            success: function(data){
-
-              $('.t_rodzaj_p2_tbody').html(data);
-              $('#t_rodzaj_p2').freezeTable({
-                 'autoHeight': false,
-                  'height': 116
-              });
-              $('.t2_nazwy_pol').hide();
-            }
-          });
-
-
-
-
-
-
-
-
-
-
-
-          //ukryj p idpolisy oraz submit
-          $('#idpolisy').hide();
-          $('#submit_button').hide();
-           $('#usun_o_link').hide();
-
-           $("#usun_p, #zapisz_p").mouseover(function() {
-                                              $('button').removeClass("ui-state-hover");
-                                             });
-           $("#usun_p, #zapisz_p").focus(function () {
-                                       $(this).removeClass("ui-state-focus");
-                                   });
-                           $('#usun_p').removeClass();
-
-                           $('#usun_p').addClass('btn btn-danger');
-                           $('#zapisz_p').removeClass();
-
-                           $('#zapisz_p').addClass('btn btn-success');
-
-
-
-
-//TEST DAT
-
-
-
-
-              /*           $('#d_wpl, #d_wplaty').datepicker({
-                          changeMonth: true,
-                          changeYear: true,
-                          dateFormat: "yy-mm-dd",
-                          yearRange: "1960:2020",
-                          showOn: "button",
-                          buttonImage:"/assets/calendar.gif",
-                          buttonImageOnly: true,
-                          buttonText: "Wybierz date",
-                          });
-*/
-
-
-    /*                      $(".data").mask("9999-99-99");
-                          //TABELE SUWAK
-
-
-
-                          RysujWplaty($('#idpolisy').text(),0);
-
-
-  $("#podziel").button({
-   icons: {
-   primary: "ui-icon-circle-plus"
-   },
-   text: false
-  });
-
-  podziel();
-       //var dataj=JSON.stringify(raty);
-       //console.log(dataj);
-      //console.log(JSON.stringify(raty));
-      //var ratys=JSON.stringify(raty);
-      //console.log(ratys);
-
-
-$( "#usun_p_w" ).button({
-  icons: {
-  primary: "ui-icon-trash"
-  },
-  text: false
-});
-
-$("#usun_p_w").on("click", function(e) {
-  e.preventDefault();
-  wlacz_wplaty();
-  $.ajax({url: 'raty_sum/usun/',
-    data:{polisa_id:$('#idpolisy').text()},
-    type:'POST',
-    success: function(data){
-      $(".freezetable-body > #wplata tbody").empty();
-    }
-  });
-});
-
-
-             */},
-      close: function() {
+     },
+      close: function(e) {
 
          if (nowa_polisa == 1){
            $('#usun_pol_link').click();
          }
+         zmiana_tu = 0;
+      },
+      beforeClose: function( event, ui ) {
+       //sprawdź czy z magazynu
+
+
+       if (nowa_polisa != 1){
+        if (zapisano_pol == 0)
+        {
+         $.ajax({
+                 url: "/polisa/close",
+                 type: 'POST',
+                 data:{numer:$('#numer').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:1, z_mag:$('#polisa_zmag_n').val()}
+         });
+
+         $.ajax({
+                 url: "/polisa/close",
+                 type: 'POST',
+                 data:{numer:$('#pl').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:2, z_mag:$('#polisa_zmag_zk').val()}
+         });
+
+         $.ajax({
+                  url: "/polisa/close",
+                  type: 'POST',
+                  data:{numer:$('#certyfikat').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:3, z_mag:$('#polisa_zmag_c').val()}
+          });
+
+          $.ajax({
+                  url: "/polisa/close",
+                  type: 'POST',
+                  data:{numer:$('#ktk').val(),towarzystwo_id:$('#select_t').val(), nazwa_dr_id:5, z_mag:$('#polisa_zmag_ktk').val()}
+          });
+        }
+        if ($('#numer').val() == '')
+        {
+          event.preventDefault();
+          $('#numer').addClass('blad');
+          $("label[for='numer']").addClass('bladl');
+          $('.nav li').removeClass("active");
+
+          $('.nav-tabs a[href="#tabs-1"]').tab('show');
+          //$('[href="#tabs-1"]').parent().click();
+          alert_t('Proszę uzupełnić numer polisy!!!');
+        }
+       }
       }
     });
 
@@ -1310,34 +1358,17 @@ $("#usun_p_w").on("click", function(e) {
 
  });
 
-/* function update_towarzystwos_div(towarzystwo_id) {
-  jQuery.ajax({
-    url: "/update_towarzystwo",
-    type: "GET",
-    data: {"towarzystwo_id" : towarzystwo_id},
-    dataType: "html"
-    success: function(data) {
-      jQuery("#versionsDiv").html(data);
-    }
-  });
-}*/
 
 function rysuj_ryzyka()//nowa_polisa, idpol)
 {
   $.ajax({
            url:  "/polisa/rysuj_ryz_pol",
             type:'POST',
-      //dataType: "json",
-        // data: {
-          //     polisa_id:$('#idpolisy').text()
-            //},
       success: function(data) {
         if (data != "")
         {
            var sum=0,przypis=0;
-           //var tr_id;
            for(var i in data){
-             //tr_id='#tnazwy_poli_'+data[i].tnazwy_poli_id
              $('#nazwy_pol_'+data[i].nazwy_pol_id).children('td').children('[name="idryzyka"]').val(data[i].nazwy_pol_id);
              $('#nazwy_pol_'+data[i].nazwy_pol_id).children('td').children('[name="jest"]').val(1);
              $('#nazwy_pol_'+data[i].nazwy_pol_id).children('td').children('[name="jest"]').prop('checked', true);
@@ -1349,12 +1380,10 @@ function rysuj_ryzyka()//nowa_polisa, idpol)
              $('#t2_nazwy_pol_'+data[i].nazwy_pol_id).children('td').children('[name="suma_rat"]').val(zamiana(data[i].przypis));
              $('#nazwy_pol_'+data[i].nazwy_pol_id).children('td').children('[name="stawka"]').val(zamiana(data[i].stawka));
              $('#nazwy_pol_'+data[i].nazwy_pol_id).children('td').children('[name="ilosc"]').val(data[i].ilosc);
-             //trr=".trr"+data[i].idryz;
              przypis=parseFloat(data[i].przypis);
              if (! isNaN(przypis))
              sum=sum+przypis;
 
-            //$('.freezetable-body > #t_rodzaj_p2 tr'+trr).children('td').children('[name="suma_rat"]').val(zamiana(data[i].przypis));
            }
 
            $( "#polisafd" ).dialog( "option", "title", "Polisa "+$('#Ubezpieczony').val()+"  Suma = "+zamiana(sum.toString())+" zł" );
@@ -1366,21 +1395,15 @@ function rysuj_ryzyka()//nowa_polisa, idpol)
                  if(data[i].maximum > 1){
                    $('#t2_nazwy_pol_'+data[i].nazwy_pol_id).children('td').children("select").val(data[i].maximum).change();
                    poms=$('#t2_nazwy_pol_'+data[i].nazwy_pol_id).children('td').children("select").find(":selected").text();
-                   //alert(poms);
                    $('#t2_nazwy_pol_'+data[i].nazwy_pol_id).children('td').children('[name="iilosc_rat"]').val(poms);
-                   //$('#t2_nazwy_pol_'+data[i].nazwy_pol_id).children('td').children('[name="ilosc_rat"]').val(data[i].maximum);
-                    //alert('#t2_nazwy_pol_'+data[i].nazwy_pol_id);
 
                  }
                }
              }
            });
          }
-       //var r = $.parseJSON(data);
-       //console.log(r);//This is where Your users are
       }
     });
-  //$('#select_rp').val($('#temp_rodz_pol').val());
   }
 
 
@@ -1422,14 +1445,17 @@ function wlacz_wplaty()
   $('#rodzaj_zaplaty').attr('disabled', false);
   $('#usun_p_w').button( "option", "disabled", true );
   $("#podziel" ).button( "option", "disabled", false );
+  $("#d_wplaty").val($('#polisa_dzis').val());
+  $("#d_wpl").val($('#polisa_dzis').val());
+  $('#w1_suma').html("");
+  $('#w2_suma').html("");
+  $('#w3_suma').html("");
+  $('#w4_suma').html("");
+
 }
 
 function wylacz_wplaty()
 {
-  //
-  //$('img.ui-datepicker-trigger').click(function (e) {
-  //  e.preventDefault;
-  //});
   $("#d_wplaty").datepicker("option", "disabled", true);
   $('#d_wplaty').attr('disabled', true);
   $('#zaplacil_rp').attr('disabled', true);
@@ -1448,15 +1474,8 @@ function RysujWplaty(){
 
 
   $.ajax({url: 'polisa/rysuj_wplaty/',
-    //data:{polisa_id:polisaid},
     type:'POST',
     success: function(data){
-    //console.log(data);
-      //if (ponownie == 0){
-    /*  $('#wplata').freezeTable({
-       'autoHeight': false,
-       'height': 151
-     });*/
         $('.freezetable-body > #wplata tbody').html(data);
 
 //SUMY RAT MARTA
@@ -1472,14 +1491,6 @@ function RysujWplaty(){
           if (w2_suma > 0 ) $('#w2_suma').html("<h6 style='color:#3f9f3f;'>Druga płatność = "+ w2_suma.toFixed(2).replace('.',',') +" zł</h6>");
           if (w3_suma > 0 ) $('#w3_suma').html("<h6 style='color:#3f9f3f;'>Trzecia płatność = "+ w3_suma.toFixed(2).replace('.',',') +" zł</h6>");
           if (w4_suma > 0 ) $('#w4_suma').html("<h6 style='color:#3f9f3f;'>Czwarta płatność = "+ w4_suma.toFixed(2).replace('.',',') +" zł</h6>");
-          /*alert('w1='+w1_suma);
-          alert('w2='+w2_suma);
-          alert('w3='+w3_suma);
-          alert('w4='+w4_suma);*/
-      //}
-      //else
-      /*$('.freezetable-body > #wplata tbody').html(data);
-      */
       if($(".freezetable-body > #wplata tbody > tr").length == 0){
         wlacz_wplaty();
       }
@@ -1494,7 +1505,6 @@ function ukryj_tab()
 {
     $(".pojazd_partial").empty();
   $('[href="#tabs-3"]').closest('li').hide();
-  //$('#tabs-3').parent().find('li:has([href="#tabs-3"])').hide();
 }
 
 function pokarz_tab()

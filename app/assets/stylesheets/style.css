@@ -124,7 +124,7 @@ Main Components
   left: 0;
   height: 80px;
   width: 100%;
-  background-color: #000000;
+  background-color: #5f5f5f;
   visibility: hidden;
   /* enable a 3D-space for children elements */
   -webkit-perspective: 1000px;
@@ -156,7 +156,8 @@ Main Components
   /* this is the 3D rotating navigation */
   position: relative;
   height: 100%;
-  background-color: #A0522D;/*kolor nanigacji
+  color: #ffffff;
+  background-color: #5f5f5f;/*kolor nanigacji
   /* Force Hardware Acceleration */
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
@@ -244,11 +245,17 @@ Main Components
       background-repeat: no-repeat;
       background-position: 0 0; }
     .no-touch .cd-3d-nav a:hover {
-      background-color: #8B4513; }
+      background-color: #000000;
+      color: #ffffff;
+     }
   .cd-3d-nav .cd-selected a {
-    background-color: #8A3204; }
+    background-color: #505050;
+    color: #ffffff;
+  }
     .no-touch .cd-3d-nav .cd-selected a:hover {
-      background-color: #8A3204; }
+      background-color: #000000;
+      color: #ffffff;
+    }
     .cd-3d-nav .cd-selected a::before {
       background-position: 0 0; }
   .nav-is-visible .cd-3d-nav {
@@ -267,7 +274,7 @@ Main Components
   @media only screen and (min-width: 768px) {
     .cd-3d-nav a {
       padding: 7.6em 1em 0;
-      color: #ffffff !important;
+      color: #f1f1f1 !important;
       font-size: 1.3rem;
       font-weight: 600;
       text-align: center;

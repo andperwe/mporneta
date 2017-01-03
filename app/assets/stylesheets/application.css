@@ -18,6 +18,78 @@
  *= require_tree .
  *= require_self
  */
+ @font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../assets/glyphicons-halflings-regular.eot');
+    src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+    url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+    url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  }
+
+ #zdjecia td:first-child {
+   padding-top: 2px !important;
+   padding-bottom: 2px !important;
+   border-bottom-width: 0px !important;
+    border-color: #5f5f5f !important;
+ }
+
+ #zdjecia td:not(:first-child) {
+   padding-top: 24px !important;
+   padding-bottom: 2px !important;
+   border-bottom-width: 0px !important;
+   border-color: #5f5f5f !important;
+ }
+
+ #zdjecia {
+   font-size: 16px;
+ }
+
+.bialy_napis{
+  color: white !important;
+}
+
+  .fileinput-button {
+      position: relative;
+      overflow: hidden;
+  }
+
+  .fileinput-button input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 100%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
+  }
+
+ img.ui-datepicker-trigger{
+   margin-left: -25px;
+   border-style: solid;
+   border-left: 2px solid #cccccc;
+   padding-left: 3px;
+   padding-top: 4px;
+   padding-bottom: 5px;
+ }
+
+.data_dp{
+  cursor: pointer;
+}
+ .otworz_h {
+   height: 18px !important;
+   width: 18px !important;
+   background: url('history_open.png') no-repeat center center;
+    display: block;
+    cursor: pointer;
+    border: none;
+ }
 
 
 span.ui-dialog-title{
@@ -31,7 +103,7 @@ span.ui-dialog-title{
    height: 28px;
  }
 
-span.ui-button-text, #nowy_user, #nowa_agencja{
+span.ui-button-text, #nowy_user, #nowa_agencja, #pokaz_mag, #dodaj_mag{
   padding-top: 2px !important;
   padding-bottom: 2px !important;
 }
@@ -96,7 +168,7 @@ span.ui-button-text, #nowy_user, #nowa_agencja{
 
 
  a.alink{
-   color: #428bca !important;
+   color: #00008B !important;
  }
 
  a.alink:hover{
@@ -653,6 +725,9 @@ table.dataTable tbody th, table.dataTable tbody td {
    outline:none !important;
  }
 
+a.otworz_h:focus{
+  outline:none !important;
+}
  a.usun_o:focus{
    outline:none !important;
  }

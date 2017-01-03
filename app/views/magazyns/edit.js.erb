@@ -1,0 +1,44 @@
+$("#mag_e").dialog({
+  autoOpen: false,
+  height: 450,
+  width: 350,
+  modal: true,
+  buttons:[{
+            id:"zapisz_mag_e",
+            text:"Zapisz",
+            click:function(){
+                             $.ajax({
+                                     url: "/magazyn/zmien",
+                                     type: 'POST',
+                                     data:{id:$('#form_magazyn').attr('action').substr(10), stan_id:$("#stan_e").val(), towarzystwo_id:$('#TU_mag_e').val(), nazwa_dr_id:$('#typ_doc_e').val(),
+                                          stan_id:$('#stan_e').val()},
+                                    success: function(data) {
+                                                             $('#mag_e').dialog("close");
+                                                             switch(data)
+                                                             {
+                                                               case 0:t10.ajax.reload(null,false);break;
+                                                               case 1:alert_t("Nie można zmienić dokumentu który ma status sprzedany. Usuń polisę z podanym numerm w celu dokonania zmiań!");break;
+                                                               case 2:alert_t("Nie można nadać statusu sprzedany dla tego dokumentu. W celu zmiany statusu na sprzedany należy wybrać dany typ dokumentu w polisie!");break;
+                                                               case 3:alert_t("Nic się nie zmieniło w dokumencie!");break;
+                                                               case 4:alert_t("Taki dokument już istnieje. Nie można dokonać zmiany!");break;
+                                                               case 5:alert_t("Taki dokument już istnieje. Nie można dokonać zmiany!");break;
+                                                               case 6:alert_t("Nie ma takiego dokumentu do usunięcia");break;
+                                                             }
+
+                                                            }
+                                   })
+                               }
+          }]
+});
+
+$("#zapisz_mag_e").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#zapisz_mag_e").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#zapisz_mag_e').removeClass();
+$('#zapisz_mag_e').addClass('btn btn-success btn-sm');
+
+$('#mag_e').html("<%= escape_javascript (render partial: 'edit') %>");
+$('#mag_e').dialog('open');

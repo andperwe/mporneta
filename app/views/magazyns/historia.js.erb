@@ -1,0 +1,117 @@
+$('#historia_dok').dialog({
+  autoOpen: false,
+  height: 420,
+  width: 1100,
+  modal: true,
+  buttons:[{
+            id:"ok_h",
+            text:"Ok",
+            click:function(){ $(this).dialog('close');}
+
+          }]
+  });
+
+
+
+
+  $("#ok_h").mouseover(function() {
+     $('button').removeClass("ui-state-hover");
+  });
+  $("#ok_h").focus(function () {
+      $(this).removeClass("ui-state-focus");
+  });
+  $('#ok_h').removeClass();
+  $('#ok_h').addClass('btn btn-success btn-sm');
+
+  $('#historia_dok').html("<%= escape_javascript (render partial: 'historia') %>");
+
+  var t9=$('#h_magazyn').DataTable({
+          "dom":'<tr>',
+          "ajax": {
+            "url": "/magazyns_ajax/datatable_ajax2",
+            "data": function ( d ) {
+              return $.extend( {}, d, {
+                "numer": $('#numh').val(),
+                "towarzystwo_id":$('#tuh').val(),
+                "nazwa_dr_id":$('#dokumenth').val()
+              });
+            }
+          },
+         "language":{
+                     "sProcessing":"Przetwarzanie...",
+                     "sLengthMenu":"Pokaż _MENU_ pozycji",
+                     "sZeroRecords":"Nie znaleziono pasujących pozycji",
+                     "sInfoThousands":" ",
+                     "sInfo":"Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+                     "sInfoEmpty":"Pozycji 0 z 0 dostępnych",
+                     "sInfoFiltered":"(filtrowanie spośród _MAX_ dostępnych pozycji)",
+                     "sInfoPostFix":"",
+                     "sSearch":"Szukaj:",
+                     "sUrl":"",
+                     "oPaginate":{
+                     "sFirst":"Pierwsza",
+                     "sPrevious":"Poprzednia",
+                     "sNext":"Następna",
+                     "sLast":"Ostatnia"
+                     },
+                     "sEmptyTable":"Brak danych",
+                     "sLoadingRecords":"Wczytywanie...",
+                     "oAria":{
+                     "sSortAscending":": aktywuj, by posortować kolumnę rosnąco",
+                     "sSortDescending":": aktywuj, by posortować kolumnę malejąco"
+                     }
+                  },
+                  "order": [[7, 'desc' ]],
+                  "autoWidth": true,
+          "processing": true,
+          "serverSide": true,
+           "columnDefs": [
+           	        {
+                           "targets": [ 0 ],
+                           "visible": false,
+                           "orderable":false
+                          },
+                          {
+                            className: "dt-body-center",
+                           "targets":[1],
+                           "orderable":false
+                         },
+                          {
+                            className: "dt-body-center",
+                           "targets": [ 2 ],
+                           "orderable":false
+                          },
+                          {
+                            className: "dt-body-center",
+                           "targets":[3],
+                           "orderable":false
+                          },
+                          {
+                          className: "dt-body-center",
+                           "targets": [ 4 ],
+                           "orderable":false
+                          },
+                          {
+                            className: "dt-body-center",
+                           "targets":[5],
+                           "orderable":false
+                          },
+                          {
+                            className: "dt-body-center",
+                           "targets":[6],
+                           "orderable":false
+                          },
+                          {
+                            className: "dt-body-center",
+                           "targets":[7],
+                           "orderable":true
+                         }
+  		      ],
+
+
+  	"scrollY":"230"
+
+    });
+
+
+  $('#historia_dok').dialog('open');

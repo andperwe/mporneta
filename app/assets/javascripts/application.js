@@ -17,6 +17,7 @@
 //= require jquery-ui/datepicker
 //= require jquery-ui/dialog
 //= require twitter/bootstrap
+//= require jquery-fileupload
 //= require dataTables/jquery.dataTables
 //= require turbolinks
 //= require_tree .
@@ -25,22 +26,11 @@ $(document).ajaxError(function(e, error) {
 switch(error.status) {
 
    case 401: {
-      // unauthorised (possible timeout)
-       //alert('brak sesji');
-      //location.reload();
     window.location.href = '/users/sign_in';
-
-      /*"<div class='alert alert-alert'>"+
-        "<a class='close' href="+'#'+" data-dismiss='alert'>×</a>"+
-        "<ul>"+
-           "<li> Sesja wygasła, aby kontynuować zaloguj się ponownie. </li>"+
-        "</ul>"+
-      "</div>");*/
-    //  alert(xhr.responseText);
-      //break;
     }
 }
 });
+
 
 
 $.fn.dataTableExt.sErrMode = 'none';
@@ -61,7 +51,10 @@ $.rails.confirmed = function(link){
 
 
 
-var t, t2, t3, t4,t5, t6, osoba_id=0, osoba="", nowa_polisa=1, raty_sum=0, polisaf_id=0, nowa_agencja=1;
+var t, t2, t3, t4,t5, t6,t10, osoba_id=0, osoba="", nowa_polisa=1, raty_sum=0, polisaf_id=0, nowa_agencja=1;
+var zmag_dw = 0;
+var zapisano_pol = 0;
+var zmiana_tu = 0;
 $.fn.bootstrapBtn = $.fn.button.noConflict();
 
 

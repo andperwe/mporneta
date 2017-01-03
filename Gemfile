@@ -39,6 +39,9 @@ gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 gem 'axlsx_rails'
 gem 'axlsx_styler'
+gem 'jquery-fileupload-rails'
+gem 'rmagick'
+gem 'carrierwave'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

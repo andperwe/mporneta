@@ -54,40 +54,40 @@ $('body').on('change','#do', function(){
 $('body').on('click','#generate_link', function(e){
  if($('#od').val() == '') {
    e.preventDefault();
+   $('#od').addClass('blad');
+   $("label[for='od']").addClass('bladl');
    alert_t('Brak daty początkowej !');
   }
-  else if ($('#do').val() == '') {
-    e.preventDefault();
-    alert_t('Brak daty końcowej !');
-  }else if/*(new Date($('#do').val().replace("-", ",")) <= new Date($('#od').val().replace("-", ",")))
-  {
-    alert_t('Data końcowa jest wcześniejsza od daty początkowej !')
+  else {
+    $('#od').removeClass('blad');
+    $("label[for='od']").removeClass('bladl');
+     if ($('#do').val() == '') {
+        e.preventDefault();
+        $('#do').addClass('blad');
+        $("label[for='do']").addClass('bladl');
+        alert_t('Brak daty końcowej !');
+     }else
+       {
+         $('#do').removeClass('blad');
+         $("label[for='do']").removeClass('bladl');
+        if (!PorownajDaty($('#od').val(), $('#do').val())){
+            var href='?od=' + $('#od').val() + '&do=' + $('#do').val()  + '&nr_wyk=' + $('#nr_wyk').val() +'&data_wyk=' + $('#data_wyk').val();
+            if ($('#towarzystwo_id').val() != "") {
+                 href =  href +'&towarzystwo=' + $("#towarzystwo_id :selected").text();
+            }
+            if ($('#oddzial_id').val() != ""){
+                 href = href + '&oddzial='+ $("#oddzial_id :selected").text() + '&oddzial_id=' +$('#oddzial_id').val();
+            }
+
+            $('#generate_link').attr('href','/excels.xlsx');
+            $('#generate_link').attr('href', $('#generate_link').attr('href').substr(0,19) + href);
+        }else {
+               e.preventDefault();
+               alert_t('Data początkowa jest póżniejsza od daty końcowe lub taka sama!');
+              }
+    }
   }
-  else{
-    alert('Ok');
-  }*/
-  (!PorownajDaty($('#od').val(), $('#do').val())){
-   //var pom= $('#generate_link').attr('href');
-    var oddzial = "";
-    if ($("#oddzial_id :selected").text() != "wybierz") oddzial=$("#oddzial_id :selected").text();
-
-    $('#generate_link').attr('href','/excels.xlsx');
-    $('#generate_link').attr('href', $('#generate_link').attr('href').substr(0,19) + '?od=' + $('#od').val() + '&do=' + $('#do').val() + '&oddzial_id=' +$('#oddzial_id').val() + '&nr_wyk=' + $('#nr_wyk').val() +'&oddzial=' + oddzial +'&data_wyk=' + $('#data_wyk').val());
-  //  $('#generate_link').attr('href',pom);
-   //$('#generate_link').click();
-   //$('a#generate_link').click();
-    //alert($('#gl').attr('href').substr(0,19));
-  }else {
-    e.preventDefault();
-    alert_t('Data początkowa jest póżniejsza od daty końcowe lub taka sama!');
-  }
-
-});
-
-/*$('body').on('click','#gl',function(){
-        $(this).attr('href', $(this).attr('href').substr(0,19) + '?od=' + $('#od').val() + '&do=' + $('#do').val());
-    });*/
-
+  });
 });
 
 

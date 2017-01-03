@@ -1,9 +1,11 @@
 <%= form_for @raty_sum, :remote => true, :html => { :id => 'form_rata' } do |f| %>
   <!--input id="idfraty"-->
-
+   <div><label>zmag dw</label><%= f.text_field :zmag_dw%></div>
     <div class="form-group form-inline nomargin">
-       <%= f.label :przypominac,"Nie przypominać : ", :class => "control-label",:style => "color:green; font-weight:bold;font-size:12px;" %>
-       <%= f.check_box :przypominac, :class => "form-control", :id => "przypominac" %>
+      <div class="checkbox-inline" style="margin-bottom:10px;">
+        <label for="przypominac_r" class ="control-label" style ="color:green; font-weight:bold;font-size:12px;">Nie przypominać : </label>
+       <%= f.check_box :przypominac, :class => "nomargin", :id => "przypominac_r", :style => "margin-left:5px !important" %>
+     </div>
    </div>
 
     <div class="col-md-6">
@@ -18,16 +20,18 @@
            <%= collection_select(:raty_sum, :nazwy_pol_id, NazwyPol.all, :id, :nazwa_polisy,{},{:class=>"form-control izolty", :style => "width:230px;", :disabled => "disabled"}) %>
          </div>
          <div class="form-group form-inline nomargin">
-           <%= f.label :kwota, "Kwota :", :class => "control-label" %><br>
+           <label for="kwota_r" class ="control-label">Kwota : </label><br>
            <%= f.text_field :kwota, :class => "form-control input-sm izolty", :value => (number_with_precision(f.object.kwota, :precision => 2).to_s.sub '.', ',' || 0), :id => "kwota_r",:style => "width:120px;" %>
          </div>
         <div class="form-group form-inline nomargin">
-          <%= f.label :data, "Data płatności :", :class => "control-label"  %><br>
-          <%= f.text_field :data, :class => "form-control input-sm izolty data", :id => "data_plat",:style => "width:96px;" %>
+          <label for="data_plat" class ="control-label">Data płatności : </label><br>
+          <%= f.text_field :data, :class => "form-control input-sm izolty data", :id => "data_plat",:style => "width:120px;" %>
         </div>
         <div class="form-group form-inline nomargin">
-            <%= f.label :zapl,"Zapłacił : ", :class => "control-label" %>
-            <%= f.check_box :zapl, :class => "form-control", :id => "zaplacil_r" %>
+          <div class="checkbox-inline" style="padding-left:0px; margin-bottom:15px;">
+               <label for="zaplacil_r" class ="control-label" style="margin-top:5px">Zapłacił : </label>
+                 <%= f.check_box :zapl, :id => "zaplacil_r", :style=> "margin-left: 5px;" %>
+          </div>
         </div>
 	   </fieldset>
 	  </div>
@@ -36,7 +40,7 @@
 	  <fieldset>
 	  <legend class="nomargin"><h6>Rozliczenie agenta z agencją</h6></legend>
     <div class="form-group form-inline nomargin">
-      <%= f.label :nr_dw, "Dowód wpłaty :", :class => "control-label" %><br>
+       <label for="dow_wpl" class ="control-label">Dowód wpłaty : </label><br>
       <%= f.text_field :nr_dw, :class => "form-control input-sm izolty", :id => "dow_wpl",:style => "width:150px;" %>
     </div>
     <!--label style="display:block;margin-top:12px;" for="dow_wpl">Dowód wpłaty</label>
@@ -52,8 +56,8 @@
       </div>
 
      <div class="form-group form-inline nomargin">
-       <%= f.label :data_w, "Data wpłaty :", :class => "control-label"  %><br>
-       <%= f.text_field :data_w, :class => "form-control input-sm izolty data", :id => "data_wpl",:style => "width:96px;" %>
+      <label for="data_wpl" class ="control-label">Data wpłaty : </label><br>
+       <%= f.text_field :data_w, :class => "form-control input-sm izolty data", :id => "data_wpl",:style => "width:120px;" %>
      </div>
       </fieldset>
 	  </div>
@@ -64,19 +68,25 @@
 	    <legend class="nomargin"><h6>Rozliczenie z TU</h6></legend>
 
       <div class="form-group form-inline nomargin">
-          <%= f.label :rozliczona,"Rozliczona z TU : ", :class => "control-label" %>
-          <%= f.check_box :rozliczona, :class => "form-control", :id => "rozliczona_z_tu" %>
+        <div class="checkbox-inline" style="padding-left:0px; margin-bottom:15px;">
+             <label for="rozliczona_z_tu" class ="control-label" style="margin-top:5px">Rozliczona z TU : </label>
+            <%= f.check_box :rozliczona, :id => "rozliczona_z_tu", :style=> "margin-left: 5px;" %>
+        </div>
       </div>
 
       <div class="form-group form-inline nomargin">
-        <%= f.label :data_roz, "Data rozliczenia z TU :", :class => "control-label"  %><br>
-        <%= f.text_field :data_roz, :class => "form-control input-sm izolty data", :id => "data_roz",:style => "width:96px;" %>
+        <label for="data_roz" class ="control-label">Data rozliczenia z TU : </label>
+          <%= f.text_field :data_roz, :class => "form-control input-sm izolty data", :id => "data_roz",:style => "width:120px;" %>
       </div>
 
+<div style="margin-top:5px;">
       <div class="form-group form-inline nomargin">
-          <%= f.label :roz_owca,"Rozliczona z OWCA : ", :class => "control-label" %>
-          <%= f.check_box :roz_owca, :class => "form-control", :id => "rozliczona_z_owca" %>
+          <div class="checkbox-inline" style="padding-left:0px;">
+            <label for="rozliczona_z_owca" class ="control-label" style="margin-top:5px">Rozliczona z OWCA : </label>
+            <%= f.check_box :roz_owca, :id => "rozliczona_z_owca", :style=> "margin-left: 5px;"%>
+          </div>
       </div>
+</div>
 	  </fieldset>
       </div>
     </div>

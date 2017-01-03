@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Agent</title>
+     <noscript>
+        <meta http-equiv="refresh" content="0;url=http://www.enable-javascript.com/pl">
+    </noscript>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,6 +12,8 @@
 </head>
 
 <body style="background-color:#DEB887;margin:0px;">
+  <header class="cd-header" style="height:0px;">
+  </header>
   <div style="height: 120px;background-color: #A0522D;padding:20px;">
      <div id="obraz" style="width:30%;position: absolute;left: 15%;"><%= image_tag("service1.gif",size: "80x80") %></div>
      <div id="tekst" style="width:65%;text-align: center;margin-top: 20px;margin-left: 15%;color:white;font-family:	Open Sans,​sans-serif;font-size: 36px;">Agencja - system obsługi agentów.</div>

@@ -1,6 +1,6 @@
-$('#menu_b').removeClass('glyphicon-remove');
-$('#menu_b').addClass('glyphicon-align-justify');
-$('#menu').hide();
+if ($('.cd-header').hasClass('nav-is-visible'))
+$('#menu0').click();
+
 $('.osoba_dane').html("<%= escape_javascript (render partial: 'form') %>");
 $('#osoba_typ_prawny').val(1);
 $('#typ_praw_id').val(2);

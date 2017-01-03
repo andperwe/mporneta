@@ -1,126 +1,73 @@
-<div id="mag_t" title="Stan magazynu">
-<fieldset style="height: 430px;font-family: verdana; font-size: 8pt; width:98%;margin-left:1%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
-  <div style="margin-top:6px; margin-bottom: 6px;">
-    <button id="pokaz_mag" style="position:relative;top:-3px;margin-left:2px; height:25px; width:25px">Pokaż wszystkie dokumenty</button><label style="font-weight: bold;margin-left: 10px;">Pokaż wszystkie dokumenty</label>
+
+<fieldset style="height: 430px; width:98%;margin-left:1%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+  <div style="margin-top:6px; margin-bottom: 6px;" class="row">
+   <div class="col-md-2">
+      <%= button_to('Dodaj / Usuń / Zwróć', new_magazyn_path, :class => 'btn btn-success', :remote => true, :method => :get, :id => "dodaj_mag", :style => "margin-left:10px")  %>
+   </div>
+   <div class="col-md-2">
+  <!--button id="dodaj_mag" class="btn btn-success" style="margin-left:10px;">Dodaj/Usuń/Zwróć</button-->
+   <button id="pokaz_mag" class="btn btn-primary">Pokaż wszystkie dokumenty</button>
+ </div>
   </div>
   <div id="t5mag" style="display: block;">
-  <table id="magazyn" class="display" style="font-style: verdana;font-size: 11px;">
+
+
+  <table id="magazyn" class="display">
    <thead style="background-color:ThreeDFace;">
     <tr>
      <th width="20px" style="padding-left:2px !important;padding-right: 2px !important;"></th>
      <th width="20px" style="padding-left:2px !important;padding-right: 2px !important;"></th>
-     <th>id_n</th>
+     <th>id</th>
      <th style="padding-left:2px !important;padding-right: 2px !important;">
-       <label style="font-family: verdana; font-size: 11px;">Numer</label><br><br>
-       <input id="m_szukaj_pol" type="text" class="ibialy" size=16 style="font-family: verdana; font-size: 11px;" placeholder="Szukaj numer" />
-     </th>
-     <th>idtu</th>
-     <th style="padding-left:2px !important;padding-right: 2px !important;">
-       <label style="font-family: verdana; font-size: 11px;">TU</label><br><br>
-       <!--select id="m_szukaj_tu" class="ibialy z"-->
-         <%= select_tag "tu", options_from_collection_for_select(@towarzystwa, "id", "nazwa") %>
-        <!--?php
-          if ($polaczenie->connect_errno!=0)
-          {
-           echo "Error: ".$polaczenie->connect_errno;
-          }
-          else
-          {
-           $polaczenie->set_charset("utf8");
-	   $rezultat = @$polaczenie->query("SELECT * FROM ttowarzystwa ORDER BY nazwa ASC");
-           echo '<option value=0>Wybierz'."</option>\n";
-           while($row = $rezultat->fetch_assoc()) {
-                                                   echo '<option value="' . $row['id'].'">'.$row['nazwa'] ."</option>\n";
-                                                  }
-           $rezultat->free_result();
-          }
-        ?-->
-        </select>
-     </th>
-     <th>idnazwa</th>
-     <th style="padding-left:2px !important;padding-right: 2px !important;">
-       <label style="font-family: verdana; font-size: 11px;">Dokument</label><br><br>
-       <select id="m_szukaj_dok" class="ibialy z">
-        <!--?php
-          if ($polaczenie->connect_errno!=0)
-          {
-           echo "Error: ".$polaczenie->connect_errno;
-          }
-          else
-          {
-           $polaczenie->set_charset("utf8");
-           $rezultat = @$polaczenie->query("SELECT * FROM typ_dokumentu ORDER BY dokument ASC");
-           echo '<option value=0>Wybierz'."</option>\n";
-           while($row = $rezultat->fetch_assoc()) {
-                                                   echo '<option value="' . $row['id'].'">'.$row['dokument'] ."</option>\n";
-                                                  }
-           $rezultat->free_result();
-          }
-        ?-->
-       </select>
-     </th>
-     <th>iduzytkownika</th>
-     <th style="padding-left:2px !important;padding-right: 2px !important;">
-       <label style="font-family: verdana; font-size: 11px;">Użytkownik</label><br><br>
-       <select id="m_szukaj_user" class="ibialy z">
-        <!--?php
-          if ($polaczenie->connect_errno!=0)
-          {
-           echo "Error: ".$polaczenie->connect_errno;
-          }
-          else
-          {
-           $polaczenie->set_charset("utf8");
-           $rezultat = @$polaczenie->query("SELECT id,nazwa FROM uzytkownicy ORDER BY nazwa ASC");
-           echo '<option value=0>Wybierz'."</option>\n";
-           while($row = $rezultat->fetch_assoc()) {
-                                                   echo '<option value="' . $row['id'].'">'.$row['nazwa'] ."</option>\n";
-                                                  }
-           $rezultat->free_result();
-          }
-        ?-->
-        </select>
-     </th>
-     <th>idstan</th>
-     <th style="padding-left:2px !important;padding-right: 2px !important;">
-       <label style="font-family: verdana; font-size: 11px;">Stan</label><br><br>
-       <select id="m_szukaj_stan" class="ibialy z">
-        <!--?php
-          if ($polaczenie->connect_errno!=0)
-          {
-           echo "Error: ".$polaczenie->connect_errno;
-          }
-          else
-          {
-           $polaczenie->set_charset("utf8");
-           $rezultat = @$polaczenie->query("SELECT * FROM stany ORDER BY stan ASC");
-           echo '<option value=0>Wybierz'."</option>\n";
-           while($row = $rezultat->fetch_assoc()) {
-                                                   echo '<option value="' . $row['id'].'">'.$row['stan'] ."</option>\n";
-                                                  }
-           $rezultat->free_result();
-          }
-        ?-->
+       <label style="font-size: 11px;">Numer</label><br>
 
-      </select>
+       <input id="m_szukaj_num" type="text" class="form-control input-sm" style="font-size:12px" placeholder="Szukaj numer" />
      </th>
      <th style="padding-left:2px !important;padding-right: 2px !important;">
-       <label style="font-family: verdana; font-size: 11px;">Data wpłyn.</label><br><br>
-       <input id="m_szukaj_dataw" type="text" size="10" class="ibialy data" style="font-family: verdana; font-size: 11px;" placeholder="Szukaj data wpłyn." />
+       <label style="font-size: 11px;">TU</label><br>
+       <!--select id="m_szukaj_tu" class="ibialy z"-->
+       <%= select_tag "tu", options_from_collection_for_select(@towarzystwa, "id", "nazwa"), :prompt => "wybierz", :class => "form-control input-sm", :style => "font-size:12px" %>
+
+
      </th>
      <th style="padding-left:2px !important;padding-right: 2px !important;">
-       <label style="font-family: verdana; font-size: 11px;">Data zdarz.</label><br><br>
-       <input id="m_szukaj_dataz" type="text"  size="10" class="ibialy data" style="font-family: verdana; font-size: 11px;" placeholder="Szukaj data zdarz." />
+       <label style="font-size: 11px;">Dokument</label><br>
+       <%= select_tag "dokument", options_from_collection_for_select(@nazwa_dr, "id", "nazwa"), :prompt => "wybierz", :class => "form-control", :style => "font-size:12px" %>
+       <!--select id="m_szukaj_dok" class="ibialy z"-->
+     </th>
+     <th style="padding-left:2px !important;padding-right: 2px !important;">
+       <label style="font-size: 11px;">Użytkownik</label><br>
+       <!--select id="m_szukaj_user" class="ibialy z"-->
+       <%= select_tag "uzytkownik", options_from_collection_for_select(@users, "id", "nazwa"), :prompt => "wybierz", :class => "form-control", :style => "font-size:12px" %>
+
+     </th>
+     <th style="padding-left:2px !important;padding-right: 2px !important;">
+       <label style="font-size: 11px;">Stan</label><br>
+       <!--select id="m_szukaj_stan" class="ibialy z"-->
+          <%= select_tag "stan", options_from_collection_for_select(@stans, "id", "stan"), :prompt => "wybierz", :class => "form-control", :style => "font-size:12px" %>
+
+     </th>
+     <th style="padding-left:2px !important;padding-right: 2px !important;">
+       <label style="font-size: 11px;">Data wpłyn.</label><br>
+        <div class="form-group form-inline nomargin">
+       <input id="m_szukaj_dataw" type="text" size="10" class="form-control input-sm data" style="font-size:12px" placeholder="Szukaj data wpłyn." />
+     </div>
+     </th>
+     <th style="padding-left:2px !important;padding-right: 2px !important;">
+       <label style="font-size: 11px;">Data zdarz.</label><br>
+       <div class="form-group form-inline nomargin">
+         <input id="m_szukaj_dataz" type="text"  size="10" class="form-control input-sm data" style="font-size:12px" placeholder="Szukaj data zdarz." />
+      </div>
      </th>
    </tr>
-  </thead>
+  </thead> 
  </table>
-  </div>
+ </div>
 </fieldset>
 </div>
 
-<div id="historia_dok" title="Historia dokumentu">
- <fieldset style="height: 320px;font-family: verdana; font-size: 8pt; width:98%;margin-left:1%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
+<!--div id="historia_dok" title="Historia dokumentu">
+ <fieldset style="height: 320px; width:98%;margin-left:1%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
   <table id="h_magazyn" class="display" style="font-style: verdana;font-size: 11px;">
    <thead style="background-color:ThreeDFace;">
        <tr>
@@ -137,99 +84,19 @@
        </tr>
    </thead>
   </table>
- </fieldset>
+</fieldset-->
+
+
+ <div id="f_mag" style="text-align:center; width:490px" title="Magazyn">
 </div>
 
- <div id="f_mag" style="text-align:center; width:490px" title="Magazyn" class="schowaj">
-  <fieldset>
-    <legend>Przekazanie</legend>
-      <div style="text-align:left;">
-       <input type="radio" name="agenttu" value="1" checked/><label style="font-weight: bold;">Towarzystwo dla agenta</label><br><br>
-       <input type="radio" name="agenttu" value="2"/><label style="font-weight: bold;">Agent dla towarzystwa</label><br>
-      </div>
-      <div style="text-align:right">
-       <input type="checkbox" style="margin-top:15px;" name="usun_mag" id="usun_mag"/><label style="margin-top:15px;font-weight:bold;margin-left:5px">Usuń</label>
-      </div>
-  </fieldset><br>
+<div id="alert_mag_dodaj" style="text-align:center; width:490px" title="Uwaga">
+</div>
 
-   <fieldset>
-    <legend>TU, nazwa druku</legend>
-      <select style="width: 183px" name="TU_mag" id="TU_mag" class="izolty z">
-      <!--?php
-         if ($polaczenie->connect_errno!=0)
-	 {
-	  echo "Error: ".$polaczenie->connect_errno;
-	 }
-         else
-         {
-          $polaczenie->set_charset("utf8");
-          $rezultat = @$polaczenie->query("SELECT * FROM ttowarzystwa ORDER BY nazwa ASC");
-           echo '<option value=0>Wybierz'."</option>\n";
-           while($row = $rezultat->fetch_assoc()) {
-                                                   echo '<option value="' . $row['id'].'">'.$row['nazwa'] ."</option>\n";
-                                                  }
-          $rezultat->free_result();
-         }
-       ?-->
-       </select><br>
 
-       <select style="width: 183px;" name="typ_doc" id="typ_doc" class="izolty z">
-       <!--?php
-          if ($polaczenie->connect_errno!=0)
-	  {
-	   echo "Error: ".$polaczenie->connect_errno;
-	  }
-          else
-          {
-           $polaczenie->set_charset("utf8");
-           $rezultat = @$polaczenie->query("SELECT * FROM typ_dokumentu");
-           echo '<option value=0>Wybierz'."</option>\n";
-           while ($row = $rezultat->fetch_assoc())
-                  {
-                         echo '<option value="' . $row['id'].'">'.$row['dokument'] ."</option>\n";
-                  };
-            $rezultat->free_result();
-           }
-       ?-->
-       </select>
-   </fieldset><br>
+<div id="mag_e" title="Pozycja z magazynu">
+</div>
 
-    <fieldset>
-      <legend>Numery</legend>
-      <div class="srodek">
-          <span><label>Od :</label> <input size="17" name="nr_od" id="nr_od" class="izolty"/></span>
-          <span><label>Do :</label> <input size="17" name="nr_do" id="nr_do" class="izolty"/></span>
-      </div>
-    </fieldset><br>
 
-    <div>
-        <fieldset style="width:35%;float:left;">
-          <legend>Data przekazania</legend>
-           <?php $czas=date("Y-m-d");?>
-           <input size="10" name="data_wplyw" id="data_wplyw" class="izolty data" value="<?php echo "$czas"; ?>"/>
-        </fieldset>
-
-        <fieldset>
-          <legend>Przekazujący</legend>
-            <select name="user" id="user" disabled class="izolty z">
-            <!--?php
-              if ($polaczenie->connect_errno!=0)
-                      {
-                       echo "Error: ".$polaczenie->connect_errno;
-                      }
-                      else
-                      {
-                       $polaczenie->set_charset("utf8");
-                       echo '<option value=0>Wybierz'."</option>\n";
-                       $rezultat = @$polaczenie->query("SELECT id,nazwa FROM uzytkownicy");
-                       while ($row = $rezultat->fetch_assoc())
-                              {
-                               echo '<option value="' . $row['id'].'">'.$row['nazwa'] ."</option>\n";
-                              };
-                        $rezultat->free_result();
-                       }
-            ?-->
-            </select>
-        </fieldset>
-   </div>
+<div id="historia_dok" title="Historia dokumentu">
 </div>
