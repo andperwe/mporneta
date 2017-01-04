@@ -87,7 +87,7 @@ t10=$('#magazyn').DataTable({
              "sSortDescending":": aktywuj, by posortować kolumnę malejąco"
              }
           },
-  "scrollY": 250,
+  "scrollY": 270,
   "serverSide": true,
    "order": [[2,'desc']],
   "columnDefs": [

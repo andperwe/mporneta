@@ -1,3 +1,4 @@
+if (nowa_agencja != 1){
 $( "#komunikat_os" ).dialog({
               autoOpen: false,
               maxWidth:420,
@@ -28,3 +29,4 @@ $('#ok_kom_ag').addClass('btn btn-success btn-sm');
 
 $('#komunikat_os').html("<%= escape_javascript (render partial: 'u_ok') %>");
 $('#komunikat_os').dialog( "open" );
+}

@@ -41,6 +41,21 @@
    border-color: #5f5f5f !important;
  }
 
+#polisa_przyp td{
+  height: 20px !important;
+}
+
+#rata_przyp td{
+  height: 20px !important;
+}
+
+#pojazds-table td{
+  height: 20px !important;
+}
+
+#polisy_filtr td{
+  height: 20px !important;
+}
 
  #zdjecia {
    font-size: 16px;
