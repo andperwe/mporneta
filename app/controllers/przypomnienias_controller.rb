@@ -2,8 +2,7 @@ class PrzypomnieniasController < ApplicationController
   before_action :authenticate_user!
   layout 'bez_dodaj_op'
   def index
-    #@polisas=Polisa.all
-   #  @ViewRatysum =   ViewRatysum.all
+
     respond_to do |format|
       format.json { render json: PrzypomnieniaDatatable.new(view_context) }
       format.html
@@ -38,21 +37,6 @@ class PrzypomnieniasController < ApplicationController
      respond_to do |format|
        format.js {  render action: "ok" }
      end
-
-
-     #rescue Net::SMTPAuthenticationError, Net::SMTPServerBusy, Net::SMTPSyntaxError, Net::SMTPFatalError, Net::SMTPUnknownError => e
-     #puts 'blad'
-      #respond_to do |format|
-      #  format.js {  render action: "blad" }
-      #end
-     #end
-
-  # @order = Order.find(params[:id])
-  # @client = Customer.find(@order.client_id)
-
-
-   #flash[:notice] = "Order has been sent."
-   #redirect_to order_path(@order.id)
  end
 
 

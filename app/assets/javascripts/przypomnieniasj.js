@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {
+  $('[data-toggle="tooltip"]').tooltip(); 
      t5=$('#polisa_przyp').DataTable({
      "dom":'<tr>',
       "ajax": $('#polisa_przyp').data('source'),
