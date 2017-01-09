@@ -1,8 +1,19 @@
 $(document).on('turbolinks:load', function() {
+
+var y = 0;
+  if (screen.height <= 800){
+    y = 135;
+  }
+  else {
+    y = 270;
+  }
+
+
+
   t6=$('#rata_przyp').DataTable({
      "dom":'<tr>',
       "ajax": $('#rata_przyp').data('source'),
-      "scrollY": 219,
+      "scrollY": y,
      "serverSide": true,
      "processing": true,
       paging: false,

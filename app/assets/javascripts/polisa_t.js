@@ -29,6 +29,15 @@ $(document).on('turbolinks:load', function() {
     $('#alert_kom').removeClass();
     $('#alert_kom').addClass('btn btn-danger btn-sm');
 
+var y=0;
+
+if (screen.height <= 800){
+  y = 135;
+}
+else {
+  y = 270;
+}
+
 t2=$('#polisas-table').DataTable({
                          "dom":'<tpr>',
                         "ajax": {
@@ -63,7 +72,7 @@ t2=$('#polisas-table').DataTable({
                                     "sSortDescending":": aktywuj, by posortować kolumnę malejąco"
                                     }
                                  },
-	                       "scrollY": 135,
+	                       "scrollY": y,
                          "serverSide": true,
 			                   "order": [[1,'desc']],
                          "processing": true,
