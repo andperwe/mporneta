@@ -13,6 +13,7 @@ class PrzypomnieniasController < ApplicationController
    respond_to do |format|
      @polisa = Polisa.select("polisas.id, ubezpieczony, numer, data_wznowienia, typ").joins(:towarzystwo, :rodz_pol ).find(params[:id])
      @pol_auto = PolAuto.find_by('polisa_id' => @polisa.id)
+     @raporty = Raporty.find(1)
      unless @pol_auto.nil?
        @rej = Pojazd.find_by('id' => @pol_auto.pojazd_id)
      end
@@ -21,6 +22,7 @@ class PrzypomnieniasController < ApplicationController
      end
    end
  end
+
 
  def raport
    respond_to do |format|

@@ -50,7 +50,7 @@ $.rails.confirmed = function(link){
 
 
 
-var t, t2, t3, t4,t5, t6,t10, osoba_id=0, osoba="", nowa_polisa=1, raty_sum=0, polisaf_id=0, nowa_agencja=1;
+var t, t2, t3, t4,t5, t6,t10, osoba_id=0, osoba="", nowa_polisa=1, raty_sum=0, polisaf_id=0, nowa_agencja=1, raporty_email = 0;
 var zmag_dw = 0;
 var zapisano_pol = 0;
 var zmiana_tu = 0;

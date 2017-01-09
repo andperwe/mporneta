@@ -28,6 +28,8 @@ $("#ok_kom_os").focus(function () {
 });
 $('#ok_kom_os').removeClass();
 $('#ok_kom_os').addClass('btn btn-success btn-sm');
-
+t.ajax.reload();
+t5.ajax.reload();
+t6.ajax.reload();
 $('#komunikat_os').html("<%= escape_javascript (render partial: 'ok') %>");
 $('#komunikat_os').dialog( "open" );

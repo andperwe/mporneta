@@ -68,9 +68,17 @@
    <button type="button" id="raport_p" class="btn btn-success" style="padding-top: 2px; padding-bottom: 2px;">
       <span class="glyphicon glyphicon-list-alt"></span> Raport przypomnień
   </button>
+  <button type="button" id="edytuj_linie" class="btn btn-success" style="padding-top: 2px; padding-bottom: 2px;">
+     <span class="glyphicon glyphicon-list-alt"></span> Edycja wydruków
+ </button>
+ <button type="button" id="edytuj_email" class="btn btn-success" style="padding-top: 2px; padding-bottom: 2px;">
+    <span class="glyphicon glyphicon-list-alt"></span> Adres email DW
+</button>
 </div>
 
 <%= link_to "r_l", przypomnienia_raport_path(format: :pdf),:id=>"raport_p_l", :hidden=>"true",:class => "ukryj", :onclick=>"window.open(this.href,'', 'height=600, width=900');return false;"  %>
+<%= link_to 'Edycja wydruków', edit_raporty_path(1), :remote => true, :hidden=>"true", :id => "edytuj_linie_przyp" %>
+<%= link_to 'Edycja email', edit_raporty_path(1), :remote => true, :hidden=>"true", :id => "edytuj_email_przyp" %>
 
 
 <div style="text-align:center;" class="col-md-11">
@@ -133,4 +141,10 @@
 <div id="wyslij_r">
 <%= link_to "", :controller => "przypomnienia_rats", :action => "send_rata_mail", :idp => 0, :remote => "true", :class => "ukryj" %>
 </div>
+</div>
+
+<div class="raporty_e" title="Edytuj email">
+</div>
+
+<div class="raporty_i" title="Edytuj wydruki">
 </div>

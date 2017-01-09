@@ -17,7 +17,7 @@ get 'picture/rysuj_zdjecia' => "pictures#rysuj_zdjecia"
 get 'magazyns_ajax/datatable_ajax', to: 'magazyns#datatable_ajax'
 get 'magazyns_ajax/datatable_ajax2', to: 'magazyns#datatable_ajax2'
 resources :pictures, :only => [:index, :create, :destroy]
-
+  resources :raportys, :only => [:edit, :update]
   resources :magazyns
   resources :pojazds
   resources :towarzystwos

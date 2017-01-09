@@ -550,9 +550,9 @@ $('body').on("keyup","input.flat2",function(e){
   $( "#polisafd" ).dialog({
                autoOpen: false,
                maxWidth:950,
-               maxHeight: 750,//650,
+               maxHeight: 685,//650,
                width: 950,
-               height: 750,//650,
+               height: 685,//650,
                modal: true,
                buttons:[ {
                            id:"usun_p",
@@ -1231,7 +1231,7 @@ $('#szukaj').autocomplete({
 
             $('#t_wspol').freezeTable({
                'autoHeight': false,
-               'height': 55
+               'height': 59
             });
 
             $('#TRyzyka').freezeTable({
@@ -1259,7 +1259,7 @@ $('#szukaj').autocomplete({
                $('.twspol_p').html(data);
                $('#t_wspol').freezeTable({
                   'autoHeight': false,
-                  'height': 55
+                  'height': 59
                });
              }
            });

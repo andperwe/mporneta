@@ -1,18 +1,18 @@
 
 
-BIURO UBEZPIECZEŃ
+<%= @raporty.L1 %>
 
-MARTA PERWEJNIS
+<%= @raporty.L2 %>
 
-tel. 603-117-896
+tel. <%= @raporty.L3 %>
 
-TANIE OC I NAJLEPSZE AC
-AKTUALNIE W NASZEJ OFERCIE BLISKO 30 TOWARZYSTW UBEZPIECZENIOWYCH
-UBEZPIECZENIE MIESZKANIA JUŻ OD 50 ZŁ
-PO TRZECH LATACH BEZWYPADKOWEJ JAZDY U NAS OTRZYMASZ
-60 PROCENT ZNIŻKI!!!
+<%= @raporty.L4 %>
+<%= @raporty.L5 %>
+<%= @raporty.L6 %>
+<%= @raporty.L7 %>
+<%= @raporty.L8 %>
 
-Orneta : <%= Date.today %>
+<%= @raporty.L9 %> : <%= Date.today %>
 
 Pan/Pani
 
@@ -25,16 +25,20 @@ Uprzejmie informujemy, że w dniu <%= @polisa.data_wznowienia %> kończy się po
 na pojazd o numerze rejestracyjnym <%= @rej.nr_rej %>.
 <% end %>
 
-W związku z powyższym zapraszamy Pana/Panią do naszego biura w Ornecie przy ul. Przemysłowej 16 (I piętro)
- lub naszej filii w Dobrym Mieście przy ul. Grudziądzkiej 7a.
+W związku z powyższym zapraszamy Pana/Panią do naszego biura w <%= @raporty.L10 %>
+<%= @raporty.L11 %>.
 
-Biura czynne:
+<%= @raporty.L12 %>
 
-Orneta
+<%= @raporty.L13 %>
 
-od poniedziałku do piątku od 9:00 do 17:00
-w soboty od 10:00 do 13:00
+<%= @raporty.L14 %>
+<%= @raporty.L15 %>
 
-Dobre Miasto
+<%= @raporty.L16 %>
 
-od poniedziałku do piątku od 9:00 do 16:00
+<%= @raporty.L17 %>
+
+<%= @raporty.L18 %>
+
+Proszę o nie odpowiadanie na tego email-a. Adres ten służy wyłącznie do wysyłania przypomnień!

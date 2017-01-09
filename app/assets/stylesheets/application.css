@@ -18,6 +18,16 @@
  *= require_tree .
  *= require_self
  */
+
+label.l {
+  width: 41px;
+}
+.ui-dialog-buttonpane {
+ padding-bottom: 0px !important;
+ padding-top: 0px !important;
+
+}
+
  @font-face {
     font-family: 'Glyphicons Halflings';
     src: url('../assets/glyphicons-halflings-regular.eot');
@@ -164,6 +174,11 @@ span.ui-button-text, #nowy_user, #nowa_agencja, #pokaz_mag, #dodaj_mag{
 .margines{
   margin-bottom: 2px;
 }
+
+.margines2{
+  margin-bottom: 7px;
+}
+
 
  .field_with_errors label{
   color:#a94442;

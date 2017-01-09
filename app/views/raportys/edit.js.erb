@@ -1,0 +1,63 @@
+
+if (raporty_email == 1){
+$( ".raporty_e" ).dialog({
+              autoOpen: false,
+              maxWidth:300,
+              maxHeight: 250,
+              width: 300,
+              height: 250,
+              modal: true,
+              buttons:[
+                      {
+                        id:"zapisz_rap_e",
+                        text: "Zapisz",
+                        click: function() {
+                          $('#edit_raporty_1').submit();
+                        }
+                      }
+                    ]
+});
+
+$("#zapisz_rap_e").mouseover(function() {
+   $('button').removeClass("ui-state-hover");
+});
+$("#zapisz_rap_e").focus(function () {
+    $(this).removeClass("ui-state-focus");
+});
+$('#zapisz_rap_e').removeClass();
+$('#zapisz_rap_e').addClass('btn btn-primary btn-sm');
+
+$('.raporty_e').html("<%= escape_javascript (render partial: 'form_e') %>");
+$('.raporty_e').dialog( "open" );
+}
+else{
+  $( ".raporty_i" ).dialog({
+                autoOpen: false,
+                maxWidth:900,
+                maxHeight: 400,
+                width: 900,
+                height: 400,
+                modal: true,
+                buttons:[
+                        {
+                          id:"zapisz_rap_i",
+                          text: "Zapisz",
+                          click: function() {
+                            $('#edit_raporty_1').submit();
+                          }
+                        }
+                      ]
+  });
+
+  $("#zapisz_rap_i").mouseover(function() {
+     $('button').removeClass("ui-state-hover");
+  });
+  $("#zapisz_rap_i").focus(function () {
+      $(this).removeClass("ui-state-focus");
+  });
+  $('#zapisz_rap_i').removeClass();
+  $('#zapisz_rap_i').addClass('btn btn-primary btn-sm');
+
+  $('.raporty_i').html("<%= escape_javascript (render partial: 'form_l') %>");
+  $('.raporty_i').dialog( "open" );
+  }

@@ -1,6 +1,6 @@
 <%= form_for @raty_sum, :remote => true, :html => { :id => 'form_rata' } do |f| %>
   <!--input id="idfraty"-->
-   <div><label>zmag dw</label><%= f.text_field :zmag_dw%></div>
+   <div hidden="true"><label>zmag dw</label><%= f.text_field :zmag_dw%></div>
     <div class="form-group form-inline nomargin">
       <div class="checkbox-inline" style="margin-bottom:10px;">
         <label for="przypominac_r" class ="control-label" style ="color:green; font-weight:bold;font-size:12px;">Nie przypominać : </label>

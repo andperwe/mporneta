@@ -1,8 +1,3 @@
-$('#osobafd').dialog('close');
-t.search( '' ).columns().search( '' ).draw();
-osoba_id = 0;
-$('#polisas-table tbody').hide();
-$('#t_szukaj_o').val('');
 $( "#komunikat_os" ).dialog({
               autoOpen: false,
               maxWidth:450,
@@ -12,7 +7,7 @@ $( "#komunikat_os" ).dialog({
               modal: true,
               buttons:[
                       {
-                        id:"ok_kom_os",
+                        id:"ok_kom_np",
                         text: "Ok",
                         click: function() {
                           $('#komunikat_os').dialog("close");
@@ -21,16 +16,19 @@ $( "#komunikat_os" ).dialog({
                     ]
 });
 
-$("#ok_kom_os").mouseover(function() {
+$("#ok_kom_np").mouseover(function() {
    $('button').removeClass("ui-state-hover");
 });
-$("#ok_kom_os").focus(function () {
+$("#ok_kom_np").focus(function () {
     $(this).removeClass("ui-state-focus");
 });
-$('#ok_kom_os').removeClass();
-$('#ok_kom_os').addClass('btn btn-success btn-sm');
-t.ajax.reload();
-t5.ajax.reload();
-t6.ajax.reload();
-$('#komunikat_os').html("<%= escape_javascript (render partial: 'u_ok') %>");
+$('#ok_kom_np').removeClass();
+$('#ok_kom_np').addClass('btn btn-success btn-sm');
+
+if (raporty_email == 1){
+  $('#komunikat_os').html("<%= escape_javascript (render partial: 'ok') %>");
+}
+else{
+  $('#komunikat_os').html("<%= escape_javascript (render partial: 'okl') %>");
+}
 $('#komunikat_os').dialog( "open" );

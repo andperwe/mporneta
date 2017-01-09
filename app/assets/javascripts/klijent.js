@@ -140,7 +140,7 @@ $('body').on('change',"input[type=radio][name='osoba[typ_prawny]']",function() {
         maxWidth:950,
               maxHeight: 645,
               width: 950,
-              height: 645,
+              height: 620,
               modal: true,
               buttons:[ {
                           id:"usun_o",

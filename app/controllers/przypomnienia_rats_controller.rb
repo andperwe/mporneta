@@ -16,6 +16,7 @@ class PrzypomnieniaRatsController < ApplicationController
       AND (TO_DAYS(data) - TO_DAYS(NOW())) > 0
       AND (TO_DAYS(data) - TO_DAYS(NOW())) < 31").group(:polisa_id, :nr_raty, :data).find(params[:id])
       @pol_auto = PolAuto.find_by('polisa_id' => @polisa.id)
+      @raporty = Raporty.find(1)
       unless @pol_auto.nil?
         @rej = Pojazd.find_by('id' => @pol_auto.pojazd_id)
       end

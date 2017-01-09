@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230173615) do
+ActiveRecord::Schema.define(version: 20170108105556) do
 
   create_table "agencjes", force: :cascade do |t|
     t.string "nazwa",      limit: 100
@@ -202,6 +202,30 @@ ActiveRecord::Schema.define(version: 20161230173615) do
     t.boolean  "zmag_dw",                                 default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "raporties", force: :cascade do |t|
+    t.string   "L1",         limit: 255
+    t.string   "L2",         limit: 255
+    t.string   "L3",         limit: 255
+    t.string   "L4",         limit: 255
+    t.string   "L5",         limit: 255
+    t.string   "L6",         limit: 255
+    t.string   "L7",         limit: 255
+    t.string   "L8",         limit: 255
+    t.string   "L9",         limit: 255
+    t.string   "L10",        limit: 255
+    t.string   "L11",        limit: 255
+    t.string   "L12",        limit: 255
+    t.string   "L13",        limit: 255
+    t.string   "L14",        limit: 255
+    t.string   "L15",        limit: 255
+    t.string   "L16",        limit: 255
+    t.string   "email",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "L17",        limit: 255
+    t.string   "L18",        limit: 255
   end
 
   create_table "raty_sums", force: :cascade do |t|

@@ -10,8 +10,8 @@ set :passenger_restart_with_touch, true
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# zmienić mporneta
-set :deploy_to, '/home/agent_user/mwlubawa'
+# zmienić mwlubawa
+set :deploy_to, '/home/agent_user/mporneta'
 
 # Default value for :scm is :git
 # set :scm, :git
