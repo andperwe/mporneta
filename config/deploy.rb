@@ -11,7 +11,7 @@ set :passenger_restart_with_touch, true
 
 # Default deploy_to directory is /var/www/my_app_name
 # zmienić mwlubawa
-set :deploy_to, '/home/agent_user/mporneta'
+set :deploy_to, '/home/agent_user/mwlubawa'
 
 # Default value for :scm is :git
 # set :scm, :git
