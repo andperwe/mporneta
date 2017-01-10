@@ -129,6 +129,7 @@ aData = t6.row( this ).data();
 
 $("#pok_r_pg").on('click',function(e){
    e.preventDefault();
+    $( this ).blur();
    if ($('input#pok_r_p').parent().attr('action') == '/polisas/0/edit')
      {
        alert_t('Zaznacz którą polisę chcesz edytować !');
@@ -141,6 +142,7 @@ $("#pok_r_pg").on('click',function(e){
 
 
 $("#pok_r_og").on('click',function(){
+   $( this ).blur();
    if ($('input#pok_r_o').parent().attr('action') == '/osobas/0/edit')
      {
        alert_t('Zaznacz którą polisę chcesz edytować !');
@@ -151,6 +153,7 @@ $("#pok_r_og").on('click',function(){
 });
 
 $("#drukuj_r_p").on('click',function(){
+   $( this ).blur();
   if ($('#drukuj_r').attr('href') == '/przypomnienia_rats/0.pdf')
     {
       alert_t('Zaznacz którą polisę chcesz wydrukować !');
@@ -163,6 +166,7 @@ $("#drukuj_r_p").on('click',function(){
 $('#wyslij_r').children().hide();
 
 $('#wyslij_r_p').on('click',function(){
+   $( this ).blur();
   if($('#wyslij_r').children().attr('href') == '/send_rata_mail?class=ukryj&idp=0')
   {
     alert_t('Zaznacz którą polisę chcesz wysłać !');

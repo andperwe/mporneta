@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group form-inline margin5">
-                     <label for="select_t" class = "control-label col-md-3 col-sm-3 label-mar-5">TU :</label>
+                    <div id="label_link"></div>
                      <%= collection_select(:polisa, :towarzystwo_id, @towarzystwa, :id, :nazwa, {:prompt => "Wybierz"}, {:class=>"form-control input-sm izolty", :id=>"select_t", :style => "min-width: 180px;"}) %>
                      <%= f.hidden_field :rodz_pol_id, :id => "temp_rodz_pol" %>
                   </div>

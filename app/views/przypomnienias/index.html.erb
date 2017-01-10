@@ -30,26 +30,26 @@
 
   <div class="col-md-1 text-center">
     <div style="margin-top:57px">
-      <button data-toggle="tooltip" data-placement="right" title="Pokaż polisę" type="button" id="pok_p_pg" class="btn btn-primary">
+      <button data-toggle="tooltip" data-placement="right" title="Pokaż polisę" type="button" id="pok_p_pg" class="btn btn-sample">
           <span class="glyphicon glyphicon-edit"></span>
       </button>
           <%= button_to("", edit_polisa_path(0),:method => :get, :id => "pok_p_p", :remote => "true", :hidden => "true") %>
     </div>
     <!--div style="margin-top:57px"><button id="pok_p_p" style="margin-left:25px;height:25px; width:25px">Pokaż polisę</button><label class="raty">Polisa</label></div-->
     <div style="margin-top:10px">
-      <button data-toggle="tooltip" data-placement="right" title="Pokaż osobę" type="button" id="pok_p_og" class="btn btn-primary">
+      <button data-toggle="tooltip" data-placement="right" title="Pokaż osobę" type="button" id="pok_p_og" class="btn btn-sample">
           <span class="glyphicon glyphicon-user"></span>
       </button>
       <%= button_to("", edit_osoba_path(0),:method => :get, :id => "pok_p_o", :remote => "true", :hidden => "true") %>
     </div>
     <!--div style="margin-top:10px"><button id="pok_p_o" style="margin-left:25px;height:25px; width:25px">Pokaż osobę</button><label  class="raty">Osoba</label></div-->
     <div style="margin-top:10px;"
-    <button data-toggle="tooltip" data-placement="right" title="Drukuj" type="button" id="drukuj_p_p" class="btn btn-primary">
+    <button data-toggle="tooltip" data-placement="right" title="Drukuj" type="button" id="drukuj_p_p" class="btn btn-sample">
         <span class="glyphicon glyphicon-print"></span>
     </button>
   </div>
    <div style="margin-top:10px;">
-     <button data-toggle="tooltip" data-placement="right" title="Wyślij email" type="button" id="wyslij_p_p" class="btn btn-primary">
+     <button data-toggle="tooltip" data-placement="right" title="Wyślij email" type="button" id="wyslij_p_p" class="btn btn-sample">
          <span class="glyphicon glyphicon-envelope"></span>
      </button>
    </div>
@@ -65,14 +65,14 @@
 </div>
 
 <div class="col-md-12" style="margin-top:5px; margin-bottom:5px;">
-   <button type="button" id="raport_p" class="btn btn-success" style="padding-top: 2px; padding-bottom: 2px;">
-      <span class="glyphicon glyphicon-list-alt"></span> Raport przypomnień
+   <button type="button" id="raport_p" class="btn btn-xs btn-sample" style="padding-top: 2px; padding-bottom: 2px;">
+      <span class="glyphicon glyphicon-print"></span> Raport przypomnień
   </button>
-  <button type="button" id="edytuj_linie" class="btn btn-success" style="padding-top: 2px; padding-bottom: 2px;">
-     <span class="glyphicon glyphicon-list-alt"></span> Edycja wydruków
+  <button type="button" id="edytuj_linie" class="btn btn-xs btn-sample" style="padding-top: 2px; padding-bottom: 2px;">
+     <span class="glyphicon glyphicon-edit"></span> Edycja wydruków
  </button>
- <button type="button" id="edytuj_email" class="btn btn-success" style="padding-top: 2px; padding-bottom: 2px;">
-    <span class="glyphicon glyphicon-list-alt"></span> Adres email DW
+ <button type="button" id="edytuj_email" class="btn btn-xs btn-sample" style="padding-top: 2px; padding-bottom: 2px;">
+    <span class="glyphicon glyphicon-pencil"></span> Adres email DW
 </button>
 </div>
 
@@ -112,24 +112,24 @@
 <div>
   <div class="col-md-1 text-center">
     <div style="margin-top:57px">
-      <button data-toggle="tooltip" data-placement="right" title="Pokaż polise" type="button" id="pok_r_pg" class="btn btn-info">
+      <button data-toggle="tooltip" data-placement="right" title="Pokaż polise" type="button" id="pok_r_pg" class="btn btn-sample">
           <span class="glyphicon glyphicon-edit"></span>
       </button>
       <%= button_to("", edit_polisa_path(0),:method => :get, :id => "pok_r_p", :remote => "true", :hidden =>"true") %>
     </div>
     <div style="margin-top:10px">
-      <button data-toggle="tooltip" data-placement="right" title="Pokaż osobę" type="button" id="pok_r_og" class="btn btn-info">
+      <button data-toggle="tooltip" data-placement="right" title="Pokaż osobę" type="button" id="pok_r_og" class="btn btn-sample">
           <span class="glyphicon glyphicon-user"></span>
       </button>
       <%= button_to("", edit_osoba_path(0),:method => :get, :id => "pok_r_o", :remote => "true", :hidden => "true" ) %>
     </div>
     <div style="margin-top:10px;"
-    <button data-toggle="tooltip" data-placement="right" title="Drukuj" type="button" id="drukuj_r_p" class="btn btn-info">
+    <button data-toggle="tooltip" data-placement="right" title="Drukuj" type="button" id="drukuj_r_p" class="btn btn-sample">
         <span class="glyphicon glyphicon-print"></span>
     </button>
   </div>
    <div style="margin-top:10px;">
-     <button data-toggle="tooltip" data-placement="right" title="Wyślij email" type="button" id="wyslij_r_p" class="btn btn-info">
+     <button data-toggle="tooltip" data-placement="right" title="Wyślij email" type="button" id="wyslij_r_p" class="btn btn-sample">
          <span class="glyphicon glyphicon-envelope"></span>
      </button>
    </div>

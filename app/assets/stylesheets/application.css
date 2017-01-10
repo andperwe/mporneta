@@ -19,6 +19,53 @@
  *= require_self
  */
 
+ .btn-sample {
+   color: #454545;
+   background-color: #fbfbfb;
+   border-color: #d3d3d3;
+ }
+
+ .btn-sample:hover,
+ .btn-sample:focus,
+ .btn-sample:active,
+ .btn-sample.active,
+ .open .dropdown-toggle.btn-sample {
+   color: #2b2b2b;
+   background-color: #ededed;
+   border-color: #525252;
+ }
+
+ .btn-sample:active,
+ .btn-sample.active,
+ .open .dropdown-toggle.btn-sample {
+   background-image: none;
+ }
+
+ .btn-sample.disabled,
+ .btn-sample[disabled],
+ fieldset[disabled] .btn-sample,
+ .btn-sample.disabled:hover,
+ .btn-sample[disabled]:hover,
+ fieldset[disabled] .btn-sample:hover,
+ .btn-sample.disabled:focus,
+ .btn-sample[disabled]:focus,
+ fieldset[disabled] .btn-sample:focus,
+ .btn-sample.disabled:active,
+ .btn-sample[disabled]:active,
+ fieldset[disabled] .btn-sample:active,
+ .btn-sample.disabled.active,
+ .btn-sample[disabled].active,
+ fieldset[disabled] .btn-sample.active {
+   background-color: #ededed;
+   border-color: #2b2b2b;
+ }
+
+ .btn-sample .badge {
+   background-color: #ededed;
+   border-color: #2b2b2b;
+ }
+
+
 label.l {
   width: 41px;
 }

@@ -1,0 +1,13 @@
+$( "#add_towarzystwo" ).dialog({
+              autoOpen: false,
+              maxWidth:1000,
+              maxHeight: 460,
+              width: 1000,
+              height: 460,
+              modal: true
+    
+});
+
+$('.towarzystwo_dane').html("<%= escape_javascript (render partial: 'show') %>");
+
+$('#add_towarzystwo').dialog( "open" );

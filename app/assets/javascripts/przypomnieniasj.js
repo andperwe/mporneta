@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  $('[data-toggle="tooltip"]').tooltip(); 
+  $('[data-toggle="tooltip"]').tooltip();
      t5=$('#polisa_przyp').DataTable({
      "dom":'<tr>',
       "ajax": $('#polisa_przyp').data('source'),
@@ -115,6 +115,7 @@ $(document).on('turbolinks:load', function() {
 
 $("#pok_p_pg").on('click',function(e){
    e.preventDefault();
+   $( this ).blur();
    if ($('input#pok_p_p').parent().attr('action') == '/polisas/0/edit')
      {
        alert_t('Zaznacz którą polisę chcesz edytować !');
@@ -127,6 +128,7 @@ $("#pok_p_pg").on('click',function(e){
 
 
 $("#pok_p_og").on('click',function(){
+  $( this ).blur();
    if ($('input#pok_p_o').parent().attr('action') == '/osobas/0/edit')
      {
        alert_t('Zaznacz którą polisę chcesz edytować !');
@@ -137,6 +139,7 @@ $("#pok_p_og").on('click',function(){
 });
 
 $("#drukuj_p_p").on('click',function(){
+  $( this ).blur();
   if ($('#drukuj_p').attr('href') == '/przypomnienias/0.pdf')
     {
       alert_t('Zaznacz którą polisę chcesz wydrukować !');
@@ -149,6 +152,7 @@ $("#drukuj_p_p").on('click',function(){
 $('#wyslij_p').children().hide();
 
 $('#wyslij_p_p').on('click',function(){
+   $( this ).blur();
   if($('#wyslij_p').children().attr('href') == '/send_polisa_mail?class=ukryj&idp=0')
   {
     alert_t('Zaznacz którą polisę chcesz wysłać !');
@@ -164,6 +168,7 @@ else {
 });
 
 $('#raport_p').on('click',function(){
+   $( this ).blur();
   $('#raport_p_l').click();
 });
 

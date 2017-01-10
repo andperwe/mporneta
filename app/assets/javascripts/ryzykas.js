@@ -2,13 +2,13 @@ $(document).on('turbolinks:load', function() {
 
   $('#RyzykaT').freezeTable({
        'autoHeight': false,
-       'height': 166
+       'height': 162
     });
 
 
 
 $('body').on("click","#dodaj_tu",function(){
-  $('#tu_ryzyk').focus();
+  $('#dodaj_tu').blur();
   $('#tu_ryzyk').val('');
   $('#grupa_ryzyk').val('');
   $('.freezetable-body > #RyzykaT tbody').empty();
@@ -21,7 +21,7 @@ $('#dodaj_grupe').tooltip();
 $('#dodaj_ryzyko').tooltip();
 
 $('body').on("click","#dodaj_grupe",function(){
-   $('#grupa_ryzyk').focus();
+   $("#dodaj_grupe").blur();
   if($('#tu_ryzyk').val() == '')
   {
     alert_t('Wybierz wcześniej towarzystwo !');
@@ -33,7 +33,7 @@ $('body').on("click","#dodaj_grupe",function(){
 });
 
 $('body').on("click","#dodaj_ryzyko",function(){
-
+  $("#dodaj_ryzyko").blur();
    if($('#tu_ryzyk').val() == '')
    {
      $('#tu_ryzyk').focus();

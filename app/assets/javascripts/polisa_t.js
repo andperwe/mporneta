@@ -985,6 +985,7 @@ $("#usun_p, #zapisz_p").focus(function () {
 
 //WSPÓŁWŁĄŚCICIEL
            $( "#dodaj_wspol" ).button().on( "click", function(e) {
+             $(this).blur();
               e.preventDefault();
 
                $("#dodaj_ws_link").click();
@@ -998,7 +999,7 @@ $("#usun_p, #zapisz_p").focus(function () {
            });
            $('.dodaj_b').removeClass();
            //DLA KAZDEGO DODAĆ
-           $('#dodaj_wspol').addClass('btn btn-primary btn-xs');
+           $('#dodaj_wspol').addClass('btn btn-sample btn-xs');
            $('#dodaj_wspol').tooltip();
 
 
@@ -1094,12 +1095,21 @@ $.ajax({url: 'polisa/rp_select/',
                   $('.pojazd_partial').html(data);
                   daty_pl();
                   $(".data").mask("9999-99-99");
-                  $('#dodaj_marke_b').addClass('btn btn-primary btn-xs');
+                  $('#dodaj_marke_b').addClass('btn btn-sample btn-xs');
                   $('#dodaj_marke_b').tooltip();
-                  $('#dodaj_model_b').addClass('btn btn-primary btn-xs');
+                  $('#dodaj_model_b').addClass('btn btn-sample btn-xs');
                   $('#dodaj_model_b').tooltip();
-                  $('#dodaj_rodzaj_b').addClass('btn btn-primary btn-xs');
+                  $('#dodaj_rodzaj_b').addClass('btn btn-sample btn-xs');
                   $('#dodaj_rodzaj_b').tooltip();
+                    $('#dodaj_marke_b').on('click',function(){
+                      $(this).blur();
+                    });
+                    $('#dodaj_model_b').on('click',function(){
+                      $(this).blur();
+                    });
+                    $('#dodaj_rodzaj_b').on('click',function(){
+                      $(this).blur();
+                    });
                }
          });
     }
@@ -1173,12 +1183,21 @@ $.ajax({url: 'polisa/rp_select/',
                            $('.pojazd_partial').html(data);
                            daty_pl();
                            $(".data").mask("9999-99-99");
-                           $('#dodaj_marke_b').addClass('btn btn-primary btn-xs');
+                           $('#dodaj_marke_b').addClass('btn btn-sample btn-xs');
                            $('#dodaj_marke_b').tooltip();
-                           $('#dodaj_model_b').addClass('btn btn-primary btn-xs');
+                           $('#dodaj_model_b').addClass('btn btn-sample btn-xs');
                            $('#dodaj_model_b').tooltip();
-                           $('#dodaj_rodzaj_b').addClass('btn btn-primary btn-xs');
+                           $('#dodaj_rodzaj_b').addClass('btn btn-sample btn-xs');
                            $('#dodaj_rodzaj_b').tooltip();
+                           $('#dodaj_marke_b').on('click',function(){
+                             $(this).blur();
+                           });
+                           $('#dodaj_model_b').on('click',function(){
+                             $(this).blur();
+                           });
+                           $('#dodaj_rodzaj_b').on('click',function(){
+                             $(this).blur();
+                           });
                         }
                   });
              }

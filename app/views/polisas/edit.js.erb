@@ -27,4 +27,11 @@ template.addClass('in');
 $('#loading').remove();
 });
 
+$('#label_link').html('<%= link_to 'TU :', towarzystwo_path(@polisa.towarzystwo_id), :remote => true, :id=>"tu_link", :style=>"font-size:11px !important;font-weight: bold;color:#00008b;", :class => "control-label col-md-3 col-sm-3 label-mar-5" %>');
+
+
+$('body').on('click','#tu_link',function(){
+  $(this).blur();
+});
+
 $('#polisafd').dialog( "open" );

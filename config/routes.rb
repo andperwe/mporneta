@@ -101,7 +101,7 @@ post "pojazd/rysuj_pojazd" => "pojazds#rysuj_pojazd"
 
   resources :polisas
   #resources :polisa#, only:[:edit,:index]
-  resources :osobas, path: "domowa"
+  resources :osobas
 
 get "wspolwla/rszukaj_pesel" => "wspolwlas#rszukaj_pesel"
 

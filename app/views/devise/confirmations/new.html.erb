@@ -1,10 +1,10 @@
 <div style="margin-top:50px;"></div>
 
 <div class="panel panel-default devise-bs" style="margin-left:20%;margin-right:20%;padding:3px;">
-  <div class="panel-heading">
+  <div class="panel-heading" style="font-family: Verdana,​Arial,​sans-serif;">
     <h4 class="dialog-jq"><%= t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions') %></h4>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" style="font-family: Verdana,​Arial,​sans-serif;">
 
     <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, role: "form" }) do |f| %>
       <%= devise_error_messages! %>

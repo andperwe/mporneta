@@ -23,6 +23,10 @@ def create
     end
 end
 
+def show
+  @towarzystwo = Towarzystwo.find(params[:id])
+end
+
 private
 
 def towarzystwo_params

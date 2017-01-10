@@ -2,11 +2,11 @@
 <fieldset style="height: 430px; width:98%;margin-left:1%; border:1px solid #000; border-radius: 5px; -moz-border-radius: 15px; background:lightyellow;">
   <div style="margin-top:6px; margin-bottom: 6px;" class="row">
    <div class="col-md-2">
-      <%= button_to('Dodaj / Usuń / Zwróć', new_magazyn_path, :class => 'btn btn-success', :remote => true, :method => :get, :id => "dodaj_mag", :style => "margin-left:10px")  %>
+      <%= button_to('Dodaj / Usuń / Zwróć', new_magazyn_path, :class => 'btn btn-sample', :remote => true, :method => :get, :id => "dodaj_mag", :style => "margin-left:10px")  %>
    </div>
    <div class="col-md-2">
   <!--button id="dodaj_mag" class="btn btn-success" style="margin-left:10px;">Dodaj/Usuń/Zwróć</button-->
-   <button id="pokaz_mag" class="btn btn-primary">Pokaż wszystkie dokumenty</button>
+   <button id="pokaz_mag" class="btn btn-sample"><span class="glyphicon glyphicon-filter"></span> Pokaż wszystkie dokumenty</button>
  </div>
   </div>
   <div id="t5mag" style="display: block;">
@@ -60,7 +60,7 @@
       </div>
      </th>
    </tr>
-  </thead> 
+  </thead>
  </table>
  </div>
 </fieldset>
