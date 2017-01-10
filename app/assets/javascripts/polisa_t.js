@@ -1123,7 +1123,6 @@ $.ajax({url: 'polisa/rp_select/',
 //ZMIANA TOWAZYSTWA
            $('body').on('change','#select_t',function(){
               zmiana_tu = 1;
-              alert('zmiana');
               $('#numer').val('');
               $('#polisa_zmag_n').val(false);
               $('#polisa_zmag_zk').val(false);
