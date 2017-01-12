@@ -30,12 +30,13 @@ $(document).on('turbolinks:load', function() {
 
 	//this function update the .cd-marker position
 	function updateSelectedNav(type) {
+		var numItems = $('.cd-selected').length;
+		if (numItems != 0){
 		var selectedItem = $('.cd-selected'),
 			selectedItemPosition = selectedItem.index() + 1,
 			leftPosition = selectedItem.offset().left,
 			backgroundColor = selectedItem.data('color'),
 			marker = $('.cd-marker');
-
 		marker.removeClassPrefix('color').addClass('color-'+ selectedItemPosition).css({
 			'left': leftPosition,
 		});
@@ -44,6 +45,7 @@ $(document).on('turbolinks:load', function() {
 				toggle3dBlock(false);
 			});
 		}
+	 }
 	}
 
 	$.fn.removeClassPrefix = function(prefix) {
