@@ -29,18 +29,20 @@ $('#rok').val('2016');
         </div>
 
         <div class="form-group text-center">
+         <label for="rok">Wybierz rok</label>
+          <div class="form-inline">
+         <%= select_year(Date.today,{:start_year => 2000, :end_year => 2025}, {:class => "form-control input-sm izolty", :id => "rok", :style=>"width:188px; font-weight: bold;"}) %>
+       </div>
+       </div>
+
+        <div class="form-group text-center">
           <label for="data_wyk">Data wykazu</label>
          <div class="form-inline">
           <input id='data_wyk' class= "form-control input-sm data" style="font-weight: bold;">
         </div>
        </div>
 
-         <div class="form-group text-center">
-          <label for="rok">Wybierz rok</label>
-           <div class="form-inline">
-          <%= select_year(Date.today,{:start_year => 2000, :end_year => 2025}, {:class => "form-control input-sm izolty", :id => "rok", :style=>"width:188px; font-weight: bold;"}) %>
-        </div>
-        </div>
+
 
       <div class="form-group text-center">
           <label for="od">Wybierz date początkową</label>

@@ -18,12 +18,12 @@ get 'magazyns_ajax/datatable_ajax', to: 'magazyns#datatable_ajax'
 get 'magazyns_ajax/datatable_ajax2', to: 'magazyns#datatable_ajax2'
 resources :pictures, :only => [:index, :create, :destroy]
   resources :raportys, :only => [:edit, :update]
-  resources :magazyns, path: "magazyn"
-  resources :pojazds, path: "historia-pojazdu"
+  resources :magazyns
+  resources :pojazds
   resources :towarzystwos
-  resources :ryzykas, path: "towarzystwa-ryzyka"
+  resources :ryzykas
   resources :nazwy_pols, only: [:create, :new]
-  resources :excels, only: [:index], path: "wykaz"
+  resources :excels, only: [:index]
   resources :oddzials
   post "ryzyka/rysuj_grupy" => "ryzykas#rysuj_grupy"
   get "ryzyka/rysuj_ryzyka" => "ryzykas#rysuj_ryzyka"
@@ -43,12 +43,12 @@ resources :pictures, :only => [:index, :create, :destroy]
   post "magazyn/close_platnosc" => "magazyns#close_platnosc"
   #, only: [:index, :create, :new, :destroy, :update, :edit]
 
-  resources :users, only: [:index, :edit, :destroy, :new, :create, :update], path: "agencje-użytkownicy"
+  resources :users, only: [:index, :edit, :destroy, :new, :create, :update]
   resources :agencjes
   post "agencje/rysuj_oddzial" => "agencjes#rysuj_oddzial"
-  resources :przypomnienias, path: "przypomnienia"
+  resources :przypomnienias
   resources :przypomnienia_rats
-  resources :administracjas, only: [:index], path: "administracja"
+  resources :administracjas, only: [:index]
 
   get :send_polisa_mail, to: 'przypomnienias#send_polisa_mail', as: :send_polisa_mail
   get :send_rata_mail, to: 'przypomnienia_rats#send_rata_mail', as: :send_rata_mail

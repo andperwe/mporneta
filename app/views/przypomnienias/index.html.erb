@@ -58,7 +58,7 @@
     <a href="" download class="ck"></a>
   </div>
 
-<%= link_to "", przypomnienia_path(0, format: :pdf),:id=>"drukuj_p",:hidden=>"true", :onclick=>"window.open(this.href,'', 'height=600, width=900');return false;"  %>
+<%= link_to "", przypomnienia_path(0, format: :pdf),:id=>"drukuj_p", :hidden=>"true",:class => "ukryj", :onclick=>"window.open(this.href,'', 'height=600, width=900');return false;" %>
 
 <div id="wyslij_p">
 <%= link_to "", :controller => "przypomnienias", :action => "send_polisa_mail", :idp => 0, :remote => "true", :class => "ukryj" %>

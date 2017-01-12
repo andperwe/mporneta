@@ -1,14 +1,19 @@
 $(document).on('turbolinks:load', function() {
+
+
+
+
 $('body').on('change','#rok',function(){
   //alert('"'+$('#rok').val()+':'+$('#rok').val()+'"');
    var dz = $('#rok').val()+':'+$('#rok').val();
    //$('#od, #do').datepicker({yearRange : "2005:2005"});
   //$('#od, #do').datepicker( "refresh" );
- $("#od, #do").datepicker("destroy");
+ $("#od, #do, #data_wyk").datepicker("destroy");
 
 $("#od").val($('#rok').val()+'-01-01');
-$("#do").val($('#rok').val()+'-12-01');
-  $('#od, #do').datepicker({
+$("#do").val($('#rok').val()+'-01-01');
+$("#data_wyk").val($('#rok').val()+'-01-01');
+  $('#od, #do, #data_wyk').datepicker({
              changeMonth: true,
              changeYear: true,
              dateFormat: "yy-mm-dd",
@@ -26,7 +31,7 @@ $("#do").val($('#rok').val()+'-12-01');
   $('#od, #do, #data_wyk').datepicker({
              changeMonth: true,
              changeYear: true,
-             yearRange: "2016:2016",
+             yearRange: "2017:2017",
              dateFormat: "yy-mm-dd",
              showOn: "button",
              buttonImage:"/assets/calendar.gif",
@@ -88,6 +93,22 @@ $('body').on('click','#generate_link', function(e){
     }
   }
   });
+
+var currentTime = new Date();
+$('#rok').val(currentTime.getFullYear());
+
+var data_dzis;
+
+data_dzis = currentTime.getFullYear()+"-"+currentTime.getMonth() + 1+"-"+currentTime.getDate();
+
+$('#data_wyk').val(data_dzis);
+$('#od').val(data_dzis);
+
+var date = new Date();
+var lastDay =new Date(date.getFullYear(), date.getMonth() + 1, 0);
+lastDay = lastDay.getFullYear()+"-"+lastDay.getMonth()+1+"-"+lastDay.getDate();
+$('#do').val(lastDay);
+$('#nr_wyk').val("");
 });
 
 
