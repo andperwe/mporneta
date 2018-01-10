@@ -1,6 +1,6 @@
 set :stage, :production
 
-server '148.251.32.217', user: 'agent_user', roles: %w{web app db}
+server 'vps.eagent-mp.pl', user: 'admin_vps', roles: %w{web app db}
 
 # server-based syntax
 # ======================
