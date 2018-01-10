@@ -18,7 +18,7 @@ require "capistrano/deploy"
 require 'capistrano/rbenv'
  set :rbenv_type, :user # or :system, depends on your rbenv setup
   set :rbenv_path, '/home/admin_vps/.rbenv/'
-set :rbenv_ruby, '2.5.0'
+set :rbenv_ruby, '2.3.1'
 # require 'capistrano/rvm'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'

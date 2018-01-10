@@ -2,12 +2,13 @@ class OsobaDatatable < AjaxDatatablesRails::Base
 def_delegators :@view, :button_to, :edit_osoba_path
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= ['ViewOsoba.id']
+   @sortable_columns ||= ['ViewOsoba.id']
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= ['ViewOsoba.ubezpieczony', 'ViewOsoba.pesel']
+
   end
 
   private
